@@ -40,8 +40,8 @@ Pull requests are welcome. For significant changes, please open an issue first t
 4. Test the changes.
 5. Send a pull request with a detailed description of what you've changed.
 
-## Warning
-⚠️ This project is for educational purposes only. Be sure to respect copyright when using this tool.
+## Warning ⚠️
+This project is for educational purposes only. Be sure to respect copyright when using this tool.
 
 ## Licence
 
