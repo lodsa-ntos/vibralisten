@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2",
+    "youtube-to-mp3-converter": "file:",
     "ytdl-core": "^4.11.5"
   }
 }
