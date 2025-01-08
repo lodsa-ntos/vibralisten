@@ -1,0 +1,19 @@
+{
+  "name": "youtube-to-mp3-converter-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for YouTube to MP3 Converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Lodney Santos",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "frontend": "file:",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "youtube-to-mp3-converter-frontend": "file:"
+  }
+}
