@@ -74,7 +74,20 @@ const removeTempFile = (fileName) => {
     });
 };
 
+// No fim da conversão, chamamos a função para limpar o ficheiro
+// At the end of the conversion, we call the function to clear the file
+writeStream.on('finish', () => {
+    downloadStatus.inProgress = false;
+    downloadStatus.message = 'Conversion successful';
 
+    const fileName = `${videoInfo.videoDetails.title}.mp3`;
+    
+    // Limpeza do ficheiro após 5 segundos
+    // Cleaning the file after 5 seconds
+    setTimeout(() => {
+        removeTempFile(fileName);
+    }, 5000);
+});
 
 // Endpoint GET /status
 // Retorna o status atual da conversão, seja ele em andamento ou finalizado.
