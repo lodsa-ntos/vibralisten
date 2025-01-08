@@ -34,7 +34,7 @@ async function convertVideo(req, res) {
     try {
         const videoInfo = await ytdl.getInfo(videoUrl);
         const fileName = `${videoInfo.videoDetails.title}.mp3`;
-        const outputPath = path.join('public', 'download', fileName);
+        const outputPath = path.join('public', 'downloads', fileName);
 
         const audioStream = ytdl(videoUrl, { filter: 'audioonly' });
         const writeStream = fs.createWriteStream(outputPath);
@@ -60,6 +60,21 @@ async function convertVideo(req, res) {
         res.status(500).json({ message: 'Error during conversion', error});
     }
 }
+
+// Função para eliminar o ficheiro temporário após a conversão
+// Function to delete the temporary file after conversion
+const removeTempFile = (fileName) => {
+    const filePath = path.join('public', 'downloads', fileName);
+    fs.unlink(filePath, (err) => {
+        if (err) {
+            console.error('Error deleting file: ', err);
+        } else {
+            console.log('File deleted: ', fileName);
+        }
+    });
+};
+
+
 
 // Endpoint GET /status
 // Retorna o status atual da conversão, seja ele em andamento ou finalizado.
