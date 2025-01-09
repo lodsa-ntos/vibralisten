@@ -10,3 +10,6 @@ logs
 
 # Env files
 .env
+
+# .VS CODE directory
+.vscode/
