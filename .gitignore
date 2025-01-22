@@ -13,3 +13,6 @@ logs
 
 # .VS CODE directory
 .vscode/
+
+# Coverage directory
+coverage/
