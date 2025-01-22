@@ -50,7 +50,7 @@ This will run Jest tests for the backend to ensure that the video conversion and
 
 #### Backend
 
-- **Node.js** with Express: Framework used for setting up the backend server.
+- **Node.js with Express**: Framework used for setting up the backend server.
   
 - **ytdl-core**: Library used to download and convert YouTube videos to MP3.
 
