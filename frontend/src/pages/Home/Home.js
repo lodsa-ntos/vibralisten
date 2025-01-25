@@ -1,7 +1,12 @@
 import React from "react";
+import '../../assets/styles/global.css'
 
 const Home = () => {
-  return <h1> Bem-vindo à home</h1>;
+  return (
+    <div className="container-overview">
+
+    </div>
+  );
 };
 
 export default Home;
