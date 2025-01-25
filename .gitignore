@@ -16,3 +16,6 @@ logs
 
 # Coverage directory
 coverage/
+
+#Backup
+frontend_backup.zip
