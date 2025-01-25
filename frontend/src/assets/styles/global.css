@@ -12,18 +12,39 @@
   ===========================================================
 */
 
-/* Garantir que todos os elementos comecem do mesmo ponto.*/
-/* Ensure that all elements start from the same point.*/
+/* Garantir que todos os elementos comecem do mesmo ponto.
+   Ensure that all elements start from the same point.
+   RESET.
+*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Definição do layout grid */
-/* Definition of the grid layout */
-.container-overview {
-  margin-top: 55px;
+.body {
   margin-left: 107px;
   margin-right: 107px;
+}
+
+/* Definição do layout grid 
+Definition of the grid layout
+*/
+.container-overview {
+  margin-left: 107px;
+  margin-right: 107px;
+}
+
+/*Espaço acima do header 
+  Space above the header
+*/
+.home-above-header-spacing {
+  height: 55px;
+}
+
+/*Espaço abaixo do header 
+  Space below the header
+*/
+.home-below-header-spacing {
+  height: 107px;
 }

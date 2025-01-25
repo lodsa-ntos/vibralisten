@@ -1,0 +1,22 @@
+.vibralisten {
+  position: absolute;
+  top: 64px;
+  left: 216px;
+  letter-spacing: 0.05em;
+  line-height: 1.4px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  width: 382px;
+  height: 28px;
+}
+
+.vibralisten-txt {
+  line-break: anywhere;
+  width: 100%;
+}
+
+.vibra {
+  font-weight: 900;
+}
+

@@ -1,12 +1,18 @@
 import React from "react";
+import Header from "../../components/Header/Header";
 import '../../assets/styles/global.css'
 
 const Home = () => {
   return (
     <div className="body">
-      <div className="container-overview">
-        <h1>Olá Mundo</h1>
-    </div>
+
+    {/* spacing before the header */}
+    <div className="home-above-header-spacing"></div>
+      <Header />
+    {/* spacing below the header*/}
+    <div className="home-below-header-spacing"></div>
+      
+        
     </div>
   );
 };
