@@ -1,0 +1,29 @@
+/* 
+  ===========================================================
+  Project: VibraListen (Youtube to MP3 Converter)
+  Author: Lodney Santos
+  Creation Date: [Data]
+  Latest Update: [Data]
+  Description: This is a full-stack web app that converts 
+             YouTube videos to MP3. The backend uses 
+             Node.js with Express for video download and 
+             conversion, while the frontend provides an 
+             interface to input links and download MP3 files.
+  ===========================================================
+*/
+
+/* Garantir que todos os elementos comecem do mesmo ponto.*/
+/* Ensure that all elements start from the same point.*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Definição do layout grid */
+/* Definition of the grid layout */
+.container-overview {
+  margin-top: 55px;
+  margin-left: 107px;
+  margin-right: 107px;
+}
