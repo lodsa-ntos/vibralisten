@@ -1,22 +1,91 @@
-.vibralisten {
-  position: absolute;
-  top: 64px;
-  left: 216px;
+/* Explanation:
+  ===========================================================
+  *Flexbox structure:
+
+  The header uses display: flex with justify-content: 
+  space-between to place the logo and navigation menu 
+  at the ends. I used align-items: centre to ensure vertical 
+  alignment.
+
+  *Logo with image and text:
+
+  The logo-container combines the icon (logo-image) and 
+  the text (logo-text) using flexbox.
+
+  *Navigation menu:
+
+  The nav-list organises the links horizontally with 
+  spacing (gap).
+  ===========================================================
+*/
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.logo-container {
+  display: flex;
+  text-align: center;
+}
+.logo-image {
+width: 50px;
+height: auto;
+margin-right: 16px;
+}
+.logo-text {
+  text-align: left;
+}
+.logo {
+  margin: 0;
+}
+.logo .vibra {
+  font-size: 32px;
+  font-weight: 900;
+  margin: 0;
   letter-spacing: 0.05em;
   line-height: 1.4px;
-  color: #000;
+}
+.logo .liste {
+  font-weight: 400;
+  font-size: 32px;
+  margin: 0;
+  letter-spacing: 0.05em;
+  line-height: 1.4px;
+}
+.slogan {
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  line-height: 1.4px;
+  margin: 4px 0 0;
+}
+
+.nav {
   display: flex;
-  align-items: center;
-  width: 382px;
-  height: 28px;
+}
+.nav-list {
+  display: flex;
+  gap: 24pt;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-list a {
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  letter-spacing: 0.05em;
+  line-height: 1.4px;
+}
+.nav-list a:hover {
+  text-decoration: underline;
 }
 
-.vibralisten-txt {
-  line-break: anywhere;
-  width: 100%;
-}
-
-.vibra {
-  font-weight: 900;
-}
 

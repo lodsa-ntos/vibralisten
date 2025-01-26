@@ -5,19 +5,27 @@ const Header = () => {
   return (
     <>
     <header>
-      <div className="vibralisten">
-        <span className="vibralisten-txt">
-          <span className="vibra">VIBRA</span>
-          <span>LISTE</span>
-          <span className="vibra">N</span>
-        </span>
+       {/* Logo */}
+      <div className="logo-container">
+        <img className="logo-image" alt="Music Symbol" src="../../../public/Logo/music_symbol.png" />
+        <div className="logo-text">
+          <h1 className="logo">
+            <span className="vibra">VIBRA</span>
+            <span className="liste">LISTE</span>
+            <span className="vibra">N</span>
+          </h1>
+          <p className="slogan">Listen. Feel. Download</p>
+        </div>  
       </div>
-      <b className="listen-feel-download">Listen. Feel. Download</b>
-      <img className="music-symbol" alt="" src="music_symbol" />
-      <b className="faqs">FAQs</b>
-      <b className="about">About</b>
-      <b className="contact">Contact</b>
 
+      {/* Navigation */}
+      <nav className="nav">
+        <ul  className="nav-list">
+        <li><a href ='/faqs'>FAQs</a></li>
+        <li><a href ='/about'>About</a></li>
+        <li><a href ='/contact'>contact</a></li>
+        </ul>
+      </nav>
     </header>
     </>
   );
