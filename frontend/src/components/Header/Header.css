@@ -24,8 +24,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 32px;
-  border-bottom: 1px solid #ddd;
   background-color: #fff;
 }
 
@@ -34,8 +32,8 @@ header {
   text-align: center;
 }
 .logo-image {
-width: 50px;
-height: auto;
+width: 77px;
+height: 68px;
 margin-right: 16px;
 }
 .logo-text {
@@ -45,7 +43,7 @@ margin-right: 16px;
   margin: 0;
 }
 .logo .vibra {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 900;
   margin: 0;
   letter-spacing: 0.05em;
@@ -53,14 +51,14 @@ margin-right: 16px;
 }
 .logo .liste {
   font-weight: 400;
-  font-size: 32px;
+  font-size: 24px;
   margin: 0;
   letter-spacing: 0.05em;
   line-height: 1.4px;
 }
 .slogan {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.05em;
   line-height: 1.4px;
   margin: 4px 0 0;
@@ -77,7 +75,7 @@ margin-right: 16px;
   padding: 0;
 }
 .nav-list a {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-decoration: none;
   color: #000;
