@@ -39,7 +39,6 @@
   */
 }
 
-
 /* Garantir que todos os elementos comecem do mesmo ponto.
    Ensure that all elements start from the same point.
    RESET.
@@ -54,25 +53,4 @@
   margin-left: var(--space-xxl);
   margin-right: var(--space-xxl);
   font-family: "Poppins", sans-serif;
-}
-
-/*Espaço acima do header 
-  Space above the header
-*/
-.home-above-header-spacing {
-  height: var(--space-s);
-}
-
-/*Espaço abaixo do header 
-  Space below the header
-*/
-.home-below-header-spacing {
-  height: var(--space-xxl);
-}
-
-/*Espaço abaixo do conteúdo 
-  Space below the content
-*/
-.home-below-content {
-  height: var(--space-m);
 }
