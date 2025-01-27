@@ -31,7 +31,9 @@
   --space-m: 24pt;
   --space-l: 32pt;
   --space-xl: 48pt;
-  --space-xxl: 80pt;
+  --space-xxl: 56pt
+  --space-xxxl: 80pt;
+  --space-margin-large: 165pt;
   --reset-space: 0;
 
   /* Tipografia 
@@ -50,8 +52,8 @@
 }
 
 body {
-  margin-left: 165pt;
-  margin-right: 165pt;
+  margin-left: var(--space-margin-large);
+  margin-right: var(--space-margin-large);
   height: 100%;
   font-family: "Poppins", sans-serif;
 }

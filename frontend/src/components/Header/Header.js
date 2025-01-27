@@ -13,7 +13,7 @@ const Header = () => {
         <div className="logo-container">
           <Link to="/home">
             <img
-              src="Logo/music_symbol.png"
+              src="Logo/music_symbol.svg"
               alt="Music Symbol"
               className="logo-image"
             />
