@@ -23,7 +23,7 @@
   Space below the subtitle
 */
 .home-below-subtitle {
-  height: var(--space-xl);
+  height: var(--space-xxl);
 }
 
 h1 {
