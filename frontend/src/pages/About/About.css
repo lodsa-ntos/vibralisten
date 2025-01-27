@@ -1,5 +1,42 @@
 .about-section {
   min-height: 100vh;
-  padding: 50px;
+  padding: 20px 0 0 25px;
   background-color: var(--light-grey2);
+}
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.big-title {
+  font-size: 120px;
+  font-weight: bold;
+  color: var(--light-grey);
+}
+.overlay-vibra-word,
+.overlay-liste-word,
+.overlay-bold-n {
+  position: absolute;
+  z-index: 1;
+  font-size: 36px;
+  color: var(--dark-grey);
+}
+.overlay-liste-word {
+  font-weight: 400;
+  top: 50%;
+  left: 49.5%;
+  transform: translate(-50%, -50%);
+}
+.overlay-vibra-word {
+  font-weight: bold;
+  top: 50%;
+  left: 26.5%;
+  transform: translate(-50%, -50%);
+}
+.overlay-bold-n {
+  font-weight: bold;
+  top: 50%;
+  left: 62.5%;
+  transform: translate(-50%, -50%);
 }
