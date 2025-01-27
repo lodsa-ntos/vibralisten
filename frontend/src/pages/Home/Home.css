@@ -12,8 +12,8 @@
   height: var(--space-xl);
 }
 
-/*Espaço abaixo do conteúdo 
-  Space below the content
+/*Espaço abaixo do título de destaque 
+  Space below the featured title
 */
 .home-below-featured-title {
   height: var(--space-s);

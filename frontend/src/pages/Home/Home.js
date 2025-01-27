@@ -10,12 +10,15 @@ const Home = () => {
     {/* spacing before the header */}
     <div className="home-above-header-spacing"></div>
       <Header />
-    {/* spacing below the header*/}
+    {/* spacing below the header */}
     <div className="home-below-header-spacing"></div>
+    {/* featured-title */}
     <h1>
       <span className="featured-title">Convert YouTube videos to MP3</span> in seconds.
     </h1>
-    <div className="home-below-featured-title"></div>    
+    {/* Space below the featured title */}
+    <div className="home-below-featured-title"></div> 
+    {/* subtitle */}   
     <p className="subtitle">Fast, simple and free. Just paste the link.</p>
     </div>
   );
