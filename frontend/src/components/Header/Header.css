@@ -87,7 +87,7 @@ header {
 }
 .nav-list {
   display: flex;
-  gap: 24pt;
+  gap: var(--space-l);
   list-style: none;
   margin: 0;
   padding: 0;

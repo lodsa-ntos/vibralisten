@@ -13,27 +13,46 @@
 */
 
 :root {
+  /* Paleta de cores
+  Colour palette
+  */
   --azul-vibrante: #3d55cc;
   --cinza-escuro: #141a33;
   --cinza: #505673;
   --cinza-leve: #dadef2;
   --cinza-claro: #f5f6fa;
   --branco: #FFFFFF;
+
+  /* Espaçamentos 
+  Spacing
+  */
+  --space-xs: 8pt;
+  --space-s: 16pt;
+  --space-m: 24pt;
+  --space-l: 32pt;
+  --space-xl: 48pt;
+  --space-xxl: 80pt;
+  --reset-space: 0;
+
+  /* Tipografia 
+  Typography
+  */
 }
+
 
 /* Garantir que todos os elementos comecem do mesmo ponto.
    Ensure that all elements start from the same point.
    RESET.
 */
 * {
-  margin: 0;
-  padding: 0;
+  margin: var(--reset-space);
+  padding: var(--reset-space);
   box-sizing: border-box;
 }
 
 .body {
-  margin-left: 80pt;
-  margin-right: 80pt;
+  margin-left: var(--space-xxl);
+  margin-right: var(--space-xxl);
   font-family: "Poppins", sans-serif;
 }
 
@@ -41,12 +60,19 @@
   Space above the header
 */
 .home-above-header-spacing {
-  height: 24pt;
+  height: var(--space-s);
 }
 
 /*Espaço abaixo do header 
   Space below the header
 */
 .home-below-header-spacing {
-  height: 80pt;
+  height: var(--space-xxl);
+}
+
+/*Espaço abaixo do conteúdo 
+  Space below the content
+*/
+.home-below-content {
+  height: var(--space-m);
 }
