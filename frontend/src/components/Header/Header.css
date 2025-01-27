@@ -27,11 +27,16 @@ header {
   background-color: #fff;
 }
 
-.logo-container {
+.logo-container a {
   display: flex;
+  text-decoration: none;
   align-items: center;
   text-align: center;
   gap: 8pt;
+  color: inherit;
+}
+.logo-container a:hover {
+  opacity: 0.8;
 }
 .logo-image {
   width: 42px;
