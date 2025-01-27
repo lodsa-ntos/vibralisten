@@ -3,8 +3,8 @@ const getActivePage = () => {
 
   if (path === "/") return "home";
   if (path === "/home") return "home";
-  if (path === "/faqs") return "faqs";
   if (path === "/about") return "about";
+  if (path === "/faqs") return "faqs";
   if (path === "/contact") return "contact";
 
   return"home";

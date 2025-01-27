@@ -54,6 +54,10 @@
 body {
   margin-left: var(--space-margin-large);
   margin-right: var(--space-margin-large);
-  height: 100%;
   font-family: "Poppins", sans-serif;
+  background-color: var(--white);
+}
+
+html {
+  scroll-behavior: smooth;
 }

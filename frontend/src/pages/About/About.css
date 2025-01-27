@@ -1,0 +1,5 @@
+.about-section {
+  min-height: 100vh;
+  padding: 50px;
+  background-color: var(--light-grey2);
+}

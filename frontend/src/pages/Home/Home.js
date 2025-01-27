@@ -1,12 +1,14 @@
 import React from "react";
 import Header from "../../components/Header/Header";
+import About from "../About/About"
 import ButtonConvert from "../../components/Button/Button";
 import "../../assets/styles/global.css";
 import "./Home.css";
 
 const Home = () => {
   return (
-    <div className="body">
+    <div>
+    <section className="home-section">
       {/* spacing before the header */}
       <div className="home-above-header-spacing"></div>
       <Header />
@@ -25,6 +27,12 @@ const Home = () => {
       <div className="home-below-subtitle"></div>
       {/* Button */}
       <ButtonConvert />
+    </section>
+
+    {/* About Section*/}
+      <section className="about-section">
+        <About />
+      </section>
     </div>
   );
 };

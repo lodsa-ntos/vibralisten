@@ -35,10 +35,10 @@ const Header = () => {
               <Link to="/home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</Link>
             </li>
             <li>
-              <Link to="/faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</Link>
+              <Link to="/about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</Link>
             </li>
             <li>
-              <Link to="/about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</Link>
+              <Link to="/faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</Link>
             </li>
             <li>
               <Link to="/contact" className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</Link>
