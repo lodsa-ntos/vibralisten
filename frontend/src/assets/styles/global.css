@@ -49,9 +49,10 @@
   box-sizing: border-box;
 }
 
-.body {
-  margin-left: var(--space-xxl);
-  margin-right: var(--space-xxl);
+body {
+  margin-left: 165pt;
+  margin-right: 165pt;
+  height: 100%;
   font-family: "Poppins", sans-serif;
   color: var(--white);
 }

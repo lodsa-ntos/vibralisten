@@ -19,6 +19,13 @@
   height: var(--space-s);
 }
 
+/*Espaço abaixo do subtítulo
+  Space below the subtitle
+*/
+.home-below-subtitle {
+  height: var(--space-xl);
+}
+
 h1 {
   margin: var(--reset-space);;
   font-size: 3rem;
