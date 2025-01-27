@@ -24,11 +24,11 @@ h1 {
   font-size: 3rem;
   line-height: 1.2;
   font-weight: 400;
-  color: var(--cinza-escuro);
+  color: var(--dark-grey);
 }
 .featured-title {
   font-weight: bold;
-  color: var(--cinza-escuro);
+  color: var(--dark-grey);
 }
 .subtitle {
   margin: var(--reset-space);
@@ -36,5 +36,5 @@ h1 {
   line-height: 1.6;
   letter-spacing: 0.05em;
   font-weight: 400;
-  color: var(--cinza-escuro);
+  color: var(--dark-grey);
 }

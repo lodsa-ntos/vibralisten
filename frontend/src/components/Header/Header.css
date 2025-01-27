@@ -54,7 +54,7 @@ header {
   margin: 0;
   text-align: left;
   align-items: flex-start;
-  color: var(--cinza-escuro);
+  color: var(--dark-grey);
 }
 .logo {
   display: flex;
@@ -72,7 +72,7 @@ header {
   align-items: center;
   display: inline-block;
   line-height: 1;
-  color: var(--cinza-escuro);
+  color: var(--dark-grey);
 }
 .logo .liste {
   font-weight: 400;
@@ -82,7 +82,7 @@ header {
   align-items: center;
   display: inline-block;
   line-height: 1;
-  color: var(--cinza-escuro);
+  color: var(--dark-grey);
 }
 
 .nav {
@@ -104,11 +104,11 @@ header {
   line-height: 1.4px;
 }
 .nav-list li a {
-  color: var(--cinza-escuro);
+  color: var(--dark-grey);
   transition: ease 0.3s;
 }
 .nav-list li a:hover {
-  color: var(--azul-vibrante);
+  color: var(--blue-vibrant);
 }
 
 

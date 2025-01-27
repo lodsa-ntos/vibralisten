@@ -16,12 +16,12 @@
   /* Paleta de cores
   Colour palette
   */
-  --azul-vibrante: #3d55cc;
-  --cinza-escuro: #141a33;
-  --cinza: #505673;
-  --cinza-leve: #dadef2;
-  --cinza-claro: #f5f6fa;
-  --branco: #FFFFFF;
+  --blue-vibrant: #3d55cc;
+  --dark-grey: #141a33;
+  --grey: #505673;
+  --light-grey: #dadef2;
+  --light-grey2: #f5f6fa;
+  --white: #FFFFFF;
 
   /* Espaçamentos 
   Spacing
@@ -53,5 +53,5 @@
   margin-left: var(--space-xxl);
   margin-right: var(--space-xxl);
   font-family: "Poppins", sans-serif;
-  color: var(--branco);
+  color: var(--white);
 }

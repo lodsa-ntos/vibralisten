@@ -20,6 +20,7 @@ const Home = () => {
     <div className="home-below-featured-title"></div> 
     {/* subtitle */}   
     <p className="subtitle">Fast, simple and free. Just paste the link.</p>
+    
     </div>
   );
 };
