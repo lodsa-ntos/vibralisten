@@ -14,7 +14,7 @@ const ButtonConvert = () => {
     <div className="spacing-between-link-box-btn"></div>
     
     <div className="container-btn">
-      <button className="convert-btn">Convert</button>
+      <button className="convert-btn" type="submit">Convert</button>
     </div>
     
     </>

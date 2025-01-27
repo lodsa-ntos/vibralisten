@@ -28,14 +28,17 @@ const Header = () => {
         {/* Navigation */}
         <nav>
           <ul className="nav-list">
-            <li>
-              <Link to="/faqs">FAQs</Link>
+          <li>
+              <Link to="/home" className="nav-item active">Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/faqs" className="nav-item">FAQs</Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/about" className="nav-item">About</Link>
+            </li>
+            <li>
+              <Link to="/contact" className="nav-item">Contact</Link>
             </li>
           </ul>
         </nav>
