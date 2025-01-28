@@ -1,4 +1,5 @@
 import React from "react";
+import { FcIdea, FcFlashOn, FcHeadset, FcGlobe } from "react-icons/fc";
 import "./About.css";
 
 const About = () => {
@@ -9,18 +10,30 @@ const About = () => {
         <h2 className="title-bnfts">Benefits</h2>
         <div className="benefits-cards">
           <div className="card">
+            <div className="icon-container">
+              <FcIdea />
+            </div>
             <h3>Free and No Ads</h3>
             <p>No distractions, no adverts. Just music.</p>
           </div>
           <div className="card">
+            <div className="icon-container">
+              <FcFlashOn />
+            </div>
             <h3>Fast conversion</h3>
             <p>Convert YouTube videos to MP3 in seconds.</p>
           </div>
           <div className="card">
+            <div className="icon-container">
+            <FcHeadset />
+            </div>
             <h3>High Quality</h3>
             <p>Choose the audio quality you prefer.</p>
           </div>
           <div className="card">
+            <div className="icon-container">
+            <FcGlobe />
+            </div>
             <h3>Easy access</h3>
             <p>Access from any device and download your favourite music.</p>
           </div>
@@ -28,23 +41,13 @@ const About = () => {
       </section>
 
       <div className="about-content">
-        <div className="wrapper">
-          <span className="big-title">about</span>
-          <span className="overlay-vibra-word">VIBRA</span>
-          <span className="overlay-liste-word">LISTE</span>
-          <span className="overlay-bold-n">N</span>
-        </div>
-
-        <div className="body-text">
-          <p>
-          VibraListen makes it simple to convert YouTube 
-          videos to MP3. 
-          <br />
-          Paste the link, click, and download 
-          the audio in a few seconds, with total convenience.
-          </p>
+        <div className="black-wall">
+          <div className="about-white-zone">
+            <h1 className="about-title">about</h1>
+          </div>
         </div>
       </div>
+
     </div>
   );
 };
