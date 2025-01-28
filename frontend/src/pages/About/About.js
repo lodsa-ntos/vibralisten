@@ -56,6 +56,13 @@ const About = () => {
               the audio in a few seconds, with total convenience.
             </p>
           </div>
+
+          <div className="container-circles">
+            <h1 className="title-circles">How it works?</h1>
+            <div className="circle large"> </div>
+            <div className="circle medium"> </div>
+            <div className="circle small"> </div>
+          </div>
         </div>
       </div>
 
