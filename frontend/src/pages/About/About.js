@@ -41,9 +41,20 @@ const About = () => {
       </section>
 
       <div className="about-content">
-        <div className="black-wall">
-          <div className="about-white-zone">
+        <div className="container-black-wall">
+          <div className="container-white-zone">
             <h1 className="about-title">about</h1>
+          </div>
+          <div className="body-text-container">
+            <p className="body-text">
+              <span className="vibra-word">VIBRA</span>
+              <span className="liste-word">LISTE</span>
+              <span className="vibra-word">N </span> 
+              makes it simple to convert YouTube videos to MP3. 
+              <br />
+              Paste the link, click, and download 
+              the audio in a few seconds, with total convenience.
+            </p>
           </div>
         </div>
       </div>
