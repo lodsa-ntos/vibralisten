@@ -1,8 +1,19 @@
 .about-section {
   min-height: 100vh;
-  padding: 20px 0 0 25px;
-  background-color: var(--light-grey2);
+  width: 100%;
+ 
 }
+
+.container-benefits {
+  padding: 40px 0;
+  text-align: center;
+}
+.title-bnfts {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
 
 .wrapper {
   position: relative;
@@ -24,19 +35,28 @@
 }
 .overlay-liste-word {
   font-weight: 400;
-  top: 50%;
-  left: 49.5%;
+  top: 55%;
+  left: 48.5%;
   transform: translate(-50%, -50%);
 }
 .overlay-vibra-word {
   font-weight: bold;
-  top: 50%;
-  left: 26.5%;
+  top: 55%;
+  left: 22.5%;
   transform: translate(-50%, -50%);
 }
 .overlay-bold-n {
   font-weight: bold;
-  top: 50%;
-  left: 62.5%;
+  top: 55%;
+  left: 63.2%;
   transform: translate(-50%, -50%);
+}
+
+.body-text {
+  text-align: left;
+}
+.body-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  padding-right: 200px;
 }
