@@ -48,8 +48,9 @@ Bouncing’ effect (smooth rise and fall)
 }
 */
 
-/*
- Pulsating’ effect (increases and decreases in size)
+/* Pulsating’ effect (increases and decreases in size)
+Efeito de "pulsação" (aumenta e diminui de tamanho)
+*/
 
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -60,15 +61,4 @@ Bouncing’ effect (smooth rise and fall)
 .cta-btn {
   animation: pulse 1.5s infinite ease-in-out;
 }
-*/
 
-@keyframes shake {
-  0%, 100% { transform: scale(0); }
-  25% { transform: scale(1.1); }
-  50% { transform: scale(5px); }
-  75% { transform: scale(-3px); }
-}
-
-.cta-btn {
-  animation: shake 0.7s infinite;
-}
