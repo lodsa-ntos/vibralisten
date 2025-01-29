@@ -1,5 +1,6 @@
 import React from "react";
 import { FcIdea, FcFlashOn, FcHeadset, FcGlobe } from "react-icons/fc";
+import ButtonCTA from "../../components/Button/buttonCTA";
 import "./About.css";
 
 const About = () => {
@@ -87,6 +88,8 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      <ButtonCTA />
 
     </section>
   );
