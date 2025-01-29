@@ -196,7 +196,28 @@
   object-position: top;
 }
 
+.chalk-arrow-container {
+  position: relative;
+  margin-top: 220px;
+  justify-content: center;
+  display: flex;
+  margin-right: -5px;
+}
 .chalk-arrow {
+  display: block;
+  width: auto; 
+  height: auto; 
+  transform: rotate(-95deg) scaleX(-1);
+  max-width: 140px;
+}
+.chalk-arrow2 {
+  display: block;
+  width: 90px; 
+  height: 50px; 
+  transform: rotate(65deg);
+  max-width: 140px;
+}
+.chalk-arrow3 {
   display: block;
   width: auto; 
   height: auto; 
