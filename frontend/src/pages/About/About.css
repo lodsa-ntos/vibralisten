@@ -19,7 +19,7 @@
   gap: 24pt;
   padding: 0 16px;
 }
-.card {
+.card-bfts {
   border-radius: 8px;
   width: 23%;
   position: relative;
@@ -27,16 +27,16 @@
   flex-direction: column;
   align-items: center;
 }
-.card h3 {
+.card-bfts h3 {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
-.card p {
+.card-bfts p {
   font-size: 1rem;
   color: #333;
 }
-.card .icon-container {
+.card-bfts .icon-container {
   width: 50px;
   margin: 0 auto;
   height: 50px;
@@ -135,4 +135,61 @@
   transform: translate(-50%, -50%);
   border-image: linear-gradient(to bottom, white 
   0%, rgba(255, 255, 255, 0) 50%)1;
+}
+
+.card-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.card {
+  width: 250px;
+  height: 420px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--light-grey2);
+}
+.card img {
+  width:60%;
+  height: 280px;
+  object-fit: ;
+  display: block;
+  margin: 0 auto;
+  align-self: center;
+}
+.card-content {
+  padding: 1.2rem;
+  text-align: center;
+}
+.card-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--dark-grey);
+}
+.card-content p {
+  font-size: 1rem;
+  color: var(--grey);
+}
+.card-1 .card-content {
+  order: 1;
+}
+.card-1 img {
+  order: 2;
+}
+.card-2 img {
+  order: 1;
+  margin-top: 20px;
+}
+.card-2 .card-content {
+  order: 2;
+}
+.card-3 .card-content {
+  order: 1;
+}
+.card-3 img {
+  order: 2;
 }
