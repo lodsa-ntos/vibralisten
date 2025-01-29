@@ -35,3 +35,11 @@
   background-color: var(--blue-vibrant);
   transform: scale(0.98);
 }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.cta-btn {
+  animation: bounce 1s infinite ease-in-out;
+}
