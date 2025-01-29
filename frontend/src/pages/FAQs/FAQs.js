@@ -1,13 +1,11 @@
 import React from "react";
-import Header from "../../components/Header/Header";
+import "./FAQs.css";
 
 const FAQs = () => {
   return (
-    <div className="body">
-       {/* spacing before the header */}
-       <div className="home-above-header-spacing"></div>
-       <Header/>
-    </div>
+    <section className="faqs-section">
+       
+    </section>
   );
 };
 

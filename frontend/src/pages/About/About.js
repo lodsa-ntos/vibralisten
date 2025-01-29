@@ -4,9 +4,9 @@ import "./About.css";
 
 const About = () => {
   return (
-    <div className="about-section">
+    <section className="about-section">
 
-      <section className="container-benefits">
+      <div className="container-benefits">
         <h2 className="title-bnfts">Benefits</h2>
         <div className="benefits-cards">
           <div className="card-bfts">
@@ -38,7 +38,7 @@ const About = () => {
             <p>Access from any device and download your favourite music.</p>
           </div>
         </div>
-      </section>
+      </div>
 
       <div className="about-content">
         <div className="container-black-wall">
@@ -88,7 +88,7 @@ const About = () => {
         </div>
       </div>
 
-    </div>
+    </section>
   );
 };
 

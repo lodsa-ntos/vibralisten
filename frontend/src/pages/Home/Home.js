@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import About from "../About/About"
+import About from "../About/About";
+import FAQs from "../FAQs/FAQs";
 import ButtonConvert from "../../components/Button/Button";
 import "../../assets/styles/global.css";
 import "./Home.css";
@@ -33,6 +34,12 @@ const Home = () => {
       <section className="about-section">
         <About />
       </section>
+
+    {/* FAQs Section*/}
+      <section className="faqs-section">
+        <FAQs />
+      </section>
+
     </div>
   );
 };
