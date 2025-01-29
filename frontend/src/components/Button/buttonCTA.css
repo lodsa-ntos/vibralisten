@@ -1,10 +1,8 @@
-.spacing-between-about-and-btn {
-  height: 200pt;
-}
 .container-cta-btn {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
 }
 .cta-btn {
   cursor: pointer;

@@ -89,6 +89,21 @@ const About = () => {
         </div>
       </div>
 
+      {/* Chalk arrow section */}
+      <div className="chalk-arrow-container">
+        <svg className="chalk-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50">
+          <defs>
+            <filter id="chalk" height="2" width="1.6" color-interpolation-filters="sRGB" y="-0.5" x="-0.3" filterUnits="objectBoundingBox">
+              <feTurbulence baseFrequency="0.9" seed="115" result="result1" numOctaves="2" type="turbulence"/>
+              <feDisplacementMap scale="3" yChannelSelector="G" in2="result1" xChannelSelector="R" in="SourceGraphic"/>
+            </filter>
+          </defs>
+          <path filter="url(#chalk)" d="M 10,20 q 30,-10 60,20 m 5,5 l 2,-18 m -3,19 l -15,-5" 
+            fill="none" stroke="#3d55cc" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      {/* CTA button */}
       <ButtonCTA />
 
     </section>

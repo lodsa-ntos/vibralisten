@@ -4,7 +4,7 @@ import "./buttonCTA.css";
 const ButtonCTA = () => {
  return (
   <>
-  {/* Spacing between link box and button */}
+  {/* Spacing between about section and button */}
   <div className="spacing-between-about-and-btn"></div>
 
   <div className="container-cta-btn">

@@ -195,3 +195,11 @@
   order: 2;
   object-position: top;
 }
+
+.chalk-arrow {
+  display: block;
+  width: auto; 
+  height: auto; 
+  transform: rotate(100deg);
+  max-width: 140px;
+}
