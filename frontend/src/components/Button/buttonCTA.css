@@ -38,6 +38,7 @@
 
 /*
 Bouncing’ effect (smooth rise and fall)
+Efeito "pular" (sobe e desce suavemente)
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
