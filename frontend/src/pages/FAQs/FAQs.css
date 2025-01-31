@@ -1,15 +1,24 @@
-.faqs-section {
-  min-height: 100vh;
-  width: 100%;
-  padding: 80px 0;
-}
-
 .faqs-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .faqs-title {
   margin: 0;
+  font-weight: bold;
+  font-size: 48px;
+  position: relative;
+}
+.faqs-title::after {
+  content: "";
+  display: block;
+  width: 180px;
+  height: 4px;
+  background-color: var(--blue-vibrant);
+  position: absolute;
+  bottom: -20px;
+  right: 34%;
 }

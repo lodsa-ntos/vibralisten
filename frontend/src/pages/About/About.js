@@ -5,8 +5,7 @@ import "./About.css";
 
 const About = () => {
   return (
-    <section className="about-section">
-
+    <>
       <div className="container-benefits">
         <h2 className="title-bnfts">Benefits</h2>
         <div className="benefits-cards">
@@ -127,8 +126,7 @@ const About = () => {
 
       {/* CTA button */}
       <ButtonCTA />
-
-    </section>
+    </>
   );
 };
 

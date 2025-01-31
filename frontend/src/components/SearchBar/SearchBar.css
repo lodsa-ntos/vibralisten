@@ -1,7 +1,7 @@
+
 input {
 	color: #17181c;
 }
-
 form, input, .caret {
   margin: auto;
 }
@@ -12,7 +12,7 @@ form {
 }
 input, .caret {
   display: block;
-  transition: all calc(1s) * 0.5 linear;
+  transition: all 0.5s linear;
 }
 input {
   background: transparent;
@@ -25,6 +25,7 @@ input {
   border: 1px solid #000;
   padding: 0;
   outline: none;
+  z-index: 1;
 }
 input:focus, input:valid {
   background: #ffffff;
@@ -37,11 +38,11 @@ input:focus, input:valid {
   height: 3em;
 }
 input:focus {
-  animation: showCaret var(1s) steps(1);
+  animation: showCaret 1s steps(1);
   outline: transparent;
 }
 input:focus + .caret, input:valid + .caret {
-  animation: handleToCaret var(1s) linear;
+  animation: handleToCaret 1s linear;
   background: transparent;
   width: 1px;
   height: 1.5em;
@@ -69,6 +70,7 @@ label {
   translate(0,0.875em);
   transform-origin: 50% 0;
 }
+
 
 /* Animations */
 @keyframes showCaret {

@@ -23,19 +23,22 @@ function SearchBar() {
   };
 
   return (
-    <form>
-      <label htmlFor="search">Search</label>
-      <input 
-      id="search"
-      type="search"
-      pattern=".*\S.*"
-      required
-      value={searchTerm}
-      onChange={handleSearchChange}
-      autoComplete="off"
-      />
-      <span className="caret"></span>
-    </form>
+    <div className="container-form">
+      <form>
+        <label htmlFor="search">Search</label>
+        <input 
+          id="search"
+          type="search"
+          pattern=".*\S.*"
+          required
+          value={searchTerm}
+          onChange={handleSearchChange}
+          autoComplete="off"
+        />
+        <span className="caret"></span>
+      </form>
+    </div>
+    
   );
 }
 

@@ -4,14 +4,12 @@ import "./FAQs.css";
 
 const FAQs = () => {
   return (
-    <section className="faqs-section">
-       
-      <header className="faqs-header">
-        <h1 className="faqs-title">FAQs</h1>
+    <header className="faqs-header">
+      <h1 className="faqs-title">FAQs</h1>
+      <div className="container-faqs">
         <SearchBar />
-      </header>
-       
-    </section>
+      </div>
+    </header>
   );
 };
 
