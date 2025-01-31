@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import About from "../About/About";
 import FAQs from "../FAQs/FAQs";
+import Contact from "../Contact/Contact";
 import ButtonConvert from "../../components/Button/buttonConvert";
 import "../../assets/styles/global.css";
 import "./Home.css";
@@ -39,6 +40,12 @@ const Home = () => {
       <section className="faqs-section">
         <FAQs />
       </section>
+
+    {/* Contact Section*/}
+    <section className="contact-section">
+        <Contact />
+    </section>
+
 
     </div>
   );
