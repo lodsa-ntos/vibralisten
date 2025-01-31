@@ -27,10 +27,11 @@ const faqData = [
   },
   {
     question: "Are there time or size limits for conversion?",
-    answer: `We currently support the conversion of videos up to 60 minutes long. Longer videos may take longer 
-    to process and, in some cases, may not be converted due to technical limitations. We recommend converting 
-    shorter videos to ensure faster and more efficient processing. We are continually working to optimise performance 
-    and increase the supported limits.
+    answer: `We currently support the conversion of videos up to 60 minutes long. 
+    
+    Longer videos may take longer to process and, in some cases, may not be converted due to technical limitations. We recommend converting shorter videos to ensure faster and more efficient processing. 
+    
+    We are continually working to optimise performance and increase the supported limits.
     `,
   },
   {
@@ -73,6 +74,15 @@ const FAQs = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const formatAnswer = (answer) => {
+    return answer.split("\n").map((line, index) => (
+      <span key={index}>
+        {line}
+        <br />
+      </span>
+    ));
+  };
+
   return (
     <>
     <header className="faqs-header">
@@ -91,11 +101,13 @@ const FAQs = () => {
           <div key={index} className="faq-item border-b border-gray-300">
             <button className="faq-question flex justify-between w-full text-lg font-medium py-3 focus:outline-none" onClick={() => toggleFAQ(index)}>
           
-              <span className="text-blue-500">{openIndex === index ? "- " : "+ "} {faq.question}</span>
+              <span className="text-blue-500">{openIndex === index ? "- " : "+ "}</span>{faq.question}
             </button>
             <div className={`faq-answer ${openIndex === index ? 'open' : ''}`}>{faq.answer}</div>
             {openIndex === index && (
-              <p className="text-gray-600 pb-3">{faq.answer}</p>
+              <p className="text-gray-600 pb-3">
+                {formatAnswer(faq.answer)}
+                </p>
             )}
           </div>
         ))}
