@@ -10,12 +10,12 @@ const faqData = [
   },
   {
     question: "How does YouTube to MP3 converter work?",
-    answer: `Basta seguir estes passos:
+    answer: `Just follow these steps:
 
-          1. Copia o link do vídeo do YouTube que desejas converter.
-          2. Cola o link na barra de entrada do nosso site.
-          3. Clica no botão "Converter" e aguarda a conversão.
-          4. Faz o download do ficheiro MP3 quando estiver pronto.`
+          1. Copy the link to the YouTube video you want to convert.
+          2. Paste the link into the entry bar of our website.
+          3. Click on the "Convert" button and wait for the conversion.
+          4. Download the MP3 file when it's ready.`
   },
   {
     question: "VibraListen is free?",
@@ -82,13 +82,18 @@ const FAQs = () => {
       </div>
     </header>
 
+    {/* Space below the subtitle */}
+    <div className="home-below-subtitle"></div>
+
     <div className="max-w-2x1 mx-auto p-6">
       <div className="space-y-2">
         {faqData.map((faq, index) => (
-          <div key={index} className="border-b border-gray-300">
-            <button className="flex justify-between w-full text-lg font-medium py-3 focus:outline-none" onClick={() => toggleFAQ(index)}>
-              <span className="text-blue-500">{openIndex === index ? "-" : "+"}</span>
+          <div key={index} className="faq-item border-b border-gray-300">
+            <button className="faq-question flex justify-between w-full text-lg font-medium py-3 focus:outline-none" onClick={() => toggleFAQ(index)}>
+          
+              <span className="text-blue-500">{openIndex === index ? "- " : "+ "} {faq.question}</span>
             </button>
+            <div className={`faq-answer ${openIndex === index ? 'open' : ''}`}>{faq.answer}</div>
             {openIndex === index && (
               <p className="text-gray-600 pb-3">{faq.answer}</p>
             )}
