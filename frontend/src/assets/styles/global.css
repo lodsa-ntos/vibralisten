@@ -33,7 +33,8 @@
   --space-xl: 48pt;
   --space-xxl: 56pt;
   --space-xxxl: 80pt;
-  --global-margin: 165pt;
+  --global-margin-left: 130pt;
+  --global-margin-right: 168pt;
   --reset-space: 0;
 
   /* Tipografia 
@@ -52,8 +53,8 @@
 }
 
 body {
-  padding-left: var(--global-margin);
-  padding-right: var(--global-margin);
+  padding-left: var(--global-margin-left);
+  padding-right: var(--global-margin-right);
   font-family: "Poppins", sans-serif;
   background-color: var(--white);
   width: 100vw;
