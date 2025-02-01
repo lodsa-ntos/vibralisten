@@ -46,23 +46,23 @@ const Contact = () => {
             <div className="container-cell">
               <div className="container-name">
                 <p className="title-name">Name</p>
-                <input className="input" id="name_id" name="Name" placeholder="Lod Carter"></input>
+                <input className="input-name" id="name_id" name="Name" placeholder="Lod Carter"></input>
               </div>
               <div className="container-email">
                 <p className="title-email">E-mail</p>
-                <input className="input" id="email_id" name="E-mail" placeholder="example@youremail.com"></input>
+                <input className="input-email" id="email_id" name="E-mail" placeholder="example@youremail.com"></input>
               </div>
               <div className="container-phone">
                 <p className="title-phone">Phone</p>
-                <input className="input" id="phone_id" name="Phone" placeholder="123 456 7890"></input>
+                <input className="input-phone" id="phone_id" name="Phone" placeholder="123 456 7890"></input>
               </div>
               <div className="container-subject">
                 <p className="title-subject">Subject</p>
-                <input className="input" id="subject_id" name="Subject" placeholder="Ex: Careers"></input>
+                <input className="input-subject" id="subject_id" name="Subject" placeholder="Ex: Careers"></input>
               </div>
               <div className="container-message">
                 <p className="title-message">Message</p>
-                <textarea className="input" id="message_id" placeholder="Type your message here..."></textarea>
+                <textarea className="input-message" id="message_id" placeholder="Type your message here..."></textarea>
               </div>
               <div className="container-btn">
               <button className="send-message-bnt">Send message</button>
