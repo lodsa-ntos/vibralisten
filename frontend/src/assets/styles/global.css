@@ -58,6 +58,7 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: var(--white);
   width: 100vw;
+  line-height: 1.6em;
 }
 
 html {

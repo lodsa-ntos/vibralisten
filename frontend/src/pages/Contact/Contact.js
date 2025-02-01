@@ -7,7 +7,7 @@ const Contact = () => {
     <div className="container-contacts">
       <div className="card-contact1">
         <h3 className="title-contact-us">Contact us</h3>
-        <p className="intro-contact-txt">Do you have any questions, suggestions or problems? Get in touch with us!<br />
+        <p className="intro-contact-txt">Do you have any questions, suggestions or problems? <br />Get in touch with us!<br />
           <br />We're always looking to improve your experience. 
           <br />Feel free to send us a message using the form on the right.<br /><br />
         </p>
