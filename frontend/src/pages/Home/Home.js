@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import About from "../About/About";
 import FAQs from "../FAQs/FAQs";
 import Contact from "../Contact/Contact";
+import Footer from "../../components/Footer/Footer";
 import ButtonConvert from "../../components/Button/buttonConvert";
 import "../../assets/styles/global.css";
 import "./Home.css";
@@ -46,6 +47,10 @@ const Home = () => {
         <Contact />
     </section>
 
+    {/* Footer Section*/}
+    <footer className="footer-section">
+        <Footer />
+    </footer>
 
     </div>
   );
