@@ -14,7 +14,7 @@ const Contact = () => {
 
         <p className="support-txt">
           <span className="technical-support-txt">Technical Support </span>
-            <br />Need help with conversion? Send us a message.<br />
+          <br />Need help with conversion? Send us a message.<br />
           <br /><span className="suggestions-feedback-txt">Suggestions and Feedback </span>
           <br /> Your opinion is important for improving the service.<br />
           <br /> <span className="report-problem-txt">Report a Problem </span>
@@ -38,33 +38,37 @@ const Contact = () => {
         <p className="open-source-github-txt">
           Our project is open-source! If you want to help with development, check out our repository on GitHub. 🚀
         </p>
-
-        {/* social media ? maybe ?*/}
       </div>
+
+
       <div className="card-contact2">
-        <div className="container-cell">
-          <div className="container-name">
-            <p className="title-name">Name</p>
-            <input className="input" id="name_id" name="Name" placeholder="Lod Carter"></input>
+          <div className="contact-content-form">
+            <div className="container-cell">
+              <div className="container-name">
+                <p className="title-name">Name</p>
+                <input className="input" id="name_id" name="Name" placeholder="Lod Carter"></input>
+              </div>
+              <div className="container-email">
+                <p className="title-email">E-mail</p>
+                <input className="input" id="email_id" name="E-mail" placeholder="example@youremail.com"></input>
+              </div>
+              <div className="container-phone">
+                <p className="title-phone">Phone</p>
+                <input className="input" id="phone_id" name="Phone" placeholder="123 456 7890"></input>
+              </div>
+              <div className="container-subject">
+                <p className="title-subject">Subject</p>
+                <input className="input" id="subject_id" name="Subject" placeholder="Ex: Careers"></input>
+              </div>
+              <div className="container-message">
+                <p className="title-message">Message</p>
+                <textarea className="input" id="message_id" placeholder="Type your message here..."></textarea>
+              </div>
+              <div className="container-btn">
+              <button className="send-message-bnt">Send message</button>
+              </div>
+            </div>
           </div>
-          <div className="container-email">
-            <p className="title-email">E-mail</p>
-            <input className="input" id="email_id" name="E-mail" placeholder="example@youremail.com"></input>
-          </div>
-          <div className="container-phone">
-            <p className="title-phone">Phone</p>
-            <input className="input" id="phone_id" name="Phone" placeholder="123 456 7890"></input>
-          </div>
-          <div className="container-subject">
-            <p className="title-subject">Subject</p>
-            <input className="input" id="subject_id" name="Subject" placeholder="Ex: Careers"></input>
-          </div>
-          <div className="container-message">
-            <p className="title-message">Message</p>
-            <textarea className="input" id="message_id" placeholder="Type your message here..."></textarea>
-          </div>
-          <button className="send-message-bnt">Send message</button>
-        </div>
       </div>
     </div>
   );
