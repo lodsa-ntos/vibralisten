@@ -48,20 +48,20 @@ const Footer = () => {
 
       {/* Contribute on GitHub */}
       <a
-        className="github-link"
+        className="footer-github-link"
         href="https://github.com/lodsa-ntos/youtube-to-mp3-converter"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div className="github-space">
-          <div className="github-icon-container">
-            <BsGithub className="github-icon"/> 
+        <div className="footer-github-space">
+          <div className="footer-github-icon-container">
+            <BsGithub className="footer-github-icon"/> 
           </div>
-          <p className="contribute-subtitle">Contribute on GitHub</p>
+          <p className="footer-contribute-subtitle">Contribute on GitHub</p>
         </div>
       </a>
 
-    <div className="footer-all-rights">© 2025 VIBRALISTEN. All rights reserved.</div>
+    <div className="footer-all-rights">© 2025 VIBRALISTEN. All rights reserved.</div><span>| Terms of Use | Privacy Policy  </span>
     </footer>
   );
 }
