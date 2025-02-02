@@ -189,6 +189,20 @@
 .footer-terms {
   padding-left: 40px;
 }
+.footer-privacy, 
+.footer-terms {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #D1D5DB;
+  transition: transform .3s ease-in-out;
+}
+.footer-terms:hover,
+.footer-privacy:hover {
+  text-decoration: underline;
+  transform: scale(0.95);
+  color: var(--white);
+}
 .footer-icon-terms {
   color: var(--white);
   align-items: center;

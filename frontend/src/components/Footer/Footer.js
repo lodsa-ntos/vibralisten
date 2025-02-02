@@ -82,9 +82,10 @@ const Footer = () => {
         </div>
         
         <div className="footer-rigth">
-          <span className="footer-terms"
+        <Link to="/therms"><span className="footer-terms"
             ><MdOutlinePrivacyTip className="footer-icon-terms" /> 
-            Terms of Use | Privacy Policy</span>
+            Terms of Use
+          </span></Link> | <Link to="/privacy"><span className="footer-privacy">Privacy Policy</span></Link>
         </div>
       </div>
     </>
