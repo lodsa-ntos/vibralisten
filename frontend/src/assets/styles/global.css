@@ -59,6 +59,7 @@ body {
   background-color: var(--white);
   width: 100vw;
   line-height: 1.6em;
+  overflow-x: hidden;
 }
 
 html {
