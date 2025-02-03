@@ -1,0 +1,21 @@
+# Node.js modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+#OS files
+.DS_Store
+
+# Env files
+.env
+
+# .VS CODE directory
+.vscode/
+
+# Coverage directory
+coverage/
+
+#Backup
+frontend_backup.zip
