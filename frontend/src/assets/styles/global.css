@@ -1,0 +1,55 @@
+/* VibraListen - Global Styles */
+
+:root {
+  /* Paleta de cores
+  Colour palette
+  */
+  --blue-vibrant: #3d55cc;
+  --dark-grey: #141a33;
+  --grey: #505673;
+  --light-grey: #dadef2;
+  --light-grey2: #f5f6fa;
+  --white: #FFFFFF;
+
+  /* Espaçamentos 
+  Spacing
+  */
+  --space-xs: 8pt;
+  --space-s: 16pt;
+  --space-m: 24pt;
+  --space-l: 32pt;
+  --space-xl: 48pt;
+  --space-xxl: 56pt;
+  --space-xxxl: 80pt;
+  --global-margin-left: 130pt;
+  --global-margin-right: 168pt;
+  --reset-space: 0;
+
+  /* Tipografia 
+  Typography
+  */
+}
+
+/* Garantir que todos os elementos comecem do mesmo ponto.
+   Ensure that all elements start from the same point.
+   RESET.
+*/
+* {
+  margin: var(--reset-space);
+  padding: var(--reset-space);
+  box-sizing: border-box;
+}
+
+body {
+  padding-left: var(--global-margin-left);
+  padding-right: var(--global-margin-right);
+  font-family: "Poppins", sans-serif;
+  background-color: var(--white);
+  width: 100vw;
+  line-height: 1.6em;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}

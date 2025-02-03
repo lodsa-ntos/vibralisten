@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Run Backend and Frontend",
+      "configurations": ["Start Backend", "Start Frontend"]
+    }
+  ],
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Start Backend",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/backend/index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Start Frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "cwd": "${workspaceFolder}/frontend"
+    }
+  ]
+}

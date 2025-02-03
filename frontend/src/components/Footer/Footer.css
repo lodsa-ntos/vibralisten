@@ -1,0 +1,218 @@
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 40px 0 30px 0;
+}
+.footer-logo-container a {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  text-align: center;
+  gap: 8pt;
+  color: inherit;
+  transition: transform .3s;
+}
+.footer-logo-container a:hover {
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+.footer-logo-image {
+  width: 42px;
+  height: 42px;
+  margin: 0;
+}
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  margin-top: 9px;
+}
+.slogan-footer {
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+  align-items: flex-start;
+  color: var(--dark-grey);
+}
+.footer-logo {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  line-height: 1;
+  all: unset;
+  flex-direction: row;
+}
+.footer-logo .footer-vibra {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 0.32em;
+  align-items: center;
+  display: inline-block;
+  line-height: 1;
+  color: var(--dark-grey);
+}
+.footer-logo .footer-liste {
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0;
+  letter-spacing: 0.32em;
+  align-items: center;
+  display: inline-block;
+  line-height: 1;
+  color: var(--dark-grey);
+}
+
+.nav {
+  display: flex;
+}
+.nav-list-footer {
+  display: flex;
+  gap: var(--space-l);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 15pt;
+}
+.nav-list-footer a {
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  letter-spacing: 0.05em;
+  line-height: 1.4px;
+}
+.nav-list-footer li a {
+  color: var(--dark-grey);
+  transition: ease 0.3s;
+}
+.nav-list-footer li a:hover {
+  color: var(--blue-vibrant);
+}
+.nav-item-footer {
+  position: relative;
+  color: var(--dark-grey);
+  text-decoration: none;
+}
+.nav-item-footer.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--blue-vibrant);
+  transition: width 0.3s ease;
+}
+.nav-item-footer:hover::after {
+  width: 100%;
+}
+
+.footer-github-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .3s;
+}
+.footer-github-link:hover {
+  transform: scale(0.95);
+}
+.footer-github-link:hover,
+.footer-github-link:focus {
+  text-decoration: none;
+  color: inherit;
+}
+.footer-github-space {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.footer-github-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue-vibrant);
+  border-radius: 50%;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+}
+.footer-github-icon {
+  position: relative;
+  color: var(--white);
+  font-size: 30px;
+}
+.footer-contribute-subtitle {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+.footer-github-color:hover .footer-contribute-subtitle,
+.footer-github-link:hover .footer-contribute-subtitle,
+.footer-github-space:hover {
+  opacity: 90%;
+}
+
+.footer-all-rights {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--dark-grey);
+  height: 3.2vh;
+  padding: 0 25px;
+}
+
+.footer-all-rights p.footer-vibralisten, 
+.footer-rigth {
+  font-size: 14px;
+  color: #D1D5DB;
+  margin-right: 20px;
+} 
+.footer-left {
+  display: flex;
+  align-items: center;
+}
+.footer-center {
+  display: flex;
+  align-items: center;
+}
+.footer-rights {
+  flex: 1;
+  text-align: center;
+}
+.footer-terms {
+  padding-left: 20px;
+}
+.footer-privacy, 
+.footer-terms {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #D1D5DB;
+  transition: transform .3s ease-in-out;
+}
+.footer-terms:hover,
+.footer-privacy:hover {
+  text-decoration: underline;
+  transform: scale(0.95);
+  color: var(--white);
+}
+.footer-icon-terms {
+  color: var(--white);
+  align-items: center;
+  justify-content: center;
+  width: 11.5px;
+  height: 11.5px;
+  margin-right: 3px;
+}
+.footer-logo-short {
+  width: 20px;
+  height: 20px;
+}

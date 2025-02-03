@@ -1,0 +1,29 @@
+.therms-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
+ul.titles {
+ list-style: none;
+ counter-reset: contador;
+ padding-left: 0;
+}
+ul.titles li {
+  counter-increment: contador;
+  margin-bottom: 5px;
+}
+ul.titles li::before {
+  content: counter(contador) ". ";
+  font-weight: bold;
+  color: black;
+}
+
+.service-topcs {
+  padding-left: 24.5px;
+}

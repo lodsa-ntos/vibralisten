@@ -1,0 +1,215 @@
+.container-contacts {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 16px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.card-contact1, .card-contact2 {
+  flex: 1;
+  min-width: 300px;
+}
+.title-contact-us {
+  font-size: 64px;
+  font-weight: 600;
+  color: var(--white);
+  padding-bottom: 3.5%;
+  line-height: 1.2em;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+.intro-contact-txt, .support-txt, 
+.github-icon-container, .open-source-github-txt,
+.contribute-subtitle {
+  color: #a6acb8;
+  font-size: 13.5px;
+  width: 99%;
+}
+.support-txt {
+  left: 0;
+  margin-left: 0;
+}
+.technical-support-txt,
+.suggestions-feedback-txt,
+.report-problem-txt {
+  font-weight: bold;
+  line-height: 1.6;
+  color: var(--white);
+}
+.github-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .3s;
+}
+.github-link:hover,
+.github-link:focus {
+  text-decoration: none;
+  color: inherit;
+  opacity: 90%;
+  transform: scale(0.95);
+}
+.github-space {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 8%;
+}
+.github-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue-vibrant);
+  border-radius: 50%;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+}
+.github-icon {
+  position: relative;
+  color: var(--white);
+  font-size: 30px;
+}
+.open-source-github-txt {
+  text-decoration: none;
+  padding-top: 3%;
+}
+.open-github, .contribute-subtitle {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.contact-content-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1d263b;
+  border-radius: 24px;
+  margin-top: 4.4%;
+  gap: 12px;
+  padding: 20px;
+  align-items: stretch;
+}
+.container-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.container-name, .container-email,
+.container-phone, .container-subject {
+  flex: 1 1 45%;
+}
+.container-name input.input-name, 
+.container-email input.input-email,
+.container-phone input.input-phone,
+.container-subject input.input-subject {
+  font-size: 12px;
+  margin-top: 2.5%;
+  border-radius: 30px;
+  color: var(--white);
+  background-color: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .2);
+  height: 64px;
+  padding: 20px;
+}
+.container-message {
+  flex: 1 1 100%;
+  text-align: left;
+}
+.title-message, .title-subject,
+.title-phone, .title-email,
+.title-name {
+  margin-top: 3.5%;
+  font-size: 14px;
+  color: var(--white);
+}
+.container-message textarea.input-message {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  overflow: auto;
+  font-size: 12px;
+  margin-top: 2.5%;
+  padding: 20px;
+  border-radius: 10px;
+  color: var(--white);
+  background-color: rgba(255, 255, 255, .1);
+  
+}
+textarea.input-message:focus,
+textarea.input-message:hover,
+input.input-name:focus,
+input.input-name:hover,
+input.input-email:focus,
+input.input-email:hover,
+input.input-phone:focus,
+input.input-phone:hover,
+input.input-subject:focus,
+input.input-subject:hover {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid var(--blue-vibrant);
+  background-color: transparent;
+}
+.container-message textarea.input-message::placeholder,
+.container-name input.input-name::placeholder, 
+.container-email input.input-email::placeholder,
+.container-phone input.input-phone::placeholder,
+.container-subject input.input-subject::placeholder {
+   color: rgba(255, 255, 255, 0.566);
+}
+.container-message textarea.input-message::-moz-placeholder,
+.container-name input.input-name::-moz-placeholder, 
+.container-email input.input-email::-moz-placeholder,
+.container-phone input.input-phone::-moz-placeholder,
+.container-subject input.input-subject::-moz-placeholder {
+  color: var(--white);
+}
+.container-message textarea.input-message:-ms-input-placeholder,
+.container-name input.input-name:-ms-input-placeholder, 
+.container-email input.input-email:-ms-input-placeholder,
+.container-phone input.input-phone:-ms-input-placeholder,
+.container-subject input.input-subject:-ms-input-placeholder {
+  color: var(--white);
+}
+.container-message textarea.input-message::-ms-input-placeholder,
+.container-name input.input-name::-ms-input-placeholder, 
+.container-email input.input-email::-ms-input-placeholder,
+.container-phone input.input-phone::-ms-input-placeholder,
+.container-subject input.input-subject::-ms-input-placeholder {
+  color: var(--white);
+}
+
+#button_id{
+  justify-self: start;
+}
+input.send-message-bnt {
+  display: inline-block;
+  text-decoration: none;
+  width: auto;
+  text-align: center;
+  font: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  line-height: 20px;
+  background-color: var(--blue-vibrant);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  padding: 0px 40px;
+  transform-style: preserve-3d;
+  transition: all .3s ease-in-out;
+  margin-left: 0;
+}
+input.send-message-bnt:hover {
+  background-color: rgba(255, 255, 255, 0.566);
+  transform: scale(0.95);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, .2);
+}
+input.send-message-bnt:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .15);
+}
