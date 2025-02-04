@@ -164,15 +164,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--dark-grey);
-  height: 3.2vh;
+  background-color: var(--white);
+  border: 1px solid var(--dark-grey);
+  height: 7.2vh;
   padding: 0 25px;
 }
 
 .footer-all-rights p.footer-vibralisten, 
 .footer-rigth {
   font-size: 14px;
-  color: #D1D5DB;
+  color: var(--dark-grey);
   margin-right: 20px;
 } 
 .footer-left {
@@ -195,7 +196,7 @@
   position: relative;
   display: inline-block;
   text-decoration: none;
-  color: #D1D5DB;
+  color: var(--dark-grey);
   transition: transform .3s ease-in-out;
 }
 .footer-terms:hover,

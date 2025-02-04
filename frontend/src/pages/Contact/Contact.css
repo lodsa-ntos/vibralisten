@@ -37,6 +37,7 @@
   font-weight: bold;
   line-height: 1.6;
   color: var(--white);
+  font-size: 14px;
 }
 .github-link {
   display: flex;
@@ -82,6 +83,7 @@
   color: var(--white);
 }
 
+/*Form */
 .contact-content-form {
   display: flex;
   flex-direction: column;

@@ -11,46 +11,49 @@ import "./Home.css";
 const Home = () => {
   return (
     <div>
-    <section className="home-section">
-      {/* spacing before the header */}
-      <div className="home-above-header-spacing"></div>
-      <Header />
-      {/* spacing below the header */}
-      <div className="home-below-header-spacing"></div>
-      {/* featured-title */}
-      <h1>
-        <span className="featured-title">Convert YouTube videos to MP3</span> in
-        seconds.
-      </h1>
-      {/* Space below the featured title */}
-      <div className="home-below-featured-title"></div>
-      {/* subtitle */}
-      <p className="subtitle">Fast, simple and free. Just paste the link.</p>
-      {/* Space below the subtitle */}
-      <div className="home-below-subtitle"></div>
-      {/* Button */}
-      <ButtonConvert />
-    </section>
+      <div className="container-layout">
+        <section className="home-section">
+          {/* spacing before the header */}
+          <div className="home-above-header-spacing"></div>
+          <Header />
+          {/* spacing below the header */}
+          <div className="home-below-header-spacing"></div>
+          {/* featured-title */}
+          <h1>
+            <span className="featured-title">Convert YouTube videos to MP3</span> in
+            seconds.
+          </h1>
+          {/* Space below the featured title */}
+          <div className="home-below-featured-title"></div>
+          {/* subtitle */}
+          <p className="subtitle">Fast, simple and free. Just paste the link.</p>
+          {/* Space below the subtitle */}
+          <div className="home-below-subtitle"></div>
+          {/* Button */}
+          <ButtonConvert />
+        </section>
 
-    {/* About Section*/}
-      <section className="about-section">
-        <About />
-      </section>
+        {/* About Section */}
+          <section className="about-section">
+            <About />
+          </section>
 
-    {/* FAQs Section*/}
-      <section className="faqs-section">
-        <FAQs />
-      </section>
+        {/* FAQs Section */}
+          <section className="faqs-section">
+            <FAQs />
+          </section>
 
-    {/* Contact Section*/}
-    <section className="contact-section">
-        <Contact />
-    </section>
+        {/* Contact Section */}
+        <section className="contact-section">
+            <Contact />
+        </section>
 
-    {/* Footer Section*/}
-    <footer className="footer-section">
-        <Footer />
-    </footer>
+      </div>
+      
+      {/* Footer Section*/}
+      <footer className="footer-section">
+          <Footer />
+      </footer>
 
     </div>
   );
