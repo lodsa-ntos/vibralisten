@@ -19,6 +19,7 @@ const Footer = () => {
               alt="Music Symbol"
               className="footer-logo-image"
             />
+            
             <div className="footer-logo-text">
               <p className="slogan-footer">Listen. Feel. Download.</p>
               <h1 className="footer-logo">
@@ -28,6 +29,12 @@ const Footer = () => {
               </h1>
             </div>
           </Link>
+
+          <div className="footer-logo-text-below">
+              <p className="text-below">
+             Music at your fingertips, with <br />simplicity and quality.
+            </p>
+            </div>
         </div>
 
         {/* Navigation */}
@@ -75,7 +82,7 @@ const Footer = () => {
 
         <div className="footer-center">
           <img
-            src="Logo/music_symbol_dark_mode.svg"
+            src="Logo/music_symbol.svg"
             alt="Music Symbol"
             className="footer-logo-short"
           />

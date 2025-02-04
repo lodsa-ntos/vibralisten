@@ -1,9 +1,10 @@
 .footer-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding: 40px 0 30px 0;
+  background-color: var(--white);
+  padding: 40px 190pt 30px 130pt;
+  height: 45vh;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, .4);
 }
 .footer-logo-container a {
   display: flex;
@@ -53,21 +54,23 @@
   font-size: 18px;
   font-weight: 900;
   margin: 0;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.22em;
   align-items: center;
   display: inline-block;
-  line-height: 1;
   color: var(--dark-grey);
 }
 .footer-logo .footer-liste {
   font-weight: 400;
   font-size: 18px;
   margin: 0;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.22em;
   align-items: center;
   display: inline-block;
   line-height: 1;
   color: var(--dark-grey);
+}
+.footer-logo-text-below {
+  margin: 0 auto;
 }
 
 .nav {
@@ -121,6 +124,7 @@
   text-decoration: none;
   color: inherit;
   transition: transform .3s;
+  
 }
 .footer-github-link:hover {
   transform: scale(0.95);
@@ -166,15 +170,13 @@
   justify-content: space-between;
   background-color: var(--white);
   border: 1px solid var(--dark-grey);
-  height: 7.2vh;
-  padding: 0 25px;
+  height: 8.2vh;
+  padding: 0 190pt 0 130pt;
 }
-
 .footer-all-rights p.footer-vibralisten, 
 .footer-rigth {
   font-size: 14px;
   color: var(--dark-grey);
-  margin-right: 20px;
 } 
 .footer-left {
   display: flex;
@@ -203,10 +205,10 @@
 .footer-privacy:hover {
   text-decoration: underline;
   transform: scale(0.95);
-  color: var(--white);
+  color: var(--dark-grey);
 }
 .footer-icon-terms {
-  color: var(--white);
+  color: var(--dark-grey);
   align-items: center;
   justify-content: center;
   width: 11.5px;
@@ -214,6 +216,6 @@
   margin-right: 3px;
 }
 .footer-logo-short {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
 }
