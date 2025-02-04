@@ -1,7 +1,48 @@
 .container-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+}
+#input-link {
+  width: 100%;
+  padding: 10px;
+  padding-right: 50px;
+  border-radius: border-box;
+}
+.bnt {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: var(--blue-vibrant);
+  border: 2px solid var(--blue-vibrant);
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 46px;
+  width: 19%;
+  padding: 12px 24px;
+  font-size: 16px;
+  letter-spacing: 0.19em;
+  line-height: 1.2;
+  font-weight: bold;
+  color: var(--white);
+  box-shadow: 
+  0 3px 1px -2px rgba(0, 0, 0, 0.12),
+  0 3px 2px -2px rgba(0, 0, 0, 0.12),
+  0 3px 1px -2px rgba(0, 0, 0, 0.12);
+}
+.bnt:hover {
+  background-color: var(--blue-vibrant-baby);
+  border: 2px solid var(--blue-vibrant-baby);
+  border-radius: 50px;
+  box-shadow: 
+  0 4px 6px rgba(0, 0, 0, 0.1),
+  0 4px 6px rgba(0, 0, 0, 0.1),
+  0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.btn:active {
+  background-color: var(--blue-vibrant-baby);
+  transform: scale(0.98);
 }
 .box {
   width: 100%;
@@ -30,40 +71,4 @@
 }
 .spacing-between-link-box-btn {
   height: var(--space-s);
-}
-.container-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.convert-btn {
-  cursor: pointer;
-  width: 100%;
-  border-radius: 4px;
-  background-color: var(--blue-vibrant);
-  border: 2px solid var(--blue-vibrant);
-  box-sizing: border-box;
-  height: 54px;
-  padding: 12px 24px;
-  font-size: 16px;
-  letter-spacing: 0.19em;
-  line-height: 1.2;
-  font-weight: bold;
-  color: var(--white);
-  box-shadow: 
-  0 3px 1px -2px rgba(0, 0, 0, 0.12),
-  0 3px 2px -2px rgba(0, 0, 0, 0.12),
-  0 3px 1px -2px rgba(0, 0, 0, 0.12);
-}
-.container-btn:hover {
-  background-color: #0047ab;
-  border-radius: 4px;
-  box-shadow: 
-  0 4px 6px rgba(0, 0, 0, 0.1),
-  0 4px 6px rgba(0, 0, 0, 0.1),
-  0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.container-btn:active {
-  background-color: #0047ab;
-  transform: scale(0.98);
 }
