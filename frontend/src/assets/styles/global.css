@@ -11,6 +11,7 @@
   --light-grey: #dadef2;
   --light-grey2: #f5f6fa;
   --white: #FFFFFF;
+  --black: #0A0F1E;
 
   /* Espaçamentos 
   Spacing
@@ -23,7 +24,7 @@
   --space-xxl: 56pt;
   --space-xxxl: 80pt;
   --global-margin-left: 130pt;
-  --global-margin-right: 190pt;
+  --global-margin-right: 130pt;
   --reset-space: 0;
 
   /* Tipografia 
@@ -42,7 +43,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Satoshi', sans-serif;
   background-color: var(--white);
   width: 100vw;
   line-height: 1.6em;

@@ -43,12 +43,14 @@ const Home = () => {
             <FAQs />
           </section>
 
-        {/* Contact Section */}
-        <section className="contact-section">
-            <Contact />
-        </section>
+        
 
       </div>
+      
+      {/* Contact Section */}
+      <section className="contact-section">
+            <Contact />
+        </section>
       
       {/* Footer Section*/}
       <footer className="footer-section">

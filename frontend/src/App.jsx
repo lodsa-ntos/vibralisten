@@ -5,6 +5,7 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Therms from './pages/Therms/Therms';
 import Privacy from './pages/Privacy/Privacy';
+import './assets/styles/global.css'
 
 
 const App = () => {

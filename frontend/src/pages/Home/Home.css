@@ -71,17 +71,12 @@ h1 {
 .contact-section {
   min-height: 100vh;
   width: 100%;
-  margin-top: 80pt;
-  margin-bottom: -100pt;
-  background-color: var(--dark-grey);
-  border-radius: 30px 30px 30px 30px;
-  position: relative;
-  z-index: 2;
+  margin-top: 50pt;
+  margin-bottom: -30pt;
+  border-radius: 20px 20px 0 0;
 }
 
 .footer-section {
   min-height: 3vh;
   margin-top: 30pt;
-  z-index: 1;
-  position: relative;
 }

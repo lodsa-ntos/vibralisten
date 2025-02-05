@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import getActivePage from "../Header/ActiveEffect";
+import { FaDribbble } from "react-icons/fa6";
 import { BsGithub } from "react-icons/bs";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import "../Header/ActiveEffect";
@@ -11,6 +12,26 @@ const Footer = () => {
   return (
     <React.Fragment>
       <div className="footer-content">
+
+        <div className="footer-social-media-area">
+          <p className="social-media-links">Links</p>
+          <div className="footer-social-media">
+            <div className="dribbble-icon">
+              <a href="https://dribbble.com/LodneySantos" 
+              target="_blank"
+              rel="noopener noreferrer">
+              <FaDribbble /></a>
+            </div>
+            <div className="github">
+            <a href="https://github.com/lodsa-ntos/youtube-to-mp3-converter" 
+              target="_blank"
+              rel="noopener noreferrer">
+              <BsGithub /></a>
+            </div>
+          </div>
+
+          <p className="inspiring-phrase">Designed to evolve, built to inspire.</p>
+        </div>
         {/* Logo */}
         <div className="footer-logo-container">
           <Link to="/home">
@@ -29,48 +50,25 @@ const Footer = () => {
               </h1>
             </div>
           </Link>
-
-          <div className="footer-logo-text-below">
-              <p className="text-below">
-             Music at your fingertips, with <br />simplicity and quality.
-            </p>
-            </div>
         </div>
 
         {/* Navigation */}
         <nav>
           <ul className="nav-list-footer">
             <li>
-              <Link to="/home" className={activePage === "home" ? "nav-item-footer active" : "nav-item-footer"}>HOME</Link>
+              <Link to="/home" className={activePage === "home" ? "nav-item-footer active" : "nav-item-footer"}>Home</Link>
             </li>
             <li>
-              <Link to="/about" className={activePage === "about" ? "nav-item-footer active" : "nav-item-footer"}>ABOUT</Link>
+              <Link to="/about" className={activePage === "about" ? "nav-item-footer active" : "nav-item-footer"}>About</Link>
             </li>
             <li>
-              <Link to="/faqs" className={activePage === "faqs" ? "nav-item-footer active" : "nav-item-footer"}>FAQS</Link>
+              <Link to="/faqs" className={activePage === "faqs" ? "nav-item-footer active" : "nav-item-footer"}>FAQs</Link>
             </li>
             <li>
-              <Link to="/contact" className={activePage === "contact" ? "nav-item-footer active" : "nav-item-footer"}>CONTACT</Link>
+              <Link to="/contact" className={activePage === "contact" ? "nav-item-footer active" : "nav-item-footer"}>Contact</Link>
             </li>
           </ul>
         </nav>
-
-        {/* Contribute on GitHub */}
-        <div className="footer-github-color">
-          <a
-            className="footer-github-link"
-            href="https://github.com/lodsa-ntos/youtube-to-mp3-converter"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            <div className="footer-github-space">
-              <div className="footer-github-icon-container">
-                <BsGithub className="footer-github-icon"/> 
-              </div>
-              <p className="footer-contribute-subtitle">Contribute on GitHub</p>
-            </div>
-          </a>
-        </div>
       </div>
 
       <div className="footer-all-rights">
@@ -91,8 +89,8 @@ const Footer = () => {
         <div className="footer-rigth">
         <Link to="/therms"><span className="footer-terms"
             ><MdOutlinePrivacyTip className="footer-icon-terms" /> 
-            Terms of Use
-          </span></Link> | <Link to="/privacy"><span className="footer-privacy">Privacy Policy</span></Link>
+            Terms
+          </span></Link> | <Link to="/privacy"><span className="footer-privacy">Privacy</span></Link>
         </div>
       </div>
     </React.Fragment>
