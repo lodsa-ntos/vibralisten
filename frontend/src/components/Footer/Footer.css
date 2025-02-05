@@ -4,7 +4,7 @@
   align-items: center;
   background-color: var(--black);
   padding: 25px 130pt 30px 130pt;
-  height: 35vh;
+  height: 25vh;
 }
 
 .footer-logo-container a {
@@ -39,7 +39,7 @@
   margin: 0;
   text-align: left;
   align-items: flex-start;
-  color: var(--dark-grey);
+  color: var(--white);
 }
 .footer-logo {
   display: flex;
@@ -56,7 +56,7 @@
   Line-height: 1.4;
   align-items: center;
   display: inline-block;
-  color: var(--dark-grey);
+  color: var(--white);
 }
 .footer-logo .footer-liste {
   font-weight: 500;
@@ -66,7 +66,7 @@
   align-items: center;
   display: inline-block;
   Line-height: 1.4;
-  color: var(--dark-grey);
+  color: var(--blue-vibrant);
 }
 .footer-social-media-area {
   justify-content: space-between;
@@ -94,7 +94,7 @@
   Letter-spacing: 0.5px;
   Line-height: 1.4;
   padding-bottom: 10px;
-  color: var(--black);
+  color: var(--light-grey);
 }
 .dribbble-icon a, .github a {
   text-decoration: none;
@@ -102,18 +102,18 @@
 }
 .dribbble-icon, .github {
   cursor: pointer;
+  color: var(--grey);
 }
 .dribbble-icon:hover, .github:hover {
   color: var(--blue-vibrant);
-  opacity: 50%;
   transform: scale(0.95);
 }
 .inspiring-phrase {
   Font-size: 14px;
-  Font-weight: 500px;
+  Font-weight: 400;
   Letter-spacing: 0.5px;
   Line-height: 1.4;
-  color: var(--dark-grey);
+  color: var(--light-grey);
 }
 
 .nav {
@@ -125,9 +125,9 @@
   margin: 0;
   padding: 0;
   gap: 24pt;
-  height: 80px;
   align-items: center;
   justify-content: flex-start;
+  margin-top: 20px;
 }
 .nav-list-footer a {
   font-size: 14px;
@@ -138,7 +138,7 @@
   line-height: 1.4;
 }
 .nav-list-footer li a {
-  color: var(--dark-grey);
+  color: var(--grey);
   transition: ease 0.3s;
 }
 .nav-list-footer li a:hover {
@@ -210,7 +210,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: var(--black) ;
-  height: 12.2vh;
+  height: 10.2vh;
   padding: 0 130pt 0 130pt;
 }
 .footer-all-rights::before {
@@ -220,7 +220,7 @@
   left: 130pt;
   right: 130pt;
   height: 1px;
-  background-color: rgba(0, 0, 0, .1);
+  background-color: var(--blue-vibrant)
 }
 .footer-all-rights p.footer-vibralisten, 
 .footer-rigth {
@@ -228,7 +228,7 @@
   Font-weight: 400px;
   Letter-spacing: 0.5px;
   Line-height: 1.4;
-  color: var(--black);
+  color: var(--light-grey);
 } 
 .footer-left {
   display: flex;
@@ -244,24 +244,22 @@
 }
 .footer-terms {
   padding-left: 20px;
-  color: #444444;
+  color: var(--light-grey);
 }
 .footer-privacy, 
 .footer-terms {
   position: relative;
   display: inline-block;
   text-decoration: none;
-  color: #333333;
-  transition: transform .3s ease-in-out;
+  color: var(--grey);
 }
 .footer-terms:hover,
 .footer-privacy:hover {
   text-decoration: underline;
-  transform: scale(0.95);
-  color: var(--dark-grey);
+  color: var(--blue-vibrant);
 }
 .footer-icon-terms {
-  color: var(--dark-grey);
+  color: var(--light-grey);
   align-items: center;
   justify-content: center;
   width: 11.5px;

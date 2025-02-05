@@ -45,9 +45,11 @@
 body {
   font-family: 'Satoshi', sans-serif;
   background-color: var(--white);
-  width: 100vw;
   line-height: 1.6em;
   overflow-x: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 html {
@@ -55,9 +57,9 @@ html {
 }
 
 .container-layout {
+  flex: 1;
   width: 100%;
   padding-left: var(--global-margin-left);
   padding-right: var(--global-margin-right);
-  box-sizing: border-box;
   margin: 0 auto;
 }

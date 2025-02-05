@@ -36,7 +36,7 @@ const Footer = () => {
         <div className="footer-logo-container">
           <Link to="/home">
             <img
-              src="Logo/music_symbol.svg"
+              src="Logo/music_symbol_dark_mode.svg"
               alt="Music Symbol"
               className="footer-logo-image"
             />
@@ -80,7 +80,7 @@ const Footer = () => {
 
         <div className="footer-center">
           <img
-            src="Logo/music_symbol.svg"
+            src="Logo/music_symbol_dark_mode.svg"
             alt="Music Symbol"
             className="footer-logo-short"
           />
