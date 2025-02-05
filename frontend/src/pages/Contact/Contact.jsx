@@ -21,19 +21,22 @@ const Contact = () => {
           <br />Found an error? Let us know so we can fix it.
         </p>
 
+        <div className="container-github-bnt">
         <a
-          className="github-link"
-          href="https://github.com/lodsa-ntos/youtube-to-mp3-converter"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className="github-space">
-            <div className="github-icon-container">
-              <BsGithub className="github-icon"/> 
+            className="github-link"
+            href="https://github.com/lodsa-ntos/youtube-to-mp3-converter"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="github-space">
+              <div className="github-icon-container">
+                <BsGithub className="github-icon"/> 
+              </div>
+                <p className="contribute-subtitle">Contribute on GitHub</p>
             </div>
-              <p className="contribute-subtitle">Contribute on GitHub</p>
-          </div>
-        </a>
+          </a>
+        </div>
+          
         
         <p className="open-source-github-txt">
           Our project is open-source! If you want to help with development, check out our repository on GitHub. 🚀
