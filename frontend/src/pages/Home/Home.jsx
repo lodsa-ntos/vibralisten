@@ -20,7 +20,7 @@ const Home = () => {
           <div className="home-below-header-spacing"></div>
           {/* featured-title */}
           <h1>
-            <span className="featured-title">Convert YouTube videos to MP3</span> in
+            <span className="home-tilte1">Convert YouTube videos to </span> <span className="home-tilte2">MP3</span> in
             seconds.
           </h1>
           {/* Space below the featured title */}
@@ -42,9 +42,6 @@ const Home = () => {
           <section className="faqs-section">
             <FAQs />
           </section>
-
-        
-
       </div>
       
       {/* Contact Section */}
