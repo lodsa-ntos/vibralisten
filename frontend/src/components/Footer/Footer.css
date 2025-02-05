@@ -2,19 +2,11 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: var(--white);
+  background-color: var(--black);
   padding: 25px 130pt 30px 130pt;
   height: 35vh;
 }
-.footer-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 130pt;
-  right: 130pt;
-  height: 1px;
-  background-color: rgba(0, 0, 0, .1);
-}
+
 .footer-logo-container a {
   display: flex;
   text-decoration: none;
@@ -217,7 +209,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--white);
+  background-color: var(--black) ;
   height: 12.2vh;
   padding: 0 130pt 0 130pt;
 }
@@ -236,7 +228,7 @@
   Font-weight: 400px;
   Letter-spacing: 0.5px;
   Line-height: 1.4;
-  color: var(--dark-grey);
+  color: var(--black);
 } 
 .footer-left {
   display: flex;
@@ -252,13 +244,14 @@
 }
 .footer-terms {
   padding-left: 20px;
+  color: #444444;
 }
 .footer-privacy, 
 .footer-terms {
   position: relative;
   display: inline-block;
   text-decoration: none;
-  color: var(--dark-grey);
+  color: #333333;
   transition: transform .3s ease-in-out;
 }
 .footer-terms:hover,
