@@ -102,7 +102,7 @@
 }
 .dribbble-icon, .github {
   cursor: pointer;
-  color: var(--grey);
+  color: var(--grey2);
 }
 .dribbble-icon:hover, .github:hover {
   color: var(--blue-vibrant);
@@ -219,7 +219,7 @@
   top: 0;
   left: 130pt;
   right: 130pt;
-  height: 1px;
+  height: 2px;
   background-color: var(--blue-vibrant)
 }
 .footer-all-rights p.footer-vibralisten, 
@@ -251,15 +251,15 @@
   position: relative;
   display: inline-block;
   text-decoration: none;
-  color: var(--grey);
+  color: var(--grey2);
 }
 .footer-terms:hover,
 .footer-privacy:hover {
   text-decoration: underline;
-  color: var(--blue-vibrant);
+  color: var(--light-grey);
 }
 .footer-icon-terms {
-  color: var(--light-grey);
+  color: var(--grey2);
   align-items: center;
   justify-content: center;
   width: 11.5px;

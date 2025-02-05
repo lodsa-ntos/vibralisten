@@ -1,9 +1,11 @@
 .faqs-header {
   display: flex;
   justify-content: space-between;
-  position: relative;
+  align-items: center;
   width: 100%;
   max-width: 100%;
+  padding: 20px 0;
+  flex-wrap: wrap;
 }
 
 .faqs-title {
@@ -15,46 +17,85 @@
 .faqs-title::after {
   content: "";
   display: block;
-  width: 180px;
+  width: 60px;
   height: 4px;
   background-color: var(--blue-vibrant);
   position: absolute;
-  bottom: -20px;
-  right: 34%;
+  bottom: -10px;
+  left: 0;
+}
+.container-faqs {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 5px;
 }
 .faq-item {
-  border-bottom: 1px solid #ddd;
-  padding: 20px;
-  cursor: pointer;
+  border-bottom: 1px solid var(--grey2);
+  padding: 15px 0;
+  transition: background .3s ease;
 }
 .faq-question {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+.faq-question:hover {
+  color: var(--blue-vibrant);
 }
 .faq-question span {
-  color: #3b82f6;
-  padding-right: 30px;
+  color: var(--blue-vibrant);
+  padding-right: 15px;
+  font-size: 22px;
+  min-width: 30px;
+  display: flex;
+  align-items: center;
 }
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
   opacity: 0;
   margin-top: 10px;
 }
-.faq-answer .open {
-  max-height: 200px;
+.faq-answer.open {
+  max-height: 300px;
   opacity: 1;
+  padding: 10px 0;
 }
 .text-gray-600 {
-  border-left: 2px solid #3b82f6;
-  padding-left: 8px;
+  border-left: 3px solid var(--blue-vibrant);
+  padding-left: 12px;
+  margin-left: 20px;
+  color: var(--grey);
+  font-size: 16px;
+  line-height: 1.6;
 }
-p.text-gray-600.pb-3 {
-  margin-left: 38px;
+
+/* Responsividade para telas menores
+   Responsiveness for smaller screens 
+*/
+
+@media (max-width: 768px) {
+  .faqs-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .container-faqs {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .faq-item {
+    padding: 10px 0;
+  }
 }

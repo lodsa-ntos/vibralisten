@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropup } from "react-icons/io";
 import "./FAQs.css";
 
 const faqData = [
@@ -92,18 +94,14 @@ const FAQs = () => {
       </div>
     </header>
 
-    {/* Space below the subtitle */}
-    <div className="home-below-subtitle"></div>
-
     <div className="max-w-2x1 mx-auto p-6">
       <div className="space-y-2">
         {faqData.map((faq, index) => (
-          <div key={index} className="faq-item border-b border-gray-300">
-            <button className="faq-question flex justify-between w-full text-lg font-medium py-3 focus:outline-none" onClick={() => toggleFAQ(index)}>
-          
-              <span className="text-blue-500">{openIndex === index ? "- " : "+ "}</span>{faq.question}
+          <div key={index} className="faq-item">
+            <button className="faq-question" onClick={() => toggleFAQ(index)}>
+              <span>{openIndex === index ? <IoMdArrowDropdown /> : <IoMdArrowDropup /> }</span>{faq.question}
             </button>
-            <div className={`faq-answer ${openIndex === index ? 'open' : ''}`}>{faq.answer}</div>
+            <div className={`faq-answer ${openIndex === index ? 'open' : ''}`}></div>
             {openIndex === index && (
               <p className="text-gray-600 pb-3">
                 {formatAnswer(faq.answer)}
