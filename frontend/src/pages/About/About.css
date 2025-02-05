@@ -4,8 +4,9 @@
 }
 .title-bnfts {
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 50px;
+  letter-spacing: 0.5px;
 }
 .benefits-cards {
   display: flex;
@@ -23,24 +24,27 @@
 }
 .card-bfts h3 {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   margin-bottom: 10px;
 }
 .card-bfts p {
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
   font-size: 1rem;
   color: #333;
 }
 .card-bfts .icon-container {
-  width: 50px;
-  margin: 0 auto;
-  height: 50px;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
-  color: var(--white);
-  font-size: 24px;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: var(--light-grey2);
+  margin-bottom: 20px;
 }
 .icon-container {
   border-top: 2px dashed var(--blue-vibrant);
@@ -58,6 +62,9 @@
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
+  position: relative;
+  margin-bottom: -220px;
 }
 .container-white-zone {
   width: 30%;
@@ -72,9 +79,9 @@
 .about-title {
   margin: 0;
   padding: 0;
-  line-height: 1;
+  letter-spacing: 0.5px;
   font-size: 25px;
-  font-weight: bold;
+  font-weight: 700;
   color: var(--blue-vibrant);
 }
 
@@ -83,11 +90,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
- margin-top: 40px;
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 .body-text {
   font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
   line-height: 1.6;
   color: var(--white);
   padding-left: 10%;
@@ -111,6 +120,8 @@
   left: 50%;
   transform: translate(-50%, -150%);
   font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   color: var(--white);
   z-index: 10;
 }
@@ -135,6 +146,7 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+  position: relative;
 }
 .card {
   width: 250px;
@@ -145,7 +157,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--light-grey2);
+  background-color: var(--white);
+  z-index: 13;
 }
 .card img {
   width:60%;
@@ -162,10 +175,15 @@
 }
 .card-content h3 {
   font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   margin-bottom: 10px;
   color: var(--dark-grey);
 }
 .card-content p {
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
   font-size: 1rem;
   color: var(--grey);
 }
@@ -193,10 +211,9 @@
 
 .chalk-arrow-container {
   position: relative;
-  margin-top: 220px;
-  justify-content: center;
+  margin-top: 50px;
   display: flex;
-  margin-right: -5px;
+  justify-content: center;
 }
 .chalk-arrow {
   display: block;

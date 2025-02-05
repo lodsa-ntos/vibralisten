@@ -61,22 +61,26 @@ const About = () => {
             <h1 className="title-circles">How it works?</h1>
             <div className="circle medium"> </div>
           </div>
-
-          <div className="card-container">
+        </div>
+      </div>
+      
+      <div className="card-container">
             <div className="card card-1">
               <div className="card-content">
                 <h3>Copy the Link</h3>
                 <p>Copy the YouTube video URL</p>
               </div>
-              <img src="images/image_1.svg" alt="Imagem 1"></img>
+              <img src="images/image_1.svg" alt="Imagem 1"/>
             </div>
+
             <div className="card card-2">
-              <img src="images/image_2.svg" alt="Imagem 2"></img>
+              <img src="images/image_2.svg" alt="Imagem 2"/>
               <div className="card-content">
               <p>Paste the link into our tool and click on "Convert button</p>
                 <h3>Paste & Convert</h3>
               </div>
             </div>
+            
             <div className="card card-3">
               <div className="card-content">
                 <h3>Download MP3</h3>
@@ -85,8 +89,6 @@ const About = () => {
               <img src="images/image_3.svg" alt="Imagem 3"></img>
             </div>
           </div>
-        </div>
-      </div>
 
       {/* Chalk arrow section */}
       <div className="chalk-arrow-container">
