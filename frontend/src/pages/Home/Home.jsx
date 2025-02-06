@@ -31,6 +31,13 @@ const Home = () => {
           <div className="home-below-subtitle"></div>
           {/* Button */}
           <ButtonConvert />
+
+          <div className="spacing-between-link-box-btn"></div>
+
+          <p className="impact-phrase">
+          🎵 Download your favorite tracks effortlessly. Enjoy music your way!
+          </p>
+        
         </section>
 
         {/* About Section */}

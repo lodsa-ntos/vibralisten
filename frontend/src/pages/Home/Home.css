@@ -31,7 +31,6 @@
   justify-content: center;
   align-items: center;
   background-color: var(--white);
-  margin-bottom: 80pt;
 }
 
 h1 {
@@ -60,6 +59,16 @@ h1 {
   letter-spacing: -0.2px;
   line-height: 1.3;
   color: var(--grey);
+}
+
+.impact-phrase {
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  line-height: 1.3;
+  color: #6C757D;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
 }
 
 /*Other sections*/

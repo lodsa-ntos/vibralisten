@@ -83,5 +83,5 @@
   box-shadow: 0 0 10px rgba(61, 84, 204, 0.4);;
 }
 .spacing-between-link-box-btn {
-  height: var(--space-s);
+  height: var(--space-xxxl);
 }
