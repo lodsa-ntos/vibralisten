@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./Header.css";
 import "./ActiveEffect";
 import getActivePage from "./ActiveEffect";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const activePage = getActivePage();
@@ -27,7 +28,7 @@ const Header = () => {
       <header className={`header ${ visible ? "visible" : "hidden"}`}>
         {/* Logo */}
         <div className="logo-container">
-          <a href="#home">
+          <Link to="/#home">
             <img
               src="Logo/music_symbol.svg"
               alt="Music Symbol"
@@ -41,23 +42,23 @@ const Header = () => {
                 <span className="vibra">N</span>
               </h1>
             </div>
-          </a>
+          </Link>
         </div>
 
         {/* Navigation */}
         <nav>
           <ul className="nav-list">
             <li>
-              <a href="#home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</a>
+              <Link to="/#home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</Link>
             </li>
             <li>
-              <a href="#about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</a>
+              <Link to="/#about"  className={activePage === "about" ? "nav-item active" : "nav-item"}>About</Link>
             </li>
             <li>
-              <a href="#faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</a>
+              <Link to="/#faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</Link>
             </li>
             <li>
-              <a href="#contact" className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</a>
+              <Link to="/#contact"  className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</Link>
             </li>
           </ul>
         </nav>

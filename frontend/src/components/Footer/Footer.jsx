@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
         {/* Logo */}
         <div className="footer-logo-container">
-          <a href="#home">
+          <a href="/#home">
             <img
               src="Logo/music_symbol_dark_mode.svg"
               alt="Music Symbol"
@@ -56,16 +56,16 @@ const Footer = () => {
         <nav>
           <ul className="nav-list-footer">
             <li>
-              <a href="#home" className={activePage === "home" ? "nav-item-footer active" : "nav-item-footer"}>Home</a>
+              <a href="/#home" className={activePage === "home" ? "nav-item-footer active" : "nav-item-footer"}>Home</a>
             </li>
             <li>
-              <a href="#about" className={activePage === "about" ? "nav-item-footer active" : "nav-item-footer"}>About</a>
+              <a href="/#about" className={activePage === "about" ? "nav-item-footer active" : "nav-item-footer"}>About</a>
             </li>
             <li>
-              <a href="#faqs" className={activePage === "faqs" ? "nav-item-footer active" : "nav-item-footer"}>FAQs</a>
+              <a href="/#faqs" className={activePage === "faqs" ? "nav-item-footer active" : "nav-item-footer"}>FAQs</a>
             </li>
             <li>
-              <a href="#contact" className={activePage === "contact" ? "nav-item-footer active" : "nav-item-footer"}>Contact</a>
+              <a href="/#contact" className={activePage === "contact" ? "nav-item-footer active" : "nav-item-footer"}>Contact</a>
             </li>
           </ul>
         </nav>
@@ -87,10 +87,10 @@ const Footer = () => {
         </div>
         
         <div className="footer-rigth">
-        <a href="#therms" target="__blank"><span className="footer-terms"
+          <a href="/terms" target="__blank"><span className="footer-terms"
             ><MdOutlinePrivacyTip className="footer-icon-terms" /> 
             Terms
-          </span></a> | <a href="#privacy" target="__blank"><span className="footer-privacy">Privacy</span></a>
+          </span></a> | <a href="/privacy" target="__blank"><span className="footer-privacy">Privacy</span></a>
         </div>
       </div>
     </React.Fragment>
