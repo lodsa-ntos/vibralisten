@@ -19,12 +19,21 @@
   ===========================================================
 */
 
-
 header {
   display: flex;
+  top: 0;
+  width: 100%;
+  background: var(-white);
+  padding: 10px 0;
+  transition: top .3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1a);
   justify-content: space-between;
+  z-index: 1000;
   align-items: center;
   background-color: #fff;
+}
+header.hidden {
+  top: -70px;
 }
 
 .logo-container a {
@@ -121,7 +130,7 @@ header {
   color: var(--dark-grey);
   text-decoration: none;
 }
-.nav-item.active::after {
+.nav-item.active::after{
   content: "";
   position: absolute;
   bottom: -5px;

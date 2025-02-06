@@ -1,13 +1,30 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "./Header.css";
 import "./ActiveEffect";
 import getActivePage from "./ActiveEffect";
 
 const Header = () => {
   const activePage = getActivePage();
+
+  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
+  const [ visible, setVisible ] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.screenY;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
+
   return (
     <React.Fragment>
-      <header>
+      <header className={`header ${ visible ? "visible" : "hidden"}`}>
         {/* Logo */}
         <div className="logo-container">
           <a href="#home">
