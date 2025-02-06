@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
         {/* Logo */}
         <div className="footer-logo-container">
-          <Link to="/home">
+          <a href="#home">
             <img
               src="Logo/music_symbol_dark_mode.svg"
               alt="Music Symbol"
@@ -49,7 +49,7 @@ const Footer = () => {
                 <span className="footer-vibra">N</span>
               </h1>
             </div>
-          </Link>
+          </a>
         </div>
 
         {/* Navigation */}
