@@ -31,7 +31,7 @@ const Header = () => {
         <nav>
           <ul className="nav-list">
             <li>
-              <a href="#home" className={activePage === "/" ? "nav-item active" : "nav-item"}>Home</a>
+              <a href="#home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</a>
             </li>
             <li>
               <a href="#about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</a>
