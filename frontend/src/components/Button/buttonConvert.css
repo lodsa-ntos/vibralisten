@@ -85,3 +85,14 @@
 .spacing-between-link-box-btn {
   height: var(--space-xxxl);
 }
+
+.valid-input {
+  background-color: #D4EDDA;
+  border: 2px solid #28A745;
+  color: #155724;
+}
+.invalid-input {
+  background-color: #F8D7DA;
+  border: 2px solid #DC3545;
+  color: #721c24;
+}
