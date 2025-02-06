@@ -68,6 +68,7 @@
   color: var(--dark-grey);
   background-color: rgba(220, 224, 245, 0.7);
   border-radius: 12px;
+  border: none;
   transition: all .3s ease-in-out;
 }
 .link-box::placeholder {
@@ -86,12 +87,12 @@
   height: var(--space-xxxl);
 }
 
-.valid-input {
+#input-link.valid {
   background-color: #D4EDDA;
   border: 2px solid #28A745;
   color: #155724;
 }
-.invalid-input {
+#input-link.invalid {
   background-color: #F8D7DA;
   border: 2px solid #DC3545;
   color: #721c24;
