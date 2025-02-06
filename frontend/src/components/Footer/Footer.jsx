@@ -56,16 +56,16 @@ const Footer = () => {
         <nav>
           <ul className="nav-list-footer">
             <li>
-              <Link to="/home" className={activePage === "home" ? "nav-item-footer active" : "nav-item-footer"}>Home</Link>
+              <a href="#home" className={activePage === "home" ? "nav-item-footer active" : "nav-item-footer"}>Home</a>
             </li>
             <li>
-              <Link to="/about" className={activePage === "about" ? "nav-item-footer active" : "nav-item-footer"}>About</Link>
+              <a href="#about" className={activePage === "about" ? "nav-item-footer active" : "nav-item-footer"}>About</a>
             </li>
             <li>
-              <Link to="/faqs" className={activePage === "faqs" ? "nav-item-footer active" : "nav-item-footer"}>FAQs</Link>
+              <a href="#faqs" className={activePage === "faqs" ? "nav-item-footer active" : "nav-item-footer"}>FAQs</a>
             </li>
             <li>
-              <Link to="/contact" className={activePage === "contact" ? "nav-item-footer active" : "nav-item-footer"}>Contact</Link>
+              <a href="#contact" className={activePage === "contact" ? "nav-item-footer active" : "nav-item-footer"}>Contact</a>
             </li>
           </ul>
         </nav>
