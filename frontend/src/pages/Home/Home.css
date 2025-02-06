@@ -76,7 +76,7 @@ h1 {
 .about-section {
   min-height: 100vh;
   width: 100%;
-  margin-top: 80pt;
+  margin-top: 40pt;
 }
 
 .faqs-section {
@@ -88,12 +88,12 @@ h1 {
 .contact-section {
   min-height: 100vh;
   width: 100%;
-  margin-top: 50pt;
+  margin-top: 100pt;
   margin-bottom: -30pt;
   border-radius: 20px 20px 0 0;
 }
 
 .footer-section {
   min-height: 3vh;
-  margin-top: 30pt;
+  margin-top: 60pt;
 }
