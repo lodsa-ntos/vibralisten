@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <div className="container-layout">
-        <section className="home-section">
+        <section id="home" className="home-section">
           {/* spacing before the header */}
           <div className="home-above-header-spacing"></div>
           <Header />
@@ -41,23 +41,23 @@ const Home = () => {
         </section>
 
         {/* About Section */}
-          <section className="about-section">
+          <section id="about" className="about-section">
             <About />
           </section>
 
         {/* FAQs Section */}
-          <section className="faqs-section">
+          <section id="faqs" className="faqs-section">
             <FAQs />
           </section>
       </div>
       
       {/* Contact Section */}
-      <section className="contact-section">
+      <section id="contact" className="contact-section">
             <Contact />
         </section>
       
       {/* Footer Section*/}
-      <footer className="footer-section">
+      <footer id="footer" className="footer-section">
           <Footer />
       </footer>
 

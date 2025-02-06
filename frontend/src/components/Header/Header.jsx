@@ -1,7 +1,6 @@
 import React from "react";
 import "./Header.css";
 import "./ActiveEffect";
-import { Link } from "react-router-dom";
 import getActivePage from "./ActiveEffect";
 
 const Header = () => {
@@ -11,7 +10,7 @@ const Header = () => {
       <header>
         {/* Logo */}
         <div className="logo-container">
-          <Link to="/home">
+          <a href="#home">
             <img
               src="Logo/music_symbol.svg"
               alt="Music Symbol"
@@ -25,23 +24,23 @@ const Header = () => {
                 <span className="vibra">N</span>
               </h1>
             </div>
-          </Link>
+          </a>
         </div>
 
         {/* Navigation */}
         <nav>
           <ul className="nav-list">
-          <li>
-              <Link to="/home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</Link>
+            <li>
+              <a to="#home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</a>
             </li>
             <li>
-              <Link to="/about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</Link>
+              <a to="#about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</a>
             </li>
             <li>
-              <Link to="/faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</Link>
+              <a to="#faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</a>
             </li>
             <li>
-              <Link to="/contact" className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</Link>
+              <a to="#contact" className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</a>
             </li>
           </ul>
         </nav>

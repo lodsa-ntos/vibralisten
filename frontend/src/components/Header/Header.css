@@ -107,6 +107,7 @@ header {
   color: #000;
   letter-spacing: 0.05em;
   line-height: 1.4px;
+  cursor: pointer;
 }
 .nav-list li a {
   color: var(--dark-grey);
