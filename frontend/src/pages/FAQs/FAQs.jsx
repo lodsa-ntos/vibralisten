@@ -87,12 +87,9 @@ const FAQs = () => {
 
   return (
     <>
-    <header className="faqs-header">
+    <div className="faqs-header">
       <h1 className="faqs-title">FAQs</h1>
-      <div className="container-faqs">
-        <SearchBar />
-      </div>
-    </header>
+    </div>
 
     <div className="max-w-2x1 mx-auto p-6">
       <div className="space-y-2">
