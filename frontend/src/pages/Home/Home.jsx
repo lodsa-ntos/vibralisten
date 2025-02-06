@@ -5,6 +5,7 @@ import FAQs from "../FAQs/FAQs";
 import Contact from "../Contact/Contact";
 import Footer from "../../components/Footer/Footer";
 import ButtonConvert from "../../components/Button/buttonConvert";
+import ScrollToTopButton from "../../components/Button/ScrollToTopButton/ScrollToTopButton";
 import "../../assets/styles/global.css";
 import "./Home.css";
 
@@ -60,6 +61,8 @@ const Home = () => {
       <footer id="footer" className="footer-section">
           <Footer />
       </footer>
+
+      <ScrollToTopButton />
 
     </div>
   );
