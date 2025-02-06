@@ -19,7 +19,7 @@ const ScrollToTopButton = () => {
   // Função para voltar ao topo
   // Back to top function
   const scrollToTop = () => {
-    window.scrollToTop({
+    window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
@@ -34,7 +34,7 @@ const ScrollToTopButton = () => {
     <button
     className={`scroll-to-top ${ isVisible ? "visible" : ""}`}
     onClick={scrollToTop}
-    aria-label="Scroll-to-top"
+    aria-label="Scroll to top"
     >
       <FaArrowUp />
     </button>
