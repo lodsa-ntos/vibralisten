@@ -31,16 +31,16 @@ const Header = () => {
         <nav>
           <ul className="nav-list">
             <li>
-              <a to="#home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</a>
+              <a href="#home" className={activePage === "/" ? "nav-item active" : "nav-item"}>Home</a>
             </li>
             <li>
-              <a to="#about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</a>
+              <a href="#about" className={activePage === "about" ? "nav-item active" : "nav-item"}>About</a>
             </li>
             <li>
-              <a to="#faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</a>
+              <a href="#faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</a>
             </li>
             <li>
-              <a to="#contact" className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</a>
+              <a href="#contact" className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</a>
             </li>
           </ul>
         </nav>
