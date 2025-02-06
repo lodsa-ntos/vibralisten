@@ -87,10 +87,10 @@ const Footer = () => {
         </div>
         
         <div className="footer-rigth">
-        <Link to="/therms"><span className="footer-terms"
+        <a href="#therms" target="__blank"><span className="footer-terms"
             ><MdOutlinePrivacyTip className="footer-icon-terms" /> 
             Terms
-          </span></Link> | <Link to="/privacy"><span className="footer-privacy">Privacy</span></Link>
+          </span></a> | <a href="#privacy" target="__blank"><span className="footer-privacy">Privacy</span></a>
         </div>
       </div>
     </React.Fragment>
