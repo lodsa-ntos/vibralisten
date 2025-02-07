@@ -29,10 +29,10 @@ const Cookies = () => {
 
           <h2 className="subtitle-cookies-section">2. Types of Cookies We Use</h2>
           <ul className="service-topcs">
-            <li className="cookies-brands"><strong>Essential Cookies: </strong> Necessary for site functionality.</li>
-            <li className="cookies-brands"><strong>Analytics Cookies: </strong>Help us understand how users interact with the website.</li>
-            <li className="cookies-brands"><strong>Marketing Cookies: </strong> Used to personalize ads and content.</li>
-            <li className="cookies-brands"><strong>Preference Cookies: </strong> Store user choices, like language and theme settings.</li>
+            <li className="cookies-brands"><strong>Essential Cookies: </strong><p className="text-about-cookies">Necessary for site functionality.</p></li>
+            <li className="cookies-brands"><strong>Analytics Cookies: </strong><p className="text-about-cookies">Help us understand how users interact with the website.</p></li>
+            <li className="cookies-brands"><strong>Marketing Cookies: </strong><p className="text-about-cookies">Used to personalize ads and content.</p></li>
+            <li className="cookies-brands"><strong>Preference Cookies: </strong><p className="text-about-cookies">Store user choices, like language and theme settings.</p></li>
           </ul>
 
           <h2 className="subtitle-cookies-section">3. Managing Cookies</h2>
@@ -42,8 +42,7 @@ const Cookies = () => {
 
           <div className="cookies-box">
             <p className="text-about-cookies">
-            Want more details? Read our <a className="more-info-cookies" href="/privacy">Privacy Policy</a>or contact us at 
-            <a className="more-info-cookies" href="mailto:support@vibralisten.com">support@vibralisten.com</a>.
+            Want more details? Read our <a className="more-info-cookies" href="/privacy">Privacy Policy</a> or contact us at <a className="more-info-cookies" href="mailto:support@vibralisten.com">support@vibralisten.com</a>.
             </p>
           </div>
         </div>
