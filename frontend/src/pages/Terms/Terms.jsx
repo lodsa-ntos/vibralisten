@@ -9,16 +9,15 @@ const Terms = () => {
   return (
     <>
       <main id="terms">
-        <div className="terms-section">
-          {/* spacing before the header */}
-          <div className="home-above-header-spacing"></div>
+        {/* spacing before the header */}
+        <div className="home-above-header-spacing"></div>
           <Header />
-          {/* spacing below the header */}
-          <div className="home-below-header-spacing"></div>
+          
+        <div className="terms-container">
 
           <h1>Terms of use</h1>
 
-          <h4>1. Introduction</h4>
+          <h2>1. Introduction</h2>
           <div>
             Welcome to VIBRALISTEN! These Terms of Use govern access to and use
             of our website, which offers an online tool for converting YouTube
@@ -27,7 +26,7 @@ const Terms = () => {
             the site.
           </div>
 
-          <h4>2. Use of Service</h4>
+          <h2>2. Use of Service</h2>
           <ul className="service-topcs">
             <li>Functionality</li>
 
@@ -49,12 +48,12 @@ const Terms = () => {
             </div>
           </ul>
 
-          <h4>3. Intellectual property</h4>
+          <h2>3. Intellectual property</h2>
           <div>
           All content, design, graphics, logos and other elements on the website are the property of VIBRALISTEN or its licensors. Unauthorised use of these materials may infringe copyright laws and other proprietary rights.
           </div>
 
-          <h4>4. Limitation of Liability</h4>
+          <h2>4. Limitation of Liability</h2>
           <ul className="service-topcs">
             <li>Conversion and Quality</li>
 
@@ -75,12 +74,12 @@ const Terms = () => {
             </div>
           </ul>
 
-          <h4>5. Modifications to the Terms</h4>
+          <h2>5. Modifications to the Terms</h2>
           <div>
           We may update these Terms of Use from time to time. Changes will be posted on the site and, by continuing to use the service, you agree to the revised terms.
           </div>
 
-          <h4>Contacting Us</h4>
+          <h2>Contacting Us</h2>
           <div>
           If you have any questions or suggestions about these Terms of Use, please contact us via our contact form or send an e-mail to: support@vibralisten.com.
           </div>
