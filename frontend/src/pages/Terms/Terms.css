@@ -13,20 +13,21 @@ main {
   padding: 40px;
   font-family: "Satoshi", sans-serif;
 }
-h1 {
+.terms-of-use-title {
   font-size: 48px;
   font-weight: 800;
   color: var(--dark-grey);
   text-align: center;
+  margin-bottom: 20px;
 }
-h2 {
+.subtitle-terms-section {
   font-size: 28px;
   font-weight: 700;
   color: var(--blue-vibrant);
   margin-top: 40px;
   margin-bottom: 16px;
 }
-ul li {
+ul .terms-brands {
   font-size: 18px;
   line-height: 1.8;
   font-weight: 800;
@@ -34,7 +35,7 @@ ul li {
   margin-bottom: 16px;
   margin-top: 16px;
 }
-ul p {
+.text-about-terms {
   font-size: 18px;
   font-weight: 400;
   line-height: 1.8;
@@ -45,11 +46,11 @@ ul p {
   border-radius: 8px;
   margin: 20px 0;
 }
-a {
+.mail-support {
   color: var(--blue-vibrant);
   text-decoration: underline;
 }
-a:hover {
+.mail-support:hover {
   color: var(--dark-grey);
 }
 .service-topcs {
@@ -61,15 +62,15 @@ a:hover {
     padding: 20px;
   }
 
-  h1 {
+  .terms-of-use-title {
     font-size: 32px;
   }
 
-  h2 {
+  .subtitle-terms-section {
     font-size: 24px;
   }
 
-  p, ul li {
+  .text-about-terms, ul li {
     font-size: 16px;
   }
 }
