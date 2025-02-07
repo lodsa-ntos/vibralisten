@@ -1,8 +1,33 @@
 import React from "react";
 import { BsGithub } from "react-icons/bs";
+import { useState } from "react";
+import axios from "axios";
 import "./Contact.css";
 
 const Contact = () => {
+
+  const [formData, setFormData] = useState({name: "", email: "", phome: "", subject: "", message: ""});
+  const [status, setStatus] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await axios.post("https://backend.com/api/contact", formData);
+      if (response.status === 200) {
+        setStatus("success");
+      } else {
+        setStatus(error);
+      }
+    } catch (error) {
+      setStatus(error);
+    }
+  };
   return (
     <div className="container-contacts">
       <div className="card-contact1">
@@ -43,32 +68,40 @@ const Contact = () => {
         </p>
       </div>
 
-
+      {/*Form*/}
       <div className="card-contact2">
           <div className="contact-content-form">
-            <div className="container-cell">
+            <form className="container-cell" onSubmit={handleSubmit}>
               <div className="container-name">
                 <p className="title-name">Name</p>
-                <input className="input-name" id="name_id" name="Name" placeholder="Lod Carter"></input>
+                <input className="input-name" id="name_id" name="name" placeholder="Lod Carter" onChange={handleChange} required></input>
               </div>
               <div className="container-email">
                 <p className="title-email">E-mail</p>
-                <input className="input-email" id="email_id" name="E-mail" placeholder="example@youremail.com"></input>
+                <input className="input-email" id="email_id" name="email" placeholder="example@youremail.com" onChange={handleChange} required></input>
               </div>
               <div className="container-phone">
                 <p className="title-phone">Phone</p>
-                <input className="input-phone" id="phone_id" name="Phone" placeholder="123 456 7890"></input>
+                <input className="input-phone" id="phone_id" name="phone" placeholder="123 456 7890" onChange={handleChange} required></input>
               </div>
               <div className="container-subject">
                 <p className="title-subject">Subject</p>
-                <input className="input-subject" id="subject_id" name="Subject" placeholder="Ex: Careers"></input>
+                <input className="input-subject" id="subject_id" name="subject" placeholder="Ex: Careers" onChange={handleChange} required></input>
               </div>
               <div className="container-message">
                 <p className="title-message">Message</p>
-                <textarea className="input-message" id="message_id" placeholder="Type your message here..."></textarea>
+                <textarea className="input-message" id="message_id" name="message" placeholder="Type your message here..." onChange={handleChange} required></textarea>
               </div>
-              <input type="submit" className="send-message-bnt" id="button_id" value={"Send Message"}></input>
-            </div>
+              <input type="submit" className="send-message-bnt" id="button_id" value={"Send Message"} disabled={status === "loading"}></input>
+            </form>
+            {status === "loading" && <p> Sending message... ⏳</p>}
+            {status === "success" && <p className="success-message"> Message sent successfully! ✅</p>}
+            {status === "error" &&(
+              <div className="error-message">
+                <p>Backend is down. Copy this email: <strong>contact@vibralisten.com</strong></p>
+                <button className="copy-email-btn" onClick={() => navigator.clipboard.writeText("contact@vibralisten.com")}>Copy Email 📋</button>
+              </div>
+            )}
           </div>
       </div>
     </div>

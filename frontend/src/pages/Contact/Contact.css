@@ -109,10 +109,11 @@
   padding: 20px;
   align-items: stretch;
 }
-.container-cell {
+form {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  max-width: 100%;
 }
 .container-name, .container-email,
 .container-phone, .container-subject {
