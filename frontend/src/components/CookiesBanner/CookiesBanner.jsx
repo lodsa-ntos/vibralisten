@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./CookiesBanner.css";
 
 const CookiesBanner = () => {
   const [isAccepted, setIsAccepted] = useState(localStorage.getItem("cookiesAccepted"));
