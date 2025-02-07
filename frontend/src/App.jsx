@@ -7,6 +7,7 @@ import Contact from "./pages/Contact/Contact";
 import Terms from "./pages/Terms/Terms";
 import Privacy from "./pages/Privacy/Privacy";
 import Cookies from "./pages/Cookies/Cookies";
+import CookiesBanner from "./components/CookiesBanner/CookiesBanner";
 import "./assets/styles/global.css";
 
 const ScrollToSection = () => {
@@ -26,6 +27,8 @@ const ScrollToSection = () => {
 
 const App = () => {
   return (
+    <>
+    <CookiesBanner />
     <Router>
       <ScrollToSection />
       <Routes>
@@ -38,6 +41,7 @@ const App = () => {
         <Route path="/cookies" element={<Cookies />} />
       </Routes>
     </Router>
+    </>
   );
 };
 
