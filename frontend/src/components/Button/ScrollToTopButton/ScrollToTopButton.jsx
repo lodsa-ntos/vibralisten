@@ -5,11 +5,12 @@ import "./ScrollToTopButton.css";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible ] = useState(false);
+  const [hasCookieBanner, setHasCookieBanner] = useState(true);
 
   // Função para verificar a posição do Scroll
   // Function to check the scroll position
-  const toggleVisibility = () => {
-    if (window.scrollY > 200) {
+  const checkScroll = () => {
+    if (window.scrollY > 300) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -26,18 +27,36 @@ const ScrollToTopButton = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility)
+    window.addEventListener("scroll", checkScroll);
+    return () => window.removeEventListener("scroll", checkScroll)
   }, []);
 
+  const handleAcceptCookies = () => {
+    setHasCookieBanner(false);
+  };
+
   return (
-    <button
-    className={`scroll-to-top ${ isVisible ? "visible" : ""}`}
-    onClick={scrollToTop}
-    aria-label="Scroll to top"
-    >
-      <FaArrowUp />
+    <>
+    {hasCookieBanner && (
+      <div className="cookie-banner">
+        <p>This website uses cookies to improve the experience.</p>
+        <button onClick={handleAcceptCookies}>Accept</button>
+      </div>
+    )}
+    {isVisible && (
+      <button
+        className="scroll-to-top"
+        style={{
+          bottom: hasCookieBanner ? "80px" : "20px", //if the track exists, it rises to the top
+          transition: "bottom .3s ease-in-out"
+        }}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth"})}
+        aria-label="Scroll to top"
+      >
+        <FaArrowUp />
     </button>
+    )}
+    </>
   );
 };
 

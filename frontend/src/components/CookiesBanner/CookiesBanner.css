@@ -5,10 +5,11 @@
   background-color: var(--dark-grey);
   color: var(--white);
   text-align: center;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 9999;
 }
 
 .cookies-banner p {

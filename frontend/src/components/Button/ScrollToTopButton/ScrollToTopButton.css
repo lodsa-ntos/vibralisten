@@ -1,8 +1,9 @@
 .scroll-to-top {
   position: fixed;
-  bottom: 20px;
   right: 20px;
-  background: var(--blue-vibrant);
+  width: 50px;
+  height: 50px;
+  background-color: var(--blue-vibrant);
   color: var(--white);
   border: none;
   padding: 10px;
