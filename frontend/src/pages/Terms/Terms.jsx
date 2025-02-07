@@ -8,7 +8,7 @@ import "./Terms.css";
 const Terms = () => {
   return (
     <>
-      <main id="terms">
+      <main id="terms" className="terms-main">
         {/* spacing before the header */}
         <div className="home-above-header-spacing"></div>
           <Header />
