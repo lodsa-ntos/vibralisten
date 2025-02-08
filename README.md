@@ -8,6 +8,7 @@
 A full-stack web application built with Node.js (backend) and React (frontend) that allows users to input a YouTube link and download the audio in MP3 format.
 
 ## 📌 Preview
+<img align="left" src="" width="1000px">
 
 ## 🚀 Features
 ✅ **Fast & Simple** → Convert YouTube videos to MP3 instantly.<br>
