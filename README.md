@@ -94,7 +94,7 @@ This project is licensed under the terms of the [MIT Licence](LICENSE).
 
 ## 📞 Contact & Links
 
-📌 GitHub Repo: yourgithub.com/repository <br>
-📌 LinkedIn: yourname
+📌 GitHub Repo: https://github.com/lodsa-ntos/youtube-to-mp3-converter <br>
+📌 LinkedIn: https://www.linkedin.com/in/lodney-santos/
 
 *__More design projects coming soon on [Dribbble](https://dribbble.com/LodneySantos)! 🚀__*
