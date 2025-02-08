@@ -95,16 +95,18 @@ const Contact = () => {
                 <p className="title-message">Message</p>
                 <textarea className="input-message" id="message_id" name="message" placeholder="Type your message here..." onChange={handleChange} required></textarea>
               </div>
-              <input type="submit" className="send-message-bnt" id="button_id" value={"Send Message"}>{status === "loading" ? "Sending message..." : "Send Message"}</input>
+              <button type="submit" className="send-message-bnt" id="button_id">
+                {status === "loading" ? "Sending message..." : "Send Message"}
+              </button>
             </form>
 
-            {status === "success" && ( <div className="contact-message success-message"> <PiUserCircleCheckDuotone className="icon-success"/> 
+            {status === "success" && ( <div className="contact-message-form success-message"> <PiUserCircleCheckDuotone className="icon-success"/> 
             Message sent successfully! ✅
             </div>
             )}
 
             {status === "error" && (
-              <div className="contact-message error-message">
+              <div className="contact-message-form error-message">
                 <LiaTimesCircle className="icon-error"/>
                 <p>Backend is down. Copy this email: <strong>contact@vibralisten.com</strong></p>
                 <button className="copy-email-btn" onClick={() => navigator.clipboard.writeText("contact@vibralisten.com")}>Copy</button>

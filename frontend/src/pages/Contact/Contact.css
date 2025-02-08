@@ -204,10 +204,11 @@ input.input-subject:hover {
 #button_id{
   justify-self: start;
 }
-input.send-message-bnt {
+.send-message-bnt {
   display: inline-block;
   text-decoration: none;
   width: auto;
+  height: 46px;
   text-align: center;
   font: inherit;
   font-weight: 600;
@@ -221,7 +222,7 @@ input.send-message-bnt {
   transform-style: preserve-3d;
   margin-left: 0;
 }
-input.send-message-bnt:hover {
+.send-message-bnt:hover {
   background-color: #3d55cc;
   opacity: 0.9;
   border: 2px solid var(--blue-vibrant);
@@ -234,6 +235,15 @@ input {
   box-shadow: none !important;
 }
 
+.contact-message-form {
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .success-message {
   background-color: #e6f9e6;
   color: #155724;
@@ -243,4 +253,12 @@ input {
   background-color: #fdecea;
   color: #721c24;
   border: 1px solid #f44336;
+}
+.icon-success {
+  color: #4CAF50;
+  font-size: 16px;
+}
+.icon-error {
+  color: #f44336;
+  font-size: 16px;
 }
