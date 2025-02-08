@@ -8,9 +8,8 @@
 A full-stack web application built with Node.js (backend) and React (frontend) that allows users to input a YouTube link and download the audio in MP3 format.
 
 ## 📌 Preview
-<img align="left" src="https://github.com/lodsa-ntos/youtube-to-mp3-converter/blob/main/frontend/public/images/vibralisten_website.JPG" width="1000px">
+<img align="left" src="https://github.com/lodsa-ntos/youtube-to-mp3-converter/blob/main/frontend/public/images/vibralisten_website.JPG" width="1000px"> <br><br><br>
 
-<br><br><br>
 
 
 ## 🚀 Features
