@@ -1,82 +1,100 @@
-# YouTube to MP3 Converter (Backend & Frontend)
+# 🎵 VibraListen - YouTube to MP3 Converter
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Node Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
-This is a full-stack web application that allows you to convert YouTube videos into MP3 files. It consists of a backend for handling video conversion and a frontend for user interaction. The backend uses Node.js with Express to handle video download and conversion, while the frontend offers a simple interface to input YouTube links and download the MP3 files.
+> Convert YouTube videos into MP3 with ease!
+A full-stack web application built with Node.js (backend) and React (frontend) that allows users to input a YouTube link and download the audio in MP3 format.
 
-## How to run
-1. Clone the repository:
-`git clone https://github.com/yourusername/youtube-to-mp3-converter.git`
+## 📌 Preview
 
-2. Install dependencies for both the backend and frontend:
-In the root folder, run:
-`npm install`
-Then, navigate to the backend folder and run:
-`npm install`
+## 🚀 Features
+✅ **Fast & Simple** → Convert YouTube videos to MP3 instantly.<br>
+✅ **Modern UI** → Clean and responsive interface.<br>
+✅ **MP3 Downloads** → High-quality audio conversion.<br>
+✅ **URL Validation** → Ensures only valid YouTube links are processed.<br>
+✅ **Error Handling** → Friendly messages for better UX.<br>
+✅ **Fully Open Source** → Contributions are welcome!<br>
 
-3. Run the server:
-- For the backend:
-`npm run start:backend`
+## ⚡ Technologies Used
+### Backend
 
-- For the frontend:
-`npm run start:frontend`
+* **Node.js + Express** → Handles video conversion requests.
+* **ytdl-core** → Downloads and converts YouTube videos to MP3.
+* **Jest** → Used for testing the backend.
 
-4. Open the browser and go to: `http://localhost:3000`.
+### Frontend
 
-## Features
-- Insert the YouTube video link.
-- Download the song in MP3 format.
+* **React + Vite** → Fast and efficient development.
+* **Tailwind CSS** → For a modern, responsive UI.
+* **Axios** → Handles API requests.
+<br><br><br>
 
-## Backend Features:
+# 💻 How to Run Locally
 
-- **Video to MP3 Conversion**: Using ytdl-core or similar libraries for video download and MP3 conversion.
-  
-- **URL Validation**: Ensures that the URL provided by the user is valid before proceeding with conversion.
+### 1️⃣ Clone the repository
+````
+git clone https://github.com/yourusername/youtube-to-mp3-converter.git
 
-- **Testing**: Jest is used for unit and integration tests to ensure that the backend functions properly.
+cd youtube-to-mp3-converter
+`````
 
-## Running Tests
-To run the backend tests, simply execute the following command:
+### 2️⃣ Install Dependencies
+````
+npm install
+cd backend && npm install
+cd frontend && npm install
+`````
 
-```bash
+### 3️⃣ Run the Application
+
+* Backend:
+````
+cd backend
+npm start
+`````
+
+* Frontend:
+````
+cd frontend
+npm start
+`````
+
+* Open the browser and go to: http://localhost:5173
+<br><br><br>
+# 🧪 Running Tests
+
+
+To run backend tests:
+````
+cd backend
 npm test
-```
+`````
 
-This will run Jest tests for the backend to ensure that the video conversion and URL validation functionalities are working as expected.
+This will execute Jest tests to validate backend functionality.
 
-## Technologies
+## 📩 Contributing
 
-#### Backend
+Pull requests are highly appreciated! 🚀
 
-- **Node.js with Express**: Framework used for setting up the backend server.
-  
-- **ytdl-core**: Library used to download and convert YouTube videos to MP3.
+1️⃣ Fork the repo<br>
+2️⃣ Create a branch: git checkout -b feature/new-feature<br>
+3️⃣ Make your changes<br>
+4️⃣ Test everything<br>
+5️⃣ Submit a pull request 🎉<br>
 
-- **Jest**: Testing framework for unit and integration tests.
+## ⚠️ Disclaimer
+🔹 This project is for educational purposes only.<br>
+🔹 Please ensure you comply with YouTube's terms of service when using it.
 
-#### Frontend
-
-- **HTML/CSS**: Used to build the basic structure and style of the webpage.
-  
-- **Javascript**: For interactivity (handling input and displaying results).
-  
-- **React (Optional)**: If necessary, React could be used for a more dynamic and interactive interface.
-
-## Contributions
-
-Pull requests are welcome, especially for improving the backend and frontend functionalities. If you're planning to make significant changes, such as refactoring the backend or adding new features to the frontend, please open an issue to discuss your changes first.
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/new-feature`).
-3. Make your changes.
-4. Test the changes.
-5. Send a pull request with a detailed description of what you've changed.
-
-## Warning ⚠️
-This project is for educational purposes only. Be sure to respect copyright when using this tool.
-
-## Licence
+## 📜 Licence
 
 This project is licensed under the terms of the [MIT Licence](LICENSE).
+
+## 📞 Contact & Links
+
+📌 GitHub Repo: yourgithub.com/repository <br>
+📌 LinkedIn: yourname
+
+*__More design projects coming soon on [Dribbble](https://dribbble.com/LodneySantos)! 🚀__*
