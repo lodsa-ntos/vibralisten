@@ -128,7 +128,7 @@ form {
   border-radius: 30px;
   color: var(--dark-grey);
   background-color: var(--white); 
-  border: 1.5px solid var(--grey2);
+  border: 1.5px solid var(--grey2); 
   height: 54px;
   padding: 20px;
 }
@@ -226,4 +226,21 @@ input.send-message-bnt:hover {
   opacity: 0.9;
   border: 2px solid var(--blue-vibrant);
   transform: scale(0.95);
+}
+input {
+  min-width: unset;
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: none !important;
+}
+
+.success-message {
+  background-color: #e6f9e6;
+  color: #155724;
+  border: 1px solid #4CAF50;
+}
+.error-message {
+  background-color: #fdecea;
+  color: #721c24;
+  border: 1px solid #f44336;
 }

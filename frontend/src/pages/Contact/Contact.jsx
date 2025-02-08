@@ -2,6 +2,8 @@ import React from "react";
 import { BsGithub } from "react-icons/bs";
 import { useState } from "react";
 import axios from "axios";
+import { PiUserCircleCheckDuotone } from "react-icons/pi";
+import { LiaTimesCircle } from "react-icons/lia";
 import "./Contact.css";
 
 const Contact = () => {
@@ -21,6 +23,7 @@ const Contact = () => {
       const response = await axios.post("https://backend.com/api/contact", formData);
       if (response.status === 200) {
         setStatus("success");
+        setTimeout(() => setStatus(null), 5000);
       } else {
         setStatus(error);
       }
@@ -92,14 +95,19 @@ const Contact = () => {
                 <p className="title-message">Message</p>
                 <textarea className="input-message" id="message_id" name="message" placeholder="Type your message here..." onChange={handleChange} required></textarea>
               </div>
-              <input type="submit" className="send-message-bnt" id="button_id" value={"Send Message"} disabled={status === "loading"}></input>
+              <input type="submit" className="send-message-bnt" id="button_id" value={"Send Message"}>{status === "loading" ? "Sending message..." : "Send Message"}</input>
             </form>
-            {status === "loading" && <p> Sending message... ⏳</p>}
-            {status === "success" && <p className="success-message"> Message sent successfully! ✅</p>}
-            {status === "error" &&(
-              <div className="error-message">
+
+            {status === "success" && ( <div className="contact-message success-message"> <PiUserCircleCheckDuotone className="icon-success"/> 
+            Message sent successfully! ✅
+            </div>
+            )}
+
+            {status === "error" && (
+              <div className="contact-message error-message">
+                <LiaTimesCircle className="icon-error"/>
                 <p>Backend is down. Copy this email: <strong>contact@vibralisten.com</strong></p>
-                <button className="copy-email-btn" onClick={() => navigator.clipboard.writeText("contact@vibralisten.com")}>Copy Email 📋</button>
+                <button className="copy-email-btn" onClick={() => navigator.clipboard.writeText("contact@vibralisten.com")}>Copy</button>
               </div>
             )}
           </div>
