@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
-> Convert YouTube videos into MP3 with ease!
+> Convert YouTube videos into MP3 with ease!<br>
 A full-stack web application built with Node.js (backend) and React (frontend) that allows users to input a YouTube link and download the audio in MP3 format.
 
 ## 📌 Preview
