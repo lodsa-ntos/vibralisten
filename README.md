@@ -9,7 +9,10 @@ A full-stack web application built with Node.js (backend) and React (frontend) t
 
 ## 📌 Preview
 <img align="left" src="https://github.com/lodsa-ntos/youtube-to-mp3-converter/blob/main/frontend/public/images/vibralisten_website.JPG" width="1000px">
+
 <br><br><br>
+
+
 ## 🚀 Features
 ✅ **Fast & Simple** → Convert YouTube videos to MP3 instantly.<br>
 ✅ **Modern UI** → Clean and responsive interface.<br>
