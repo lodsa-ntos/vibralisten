@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./buttonConvert.css";
 
@@ -8,7 +8,9 @@ const ButtonConvert = () => {
   const [ videoUrl, setvideoUrl ] = useState("");
   const [ status, setStatus ] = useState(null);
   const [ downloadUrl, setdownloadUrl ] = useState("");
-  const [ loading, setLoading] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+  const [ showResult, setshowResult ] = useState(false);
+  const quality = "128";
 
   const validateLink = (e) => {
     const link = e.target.value.trim();
@@ -34,7 +36,7 @@ const ButtonConvert = () => {
   };
 
   const handleConvert = async () => {
-    if (!videoUrl) {
+    if (!videoUrl || !isValid) {
       alert("Please enter a valid Youtube URL.");
       return;
     }
@@ -52,18 +54,26 @@ const ButtonConvert = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://backendvibralisten.com/api/convert", { url: videoUrl });
+      const response = await axios.post("http://localhost:3000/api/convert", { videoUrl, quality });
 
       if (response.status === 200) {
         setStatus("success");
         setdownloadUrl(response.data.downloadUrl);
       }
     } catch (error) {
-      setStatus(error);
+      setStatus("error");
     } finally {
       setLoading(false);
     }
   };
+
+  // Efeito para mostrar a interface de resultado ao completar a conversão
+  // Effect to show the result interface when the conversion is complete
+  useEffect(() => {
+    if (status === "success") {
+      setshowResult(true);
+    }
+  }, [status]);
 
   return (
     <React.Fragment>
@@ -80,9 +90,10 @@ const ButtonConvert = () => {
         </input>
 
         <button className="bnt" onClick={handleConvert} disabled={loading}>{loading ? "Converting..." : "Convert"}</button>
+
         {status === "success" && (
-          <div className="success-message-convert">
-            ✅ Conversion Successful! 
+          <div className="download-container">
+            <p className="success-message-convert">✅ Conversion Successful! </p>
             <a href={downloadUrl} download className="download-btn">Download MP3</a>
           </div>
           )}

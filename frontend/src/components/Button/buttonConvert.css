@@ -98,13 +98,22 @@
   color: #721c24;
 }
 
+.download-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 105px;
+  text-align: center;
+ 
+}
+
 .bnt:disabled {
   background-color: #ccc;
   cursor: not-allowed;
   opacity: 0.7;
 }
 .success-message-convert {
-  margin-top: 12px;
+  margin-top: 16px;
   color: #28a745;
   font-weight: bold;
 }
@@ -116,13 +125,15 @@
 .download-btn {
   display: inline-block;
   margin-top: 8px;
-  padding: 8px 16px;
+  padding: 12px 18px;
   background-color: #007bff;
   color: var(--white);
-  border-radius: 5px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
+  transition: all .3s ease-in-out;
 }
 .download-btn:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
