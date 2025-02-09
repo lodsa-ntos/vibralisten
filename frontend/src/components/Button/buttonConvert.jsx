@@ -75,35 +75,50 @@ const ButtonConvert = () => {
     }
   }, [status]);
 
+  // Reset para converter outro vídeo
+  // Reset to convert another video
+  const handleReset = () => {
+    setvideoUrl("");
+    setStatus(null);
+    setdownloadUrl("");
+    setshowResult(false);
+    setIsValid(null);
+  };
+
   return (
     <React.Fragment>
-    <div className="container-box">
-      <div className="box">
-        <input 
-          className={`link-box ${isValid === true ? "valid" : isValid === false ? "invalid" : ""}`} 
-          type="text" 
-          value={videoUrl}
-          onChange={handleInputChange} 
-          id="input-link" 
-          placeholder="Please paste the YouTube video URL here..."
-        >
-        </input>
-
-        <button className="bnt" onClick={handleConvert} disabled={loading}>{loading ? "Converting..." : "Convert"}</button>
-
-        {status === "success" && (
-          <div className="download-container">
-            <p className="success-message-convert">✅ Conversion Successful! </p>
-            <a href={downloadUrl} download className="download-btn">Download MP3</a>
+      <div className="container-box">
+        {!showResult ? (
+          <div className="box">
+            <input 
+              className={`link-box ${isValid === true ? "valid" : isValid === false ? "invalid" : ""}`} 
+              type="text" 
+              value={videoUrl}
+              onChange={handleInputChange} 
+              id="input-link" 
+              placeholder="Please paste the YouTube video URL here..."
+            />
+            <button className="bnt" onClick={handleConvert} disabled={loading}>{loading ? "Converting..." : "Convert"}</button>
           </div>
-          )}
+
+        ) : (
+            
+              <div className="result-container" >
+                <p className="success-message-convert">✅ Conversion Successful! </p>
+                <a href={downloadUrl} download className="download-btn">Download MP3</a>
+
+                <button className="convert-next-btn" onClick={handleReset} >Convert Next 🔄</button>
+              </div>
+
+            )}
+
         {status === "error" && (
-          <div className="error-message-convert">
+          <p className="error-message-convert">
             ❌ Error processing the request. Try again later.
-          </div>
-          )}
+          </p>
+        )}
+        
       </div>
-    </div>
     </React.Fragment>
   );
 };
