@@ -52,17 +52,17 @@ const Home = () => {
           </section>
       </div>
       
-      {/* Contact Section */}
-      <section id="contact" className="contact-section">
-            <Contact />
-        </section>
-      
-      {/* Footer Section*/}
-      <footer id="footer" className="footer-section">
-          <Footer />
-      </footer>
+        {/* Contact Section */}
+        <section id="contact" className="contact-section">
+              <Contact />
+          </section>
+        
+        {/* Footer Section*/}
+        <footer id="footer" className="footer-section">
+            <Footer />
+        </footer>
 
-      <ScrollToTopButton />
+        <ScrollToTopButton />
 
     </div>
   );
