@@ -1,6 +1,6 @@
 # 🎵 VibraListen - YouTube to MP3 Converter
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Node Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-blue)
+![Node Version](https://img.shields.io/badge/node-%3E%3D%2022.13.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
