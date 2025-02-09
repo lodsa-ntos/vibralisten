@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import getActivePage from "../Header/ActiveEffect";
 import { FaDribbble } from "react-icons/fa6";
 import { BsGithub } from "react-icons/bs";
+import { FaLinkedin } from "react-icons/fa";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import "../Header/ActiveEffect";
 import "./Footer.css";
@@ -23,10 +24,16 @@ const Footer = () => {
               <FaDribbble /></a>
             </div>
             <div className="github">
-            <a href="https://github.com/lodsa-ntos/youtube-to-mp3-converter" 
-              target="_blank"
-              rel="noopener noreferrer">
-              <BsGithub /></a>
+              <a href="https://github.com/lodsa-ntos/youtube-to-mp3-converter" 
+                target="_blank"
+                rel="noopener noreferrer">
+                <BsGithub /></a>
+            </div>
+            <div className="github">
+              <a href="https://www.linkedin.com/in/lodney-santos/" 
+                target="_blank"
+                rel="noopener noreferrer">
+                <FaLinkedin /></a>
             </div>
           </div>
 
