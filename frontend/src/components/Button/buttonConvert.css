@@ -184,3 +184,70 @@
   color: #dc3545;
   font-weight: bold;
 }
+
+/* 📌 Responsividade | Responsiveness */
+
+/* 
+💻 Para tablets e laptops pequenos (768px - 991px) 
+💻 For small tablets and laptops (768px - 991px)
+*/
+@media (max-width: 991px) {
+  .link-box::placeholder {
+    color: var(--grey);
+    opacity: 0.9;
+    font-size: 13.3px;
+    font-weight: 500;
+    width: 110%;
+  }
+
+  .bnt {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 12px 26px;
+    border-radius: 25px;
+    background-color: var(--blue-vibrant);
+    border: 2px solid var(--blue-vibrant);
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 50px;
+    width: 33.5%;
+    font-size: 16px;
+    letter-spacing: 0.19em;
+    line-height: 1.2;
+    font-weight: bold;
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: .3s;
+    z-index: 2;
+  }
+
+  .bnt:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    height: 50.5px;
+    width: 33.5%;
+    border-radius: 25px;
+    color: var(--dark-grey);
+    border: 2px solid #999999;
+  }
+
+  .success-message-convert {
+    color: #28a745;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+  }
+  
+  .spacing-between-link-box-btn {
+    height: 150pt;
+  }
+
+
+}

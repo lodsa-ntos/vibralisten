@@ -120,6 +120,8 @@ const ButtonConvert = () => {
             <input 
               className={`link-box ${isValid === true ? "valid" : isValid === false ? "invalid" : ""}`} 
               type="text" 
+              autoComplete="off"
+              spellCheck="off"
               value={videoUrl}
               onChange={handleInputChange} 
               id="input-link" 
