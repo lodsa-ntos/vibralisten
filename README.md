@@ -104,7 +104,7 @@ This project is **dual-licensed** under the **MIT License** and **GNU General Pu
 See the full licenses:  
 - [MIT License](LICENSE)  
 - [GPLv3 License](LICENSE-GPL)
-
+<br><br>
 ## 📞 Contact & Links
 
 📌 GitHub Repo: https://github.com/lodsa-ntos/youtube-to-mp3-converter <br>
