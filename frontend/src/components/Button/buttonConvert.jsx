@@ -9,7 +9,7 @@ const ButtonConvert = () => {
   const [ status, setStatus ] = useState(null);
   const [ downloadUrl, setdownloadUrl ] = useState("");
   const [ loading, setLoading ] = useState(false);
-  const [ showResult, setshowResult ] = useState(false);
+  const [ showResult, setShowResult ] = useState(false);
   const [ videoTitle, setvideoTitle ] = useState(false);
   const quality = "128";
 
@@ -37,9 +37,19 @@ const ButtonConvert = () => {
   };
 
   const handleDownload = () => {
+
+    if (!downloadUrl) {
+      alert("Download link is not available");
+      return;
+    }
+
+    const fullUrl = `http://localhost:3000/api/downloads/${downloadUrl.split('/').pop()}`;
+
+    console.log("Download url: ", fullUrl);
+    
     const linkDownload = document.createElement("a");
-    linkDownload.href = downloadUrl; // URL retornada pelo backend | // URL returned by backend
-    linkDownload.setAttribute("download", "converted-audio.mp3");
+    linkDownload.href = fullUrl; // URL retornada pelo backend | // URL returned by backend
+    linkDownload.setAttribute("download", "");
     document.body.appendChild(linkDownload);
     linkDownload.click();
     document.body.removeChild(linkDownload); 
@@ -63,31 +73,33 @@ const ButtonConvert = () => {
 
     setIsValid(true);
     setLoading(true);
+    setShowResult(false);
 
     try {
-      const response = await axios.post("http://localhost:3000/api/convert", { videoUrl, quality });
+      const response = await axios.post("http://localhost:3000/api/link-convert", { videoUrl, quality });
 
       if (response.status === 200) {
-        setStatus("success");
-        setdownloadUrl(response.data.downloadUrl);
-        setvideoTitle(response.data.videoTitle);
+
+        console.log("Conversion in progress... Waiting for response...");
+
+        setTimeout(() => {
+          setStatus("success");
+          setdownloadUrl(response.data.downloadUrl);
+          setvideoTitle(response.data.videoTitle || "Unknown Title");
+          setShowResult(true);
+          setLoading(false);
+        }, 2000);
+        
       } else {
-        setStatus(error);
+        throw new Error("Failed to convert video");
       }
     } catch (error) {
+      console.error("Conversion failed: ", error);
       setStatus("error");
-    } finally {
+      setShowResult(false);
       setLoading(false);
     }
   };
-
-  // Efeito para mostrar a interface de resultado ao completar a conversão
-  // Effect to show the result interface when the conversion is complete
-  useEffect(() => {
-    if (status === "success") {
-      setshowResult(true);
-    }
-  }, [status]);
 
   // Reset para converter outro vídeo
   // Reset to convert another video
@@ -95,7 +107,7 @@ const ButtonConvert = () => {
     setvideoUrl("");
     setStatus(null);
     setdownloadUrl("");
-    setshowResult(false);
+    setShowResult(false);
     setIsValid(null);
     setvideoTitle("");
   };
