@@ -19,8 +19,8 @@ A full-stack web application built with Node.js (backend) and React (frontend) t
 ✔️ **Fast & Simple** → Convert YouTube videos to MP3 instantly.<br>
 🎨 **Modern UI** → Clean and responsive interface.<br>
 🔊 **MP3 Downloads** → High-quality audio conversion.<br>
-✅ **URL Validation** → Ensures only valid YouTube links are processed.<br>
-✅ **Error Handling** → Friendly messages for better UX.<br>
+⛓️‍ **URL Validation** → Ensures only valid YouTube links are processed.<br>
+❎ **Error Handling** → Friendly messages for better UX.<br>
 🛡️ **Secure & Open Source** → Contributions are welcome!<br>
 
 ## ⚡ Technologies Used
