@@ -10,6 +10,7 @@ const ButtonConvert = () => {
   const [ downloadUrl, setdownloadUrl ] = useState("");
   const [ loading, setLoading ] = useState(false);
   const [ showResult, setshowResult ] = useState(false);
+  const [ videoTitle, setvideoTitle ] = useState(false);
   const quality = "128";
 
   const validateLink = (e) => {
@@ -59,6 +60,7 @@ const ButtonConvert = () => {
       if (response.status === 200) {
         setStatus("success");
         setdownloadUrl(response.data.downloadUrl);
+        setvideoTitle(response.data.videoTitle);
       }
     } catch (error) {
       setStatus("error");
@@ -83,6 +85,7 @@ const ButtonConvert = () => {
     setdownloadUrl("");
     setshowResult(false);
     setIsValid(null);
+    setvideoTitle("");
   };
 
   return (
@@ -104,19 +107,17 @@ const ButtonConvert = () => {
         ) : (
             
               <div className="result-container" >
-                <p className="success-message-convert">✅ Conversion Successful! </p>
-                <a href={downloadUrl} download className="download-btn">Download MP3</a>
-
-                <button className="convert-next-btn" onClick={handleReset} >Convert Next 🔄</button>
+                <h3 className="video-title">{videoTitle}</h3>
+                <div className="result-content" >
+                  <p className="success-message-convert">✅ Conversion Successful! </p>
+                  <a href={downloadUrl} download className="download-btn">Download MP3</a>
+                  <button className="convert-next-btn" onClick={handleReset} >Convert Next 🔄</button>
+                </div>
               </div>
 
             )}
 
-        {status === "error" && (
-          <p className="error-message-convert">
-            ❌ Error processing the request. Try again later.
-          </p>
-        )}
+        {status === "error" && ( <p className="error-message-convert"> ❌ Error processing the request. Try again later.</p> )}
         
       </div>
     </React.Fragment>
