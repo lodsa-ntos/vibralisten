@@ -11,7 +11,7 @@ We actively maintain the latest release and apply security fixes when needed.
 ## ⚠ Reporting a Vulnerability
 If you discover a security vulnerability, please **DO NOT** report it publicly.
 
-- Instead, send an **email to [your-email@example.com]** with details.
+- Instead, send an **email to [lodex1993@hotmail.com]** with details.
 - We aim to respond within **48 hours** to verify and address the issue.
 - Do not submit security reports via GitHub Issues.
 
