@@ -30,6 +30,7 @@
   /* Tipografia 
   Typography
   */
+  --geral-typography: 'Satoshi', sans-serif;
 }
 
 /* Garantir que todos os elementos comecem do mesmo ponto.
@@ -43,7 +44,7 @@
 }
 
 body {
-  font-family: 'Satoshi', sans-serif;
+  font-family: var(--geral-typography);
   background-color: var(--white);
   line-height: 1.6em;
   overflow-x: hidden;
@@ -58,8 +59,42 @@ html {
 
 .container-layout {
   flex: 1;
-  width: 100%;
+  width: 100%; 
   padding-left: var(--global-margin-left);
   padding-right: var(--global-margin-right);
   margin: 0 auto;
+}
+
+/* 📌 Responsividade | Responsiveness */
+
+/* Widescreen (992px e acima) */
+@media (max-width: 992px) {
+  .container-layout {
+    padding-left: var(--space-xxxl);
+    padding-right: var(--space-xxxl);
+  }
+}
+
+/* Normal (768px - 991px) */
+@media (max-width: 768px) {
+  .container-layout {
+    padding-left: 40pt;
+    padding-right: 40pt;
+  }
+}
+
+/* Narrow (600px - 767px) */
+@media (max-width: 480px) {
+  .container-layout {
+    padding-left: var(--space-s);
+    padding-right: var(--space-s);
+  }
+}
+
+/* Mobile (≤480px) */
+@media (max-width: 320px) {
+  .container-layout {
+    padding-left: var(--space-xs);
+    padding-right: var(--space-xs);
+  }
 }

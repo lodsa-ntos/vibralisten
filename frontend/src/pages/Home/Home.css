@@ -89,10 +89,31 @@ h1 {
   width: 100%;
   margin-top: 100pt;
   margin-bottom: -30pt;
-  border-radius: 20px 20px 0 0;
 }
 
 .footer-section {
   min-height: 3vh;
   margin-top: 60pt;
+}
+
+/* 📌 Responsividade | Responsiveness */
+
+/* 
+💻 Para tablets e laptops pequenos (768px - 991px) 
+💻 For small tablets and laptops (768px - 991px)
+*/
+@media (max-width: 991px) {
+  .home-section {
+    padding: 0 var(--space-xl);
+  }
+  .home-tilte1, .home-tilte2 {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .about-section {
+    margin-top: -50pt;
+  }
 }
