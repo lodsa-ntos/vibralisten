@@ -11,7 +11,7 @@ A full-stack web application built with Node.js (backend) and React (frontend) t
 <p align="center">
 <img src="https://github.com/lodsa-ntos/youtube-to-mp3-converter/blob/main/frontend/public/images/vibralisten_website.JPG" width="1000px">
 </p>
-<br><br><br><br><br><br><br><br><br><br>
+<br><br>
 
 
 
