@@ -36,6 +36,15 @@ const ButtonConvert = () => {
     handleChange(e);
   };
 
+  const handleDownload = () => {
+    const linkDownload = document.createElement("a");
+    linkDownload.href = downloadUrl; // URL retornada pelo backend | // URL returned by backend
+    linkDownload.setAttribute("download", "converted-audio.mp3");
+    document.body.appendChild(linkDownload);
+    linkDownload.click();
+    document.body.removeChild(linkDownload); 
+  };
+
   const handleConvert = async () => {
     if (!videoUrl || !isValid) {
       alert("Please enter a valid Youtube URL.");
@@ -52,6 +61,7 @@ const ButtonConvert = () => {
       setIsValid(true);
     }
 
+    setIsValid(true);
     setLoading(true);
 
     try {
@@ -61,6 +71,8 @@ const ButtonConvert = () => {
         setStatus("success");
         setdownloadUrl(response.data.downloadUrl);
         setvideoTitle(response.data.videoTitle);
+      } else {
+        setStatus(error);
       }
     } catch (error) {
       setStatus("error");
@@ -107,18 +119,19 @@ const ButtonConvert = () => {
         ) : (
             
               <div className="result-container" >
-                <h3 className="video-title">{videoTitle}</h3>
-                <div className="result-content" >
-                  <p className="success-message-convert">✅ Conversion Successful! </p>
-                  <a href={downloadUrl} download className="download-btn">Download MP3</a>
-                  <button className="convert-next-btn" onClick={handleReset} >Convert Next 🔄</button>
-                </div>
+                {status === "success" && (
+                <>
+                  <h3 className="video-title">{videoTitle}</h3>
+                  <div className="result-content" >
+                    <p className="success-message-convert">✅ Conversion Successful! </p>
+                    <button onClick={handleDownload} className="download-btn">Download MP3</button>
+                    <button className="convert-next-btn" onClick={handleReset} >Convert Next 🔄</button>
+                  </div>
+                </>
+                )}
+                {status === "error" && ( <p className="error-message-convert"> ❌ Error processing the request. Try again later.</p>)}
               </div>
-
             )}
-
-        {status === "error" && ( <p className="error-message-convert"> ❌ Error processing the request. Try again later.</p> )}
-        
       </div>
     </React.Fragment>
   );
