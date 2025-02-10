@@ -110,6 +110,6 @@ See the full licenses:
 📌 LinkedIn: https://www.linkedin.com/in/lodney-santos/
 
 *__More design projects coming soon on [Dribbble](https://dribbble.com/LodneySantos)! 🚀__*
-<br><br><br>
+<br><br>
 > *"Music connects the world. VibraListen makes this more accessible."*
 > > 🚀 - **Lodney Santos**
