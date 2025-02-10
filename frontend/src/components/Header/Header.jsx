@@ -10,6 +10,7 @@ const Header = () => {
 
   const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
   const [ visible, setVisible ] = useState(true);
+  const [ isOpen, setIsOpen ] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,14 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -46,22 +55,28 @@ const Header = () => {
         </div>
 
         {/* Navigation */}
-        <nav>
+        <nav className={`nav-bar ${isOpen ? "active" : ""}`}>
           <ul className="nav-list">
             <li>
-              <Link to="/#home" className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</Link>
+              <Link to="/#home" onClick={closeMenu} className={activePage === "home" ? "nav-item active" : "nav-item"}>Home</Link>
             </li>
             <li>
-              <Link to="/#about"  className={activePage === "about" ? "nav-item active" : "nav-item"}>About</Link>
+              <Link to="/#about" onClick={closeMenu} className={activePage === "about" ? "nav-item active" : "nav-item"}>About</Link>
             </li>
             <li>
-              <Link to="/#faqs" className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</Link>
+              <Link to="/#faqs" onClick={closeMenu} className={activePage === "faqs" ? "nav-item active" : "nav-item"}>FAQs</Link>
             </li>
             <li>
-              <Link to="/#contact"  className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</Link>
+              <Link to="/#contact" onClick={closeMenu} className={activePage === "contact" ? "nav-item active" : "nav-item"}>Contact</Link>
             </li>
           </ul>
         </nav>
+
+        <div className="hamburguer-menu" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </header>
     </React.Fragment>
   );
