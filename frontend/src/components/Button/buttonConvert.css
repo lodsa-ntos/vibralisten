@@ -187,10 +187,12 @@
 
 /* 📌 Responsividade | Responsiveness */
 
-/* 
-💻 Para tablets e laptops pequenos (768px - 991px) 
-💻 For small tablets and laptops (768px - 991px)
-*/
+/* Widescreen (992px e acima) */
+@media (min-width: 992px) { 
+  
+}
+
+/* Normal (768px - 991px) */
 @media (max-width: 991px) {
   .link-box::placeholder {
     color: var(--grey);
@@ -248,6 +250,53 @@
   .spacing-between-link-box-btn {
     height: 150pt;
   }
+}
 
+/* Narrow (600px - 767px) */
+@media (max-width: 767px) { 
+  .link-box::placeholder {
+    color: var(--grey);
+    opacity: 0.9;
+    font-size: 12.3px;
+    font-weight: 500;
+    width: 150%;
+  }
 
+  .bnt {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 12px 26px;
+    border-radius: 25px;
+    background-color: var(--blue-vibrant);
+    border: 2px solid var(--blue-vibrant);
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 51px;
+    width: 33.5%;
+    font-size: 16px;
+    letter-spacing: 0.19em;
+    line-height: 1.2;
+    font-weight: bold;
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: .3s;
+    z-index: 2;
+  }
+  .bnt:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    height: 50.5px;
+    width: 33.5%;
+    font-size: 14px;
+    border-radius: 25px;
+    color: var(--dark-grey);
+    border: 2px solid #999999;
+  }
+}
+
+/* Mobile (≤480px) */
+@media (max-width: 480px) { 
+ 
 }
