@@ -270,3 +270,112 @@
   width: 52px;
   height: 52px;
 }
+
+/* 📌 Responsividade | Responsiveness */
+
+/* Very small (≤412px) */
+@media (max-width: 412px) { 
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    height: 200px;
+  }
+
+  .footer-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-logo-container a {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-social-media-area {
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    place-items: center;
+    gap: 8px;
+    margin-top: 100px;
+  }
+  .footer-social-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 20px;
+    left: 0;
+  }
+  .inspiring-phrase {
+    display: none;
+  }
+
+  .nav-list-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 10px;
+    margin-bottom: 79px;
+  }
+
+  .footer-all-rights {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    gap: 5px;
+    height: auto;
+  }
+  .footer-all-rights::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 2px;
+    background-color: var(--blue-vibrant)
+  }
+  .footer-left,
+  .footer-center,
+  .footer-rigth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .footer-terms,
+  .footer-privacy {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 16px;
+    padding: 5px;
+    text-decoration: none;
+  }
+  .footer-terms:hover,
+  .footer-privacy:hover {
+    text-decoration: underline;
+    color: var(--light-grey);
+  }
+  .footer-logo-short {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+  }
+}

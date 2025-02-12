@@ -175,7 +175,25 @@ h1 {
   }
 }
 
-/* Very small (≤360px) */
+/* Very small (≤412px) */
+@media (max-width: 412px) { 
+  .home-section {
+    padding-left: 4pt;
+    padding-right: 4pt;
+  }
+  .home-tilte1, .home-tilte2 {
+    font-size: 26px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  .impact-phrase {
+    margin-top: -70px;
+    font-size: 14px;
+  }
+}
+
+/* Very very small (≤360px) */
 @media (max-width: 360px) { 
   .home-section {
     padding-left: var(--space-s);

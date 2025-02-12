@@ -106,7 +106,7 @@ See the full licenses:
 <br><br>
 ## 📞 Contact & Links
 
-📌 GitHub Repo: https://github.com/lodsa-ntos/youtube-to-mp3-converter <br>
+📌 GitHub Repo: https://github.com/lodsa-ntos <br>
 📌 LinkedIn: https://www.linkedin.com/in/lodney-santos/
 
 *__More design projects coming soon on [Dribbble](https://dribbble.com/LodneySantos)! 🚀__*

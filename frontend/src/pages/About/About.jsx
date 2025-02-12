@@ -11,28 +11,28 @@ const About = () => {
         <div className="benefits-cards">
           <div className="card-bfts">
             <div className="icon-container">
-              <FcIdea />
+              <FcIdea size={24}/>
             </div>
             <h3>Free and No Ads</h3>
             <p>No distractions, no adverts. Just music.</p>
           </div>
           <div className="card-bfts">
             <div className="icon-container">
-              <FcFlashOn />
+              <FcFlashOn size={24}/>
             </div>
             <h3>Fast conversion</h3>
             <p>Convert YouTube videos to MP3 in seconds.</p>
           </div>
           <div className="card-bfts">
             <div className="icon-container">
-            <FcHeadset />
+            <FcHeadset size={24}/>
             </div>
             <h3>High Quality</h3>
             <p>Choose the audio quality you prefer.</p>
           </div>
           <div className="card-bfts">
             <div className="icon-container">
-            <FcGlobe />
+            <FcGlobe size={24}/>
             </div>
             <h3>Easy access</h3>
             <p>Access from any device and download your favourite music.</p>

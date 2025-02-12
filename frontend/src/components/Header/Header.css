@@ -329,3 +329,43 @@ header.hidden {
     gap: 5pt;
   }
 }
+
+/* Very small (≤412px) */
+@media (max-width: 412px) { 
+  .slogan {
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-align: left;
+    align-items: flex-start;
+    color: var(--dark-grey);
+    margin-bottom: -4px;
+  }
+  .logo .vibra {
+    font-size: 14px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 0.22em;
+    align-items: center;
+    display: inline-block;
+    color: var(--dark-grey);
+  }
+  .logo .liste {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    letter-spacing: 0.22em;
+    align-items: center;
+    display: inline-block;
+    color: var(--dark-grey);
+  }
+  .logo-image {
+    width: 42px;
+    height: 42px;
+    margin: 0;
+  }
+  .logo-container a {
+    gap: 5pt;
+  }
+}

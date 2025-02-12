@@ -80,9 +80,7 @@
   line-height: 1.6;
 }
 
-/* Responsividade para telas menores
-   Responsiveness for smaller screens 
-*/
+/* 📌 Responsividade | Responsiveness */
 
 @media (max-width: 768px) {
   .faqs-header {
@@ -97,5 +95,24 @@
 
   .faq-item {
     padding: 10px 0;
+  }
+}
+
+/* Very small (≤412px) */
+@media (max-width: 412px) { 
+  .faqs-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--blue-vibrant);
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+  }
+
+  .container-faqs {
+    padding-left: 4pt;
+    padding-right: 4pt;
   }
 }
