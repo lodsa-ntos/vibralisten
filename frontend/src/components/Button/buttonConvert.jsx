@@ -36,11 +36,28 @@ const ButtonConvert = () => {
     handleChange(e);
   };
 
-  const handleDownload = () => {
+  const getCsrfToken = async () => {
+    const response = await fetch("/csrf-token");
+    const data = await response.json();
+    return data.csrfToken;
+  };
+
+  const handleDownload = async () => {
     if (!downloadUrl) {
       alert("Download link is not available");
       return;
     }
+
+    const csrfToken = await getCsrfToken();
+    
+    await fetch("/downloads", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken,
+      },
+      body: JSON.stringify({ url: videoUrl }),
+    });
 
     const fullUrl = `http://192.168.1.28:3000/api/downloads/${downloadUrl
       .split("/")
