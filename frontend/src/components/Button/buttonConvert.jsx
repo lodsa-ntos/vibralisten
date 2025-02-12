@@ -37,9 +37,14 @@ const ButtonConvert = () => {
   };
 
   const getCsrfToken = async () => {
-    const response = await fetch("/csrf-token");
-    const data = await response.json();
+    try {
+       const response = await axios.get("http://192.168.1.3:3000/csrf-token", { withCredentials: true });
+    const data = await response.data.csrfToken;
     return data.csrfToken;
+    } catch (error) {
+      console.error("Error getting CSRF token: ", error);
+      return null;
+    }
   };
 
   const handleDownload = async () => {
@@ -51,20 +56,28 @@ const ButtonConvert = () => {
       }
   
       const csrfToken = await getCsrfToken();
+
+      if (!csrfToken) {
+        alert("CSRF token not found!");
+        return
+      }
       
-      await fetch("/downloads", {
-        method: "POST",
+      await axios.post("http://192.168.1.3:3000/api/link-convert", { videoUrl, quality }, {
         headers: {
           "Content-Type": "application/json",
+          // Certifica-se de incluir o token corretamente
+          // Ensures to include the token correctly
           "X-CSRF-Token": csrfToken,
         },
-        body: JSON.stringify({ url: videoUrl }),
+        // Garante que os cookies necessários são enviados
+        // Ensures that the necessary cookies are sent
+       withCredentials: true,
       });
   
       if (!response.ok) throw new Error("Download failed");
       ;
   
-      const fullUrl = `http://192.168.1.28:3000/api/downloads/${downloadUrl
+      const fullUrl = `http://192.168.1.3:3000/api/downloads/${downloadUrl
         .split("/")
         .pop()}`;
   
@@ -104,7 +117,7 @@ const ButtonConvert = () => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.28:3000/api/link-convert",
+        "http://192.168.1.3:3000/api/link-convert",
         { videoUrl, quality }
       );
 
