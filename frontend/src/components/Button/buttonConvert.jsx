@@ -43,34 +43,43 @@ const ButtonConvert = () => {
   };
 
   const handleDownload = async () => {
-    if (!downloadUrl) {
-      alert("Download link is not available");
-      return;
+
+    try {
+      if (!downloadUrl) {
+        alert("Download link is not available");
+        return;
+      }
+  
+      const csrfToken = await getCsrfToken();
+      
+      await fetch("/downloads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken,
+        },
+        body: JSON.stringify({ url: videoUrl }),
+      });
+  
+      if (!response.ok) throw new Error("Download failed");
+      ;
+  
+      const fullUrl = `http://192.168.1.28:3000/api/downloads/${downloadUrl
+        .split("/")
+        .pop()}`;
+  
+      console.log("Download url: ", fullUrl);
+  
+      const linkDownload = document.createElement("a");
+      linkDownload.href = fullUrl; // URL retornada pelo backend | // URL returned by backend
+      linkDownload.setAttribute("download", "");
+      document.body.appendChild(linkDownload);
+      linkDownload.click();
+      document.body.removeChild(linkDownload);
+
+    } catch (error) {
+      console.error("Error downloading: ", error);
     }
-
-    const csrfToken = await getCsrfToken();
-    
-    await fetch("/downloads", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken,
-      },
-      body: JSON.stringify({ url: videoUrl }),
-    });
-
-    const fullUrl = `http://192.168.1.28:3000/api/downloads/${downloadUrl
-      .split("/")
-      .pop()}`;
-
-    console.log("Download url: ", fullUrl);
-
-    const linkDownload = document.createElement("a");
-    linkDownload.href = fullUrl; // URL retornada pelo backend | // URL returned by backend
-    linkDownload.setAttribute("download", "");
-    document.body.appendChild(linkDownload);
-    linkDownload.click();
-    document.body.removeChild(linkDownload);
   };
 
   const handleConvert = async () => {
