@@ -1,4 +1,4 @@
-.cookies-main {
+.preference-main {
   min-height: 100vh;
   width: 100%;
   padding-left: var(--global-margin-left);
@@ -8,38 +8,38 @@
   box-sizing: border-box;
 }
 
-.cookies-container {
+.preference-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px;
   font-family: "Satoshi", sans-serif;
 }
-.cookies-title {
+.preference-title {
   font-size: 48px;
   font-weight: 800;
   color: var(--dark-grey);
   text-align: center;
   margin-bottom: 50px;
 }
-.cookies-box {
+.preference-box {
   background-color: var(--light-grey);
   padding: 20px;
   border-radius: 8px;
   margin: 20px 0;
 }
-.text-about-cookies {
+.text-about-preference {
   font-size: 18px;
   font-weight: 400;
   line-height: 1.8;
 }
-.subtitle-cookies-section {
+.subtitle-preference-section {
   font-size: 28px;
   font-weight: 700;
   color: var(--blue-vibrant);
   margin-top: 40px;
   margin-bottom: 16px;
 }
-ul .cookies-brands {
+ul .preference-brands {
   font-size: 18px;
   line-height: 1.8;
   font-weight: 800;
@@ -47,11 +47,11 @@ ul .cookies-brands {
   margin-bottom: 16px;
   margin-top: 16px;
 }
-.more-info-cookies {
+.more-info-preference {
   color: var(--blue-vibrant);
   text-decoration: underline;
 }
-.more-info-cookies:hover {
+.more-info-preference:hover {
   color: var(--dark-grey);
 }
 .service-topcs {
@@ -60,19 +60,19 @@ ul .cookies-brands {
 
 
 @media (max-width: 768px) {
-  .cookies-container {
+  .preference-container {
     padding: 20px;
   }
 
-  .cookies-title {
+  .preference-title {
     font-size: 32px;
   }
 
-  .subtitle-cookies-section {
+  .subtitle-preference-section {
     font-size: 24px;
   }
 
-  .text-about-cookies, ul .cookies-brands{
+  .text-about-preference, ul .preference-brands{
     font-size: 16px;
   }
 }

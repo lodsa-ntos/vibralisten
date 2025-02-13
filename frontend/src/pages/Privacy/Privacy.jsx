@@ -39,7 +39,7 @@ const Privacy = () => {
             <li className="privacy-brands">Cookies & Tracking</li>
 
             <p className="text-about-privacy">
-              We use cookies to store preferences and improve navigation. You can disable cookies in your browser settings, but this may affect some functionalities of the site. We use cookies to personalize content and improve performance. Read more about our <a className="more-info-privacy" href="/cookies">Cookies Policy</a>.
+              We use cookies to store preferences and improve navigation. You can disable cookies in your browser settings, but this may affect some functionalities of the site. We use cookies to personalize content and improve performance. Read more about our <a className="more-info-privacy" href="/preferences">Cookies Policy</a>.
             </p>
           </ul>
 

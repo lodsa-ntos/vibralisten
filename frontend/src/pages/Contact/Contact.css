@@ -264,6 +264,28 @@ input {
 
 /* 📌 Responsividade | Responsiveness */
 
+/* Narrow (600px - 767px) */
+@media (max-width: 768px) { 
+  .container-contacts {
+    padding-left: 4pt;
+    padding-right: 4pt;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -50px;
+  }
+  .technical-support-txt,
+  .suggestions-feedback-txt,
+  .report-problem-txt, .support-txt {
+    display: none;
+  }
+
+  .github-space {
+    display: flex;
+    align-items: center;
+    padding-top: 1%;
+  }
+}
+
 /* Very small (≤412px) */
 @media (max-width: 412px) { 
   .container-contacts {

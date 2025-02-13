@@ -37,12 +37,6 @@ const ScrollToTopButton = () => {
 
   return (
     <>
-    {hasCookieBanner && (
-      <div className="cookie-banner">
-        <p>This website uses cookies to improve the experience.</p>
-        <button onClick={handleAcceptCookies}>Accept</button>
-      </div>
-    )}
     {isVisible && (
       <button
         className="scroll-to-top"

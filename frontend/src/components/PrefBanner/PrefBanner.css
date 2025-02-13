@@ -1,4 +1,4 @@
-.cookies-banner {
+.banner-wrapper {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -12,17 +12,17 @@
   z-index: 9999;
 }
 
-.cookies-banner p {
+.banner-wrapper p {
   margin: 0;
   font-size: 16px;
 }
 
-.cookies-banner a {
+.banner-wrapper a {
   color: var(--blue-vibrant);
   text-decoration: underline;
 }
 
-.cookies-banner button {
+.banner-wrapper button {
   background: var(--blue-vibrant);
   border: none;
   color: var(--white);

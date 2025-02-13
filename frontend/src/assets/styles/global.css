@@ -78,8 +78,8 @@ html {
 /* Normal (768px - 991px) */
 @media (max-width: 768px) {
   .container-layout {
-    padding-left: 40pt;
-    padding-right: 40pt;
+    padding-left: 10pt;
+    padding-right: 10pt;
   }
 }
 
