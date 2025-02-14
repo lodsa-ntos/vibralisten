@@ -41,6 +41,7 @@ const ButtonConvert = () => {
 
   const getCsrfToken = async () => {
     try {
+      console.log("CSRF_BASE_URL: ", CSRF_BASE_URL);
       const response = await axios.get(`${CSRF_BASE_URL}/csrf-token`, { withCredentials: true });
       console.log("CSRF token recebido no frontend: ", response.data.csrfToken);
       return response.data.csrfToken;
@@ -57,8 +58,11 @@ const ButtonConvert = () => {
         return;
       }
 
+      console.log("API_BASE_URL: ", API_BASE_URL);
+
       const fullUrl = `${API_BASE_URL}/downloads/${downloadUrl.split("/").pop()}`;
   
+
       console.log("Download URL received on frontend: ", fullUrl);
 
       // Verificar se o ficheiro existe antes de tentar baixar
@@ -114,6 +118,7 @@ const ButtonConvert = () => {
       }
 
       console.log("Sending conversion request... ", csrfTokenFrontend);
+      console.log("API_BASE_URL: ", API_BASE_URL);
 
       const response = await axios.post(`${API_BASE_URL}/link-convert`, { videoUrl, quality },
         {
