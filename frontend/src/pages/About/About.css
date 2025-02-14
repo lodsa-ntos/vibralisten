@@ -150,7 +150,6 @@
 }
 .card {
   width: 250px;
-  height: 390px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -238,6 +237,25 @@
 }
 
 /* 📌 Responsividade | Responsiveness */
+
+/* Laptop (1024px - 1440px) */
+@media (max-width: 1440px) { 
+  .card-1 img {
+    border-radius: 14px 14px 0 0;
+  }
+  .card-2 img {
+    border-radius: 0 0 10px 10px ;
+  }
+  .card-3 img {
+    border-radius: 14px 14px 0 0;
+  }
+  .chalk-arrow-container {
+    position: relative;
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+  }
+}
 
 /* Narrow (600px - 767px) */
 @media (max-width: 768px) { 

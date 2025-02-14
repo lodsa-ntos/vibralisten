@@ -70,13 +70,13 @@ const About = () => {
                 <h3>Copy the Link</h3>
                 <p>Copy the YouTube video URL</p>
               </div>
-              <img src="images/image_1.svg" alt="Imagem 1"/>
+              <img src="images/copy_the_link.svg" alt="Imagem 1"/>
             </div>
 
             <div className="card card-2">
-              <img src="images/image_2.svg" alt="Imagem 2"/>
+              <img src="images/paste_convert.svg" alt="Imagem 2"/>
               <div className="card-content">
-              <p>Paste the link into our tool and click on "Convert button</p>
+              <p>Paste the link into our tool and click the "Convert" button</p>
                 <h3>Paste & Convert</h3>
               </div>
             </div>
@@ -86,7 +86,7 @@ const About = () => {
                 <h3>Download MP3</h3>
                 <p>Download your converted MP3 file</p>
               </div>
-              <img src="images/image_3.svg" alt="Imagem 3"></img>
+              <img src="images/download_mp3.svg" alt="Imagem 3"></img>
             </div>
           </div>
 
