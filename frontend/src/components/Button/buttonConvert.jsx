@@ -40,9 +40,12 @@ const ButtonConvert = () => {
   };
 
   const getCsrfToken = async () => {
+
     try {
+
       console.log("CSRF_BASE_URL: ", CSRF_BASE_URL);
-      const response = await axios.get(`${CSRF_BASE_URL}/csrf-token`, { withCredentials: true });
+
+      const response = await axios.get(`${CSRF_BASE_URL}/csrf-token`, { credentials: "include" });
       console.log("CSRF token recebido no frontend: ", response.data.csrfToken);
       return response.data.csrfToken;
     } catch (error) {
@@ -122,6 +125,7 @@ const ButtonConvert = () => {
 
       const response = await axios.post(`${API_BASE_URL}/link-convert`, { videoUrl, quality },
         {
+          method: "POST",
           headers: {
             // Certifica-se de incluir o token corretamente
             // Ensures to include the token correctly
@@ -130,7 +134,7 @@ const ButtonConvert = () => {
           },
           // Garante que os cookies necessários são enviados
           // Ensures that the necessary cookies are sent
-         withCredentials: true,
+         credentials: "include",
          onDownloadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
           setProgress(percentCompleted);
