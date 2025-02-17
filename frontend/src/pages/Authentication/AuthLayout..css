@@ -29,6 +29,13 @@
 .overlay-box h3 {
   font-size: 1.5rem;
   font-weight: 700;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 16px;
+}
+.overlay-box h3 span {
+  font-weight: 800;
+  color: var(--blue-vibrant, #3d55cc);
 }
 .overlay-box {
   position: absolute;
@@ -41,6 +48,7 @@
   box-shadow: 0 2px 50px rgba(0, 0, 0, 0.3);
   border-top: 4px solid var(--blue-vibrant);
   padding: 40px 40px;
+  border-radius: 10px;
 }
 .overlay-content {
   display: grid;
@@ -50,39 +58,36 @@
 }
 .overlay-content p {
   padding: 0px 0px 8px;
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   margin: 0px;
+  color: var(--black);
 }
 .overlay-content-login-username,
 .overlay-content-login-password {
   padding: 0px 0px 16px;
 }
-.overlay-content-login-username input {
-  appearance: none;
-  background-image: none;
-  border: 1px solid var(--border-color, #818181);;
-  border-radius: 4px 4px;
-  display: block;
-  inline-size: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  box-shadow: inset 0 0 0 1px var(--border-color, #818181);
-  background-color: transparent;
-  height: 48px;
-}
+.overlay-content-login-username input,
 .overlay-content-login-password input {
   appearance: none;
   background-image: none;
-  border: 1px solid var(--border-color, #818181);
-  border-radius: 4px 4px;
+  border: 1px solid var(--border-color, #4A4A4A);
+  border-radius: 6px;
   display: block;
   inline-size: 100%;
   box-sizing: border-box;
   padding: 12px;
-  box-shadow: inset 0 0 0 1px var(--border-color, #818181);
+  box-shadow: inset 0 0 0 1px var(--border-color, #4A4A4A);
   background-color: transparent;
   height: 48px;
+  transition: border-color .3s ease-in-out;
+}
+.overlay-content-login-username input:focus,
+.overlay-content-login-password input:focus {
+  border-color: #3d55cc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(61, 85, 204, 0.5);
+  border: 2px solid var(--blue-vibrant, #3d55cc);
 }
 .overlay-content .overlay-content-login-button {
   display: flex;
@@ -108,4 +113,51 @@
   box-shadow: inset 0 0 0 1px var(--blue-vibrant, #3d55cc);
   border: 1px solid var(--blue-vibrant, #3d55cc);
   cursor: pointer;
+}
+.overlay-content-login-button button:hover {
+  background-color: #2e44b0;
+  border-color: #2e44b0;
+}
+
+.overlay-content-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4A4A4A;
+  font-size: 0.875rem;
+  margin: 16px 0;
+}
+
+.overlay-content-divider::before,
+.overlay-content-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+  margin: 0 8px;
+}
+.overlay-content-login-api button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  height: 48px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+}
+.login-api.spotify {
+  border-color: #1DB954;
+  color: #1DB954;
+}
+.login-api.deezer {
+  border-color: #FF0000;
+  color: #FF0000;
+}
+.login-api.google {
+  border-color: #4285F4;
+  color: #4285F4;
 }

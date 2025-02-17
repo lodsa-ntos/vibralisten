@@ -4,10 +4,9 @@ import "./AuthLayout..css";
 const AuthenticationLayout = () => {
   return (
     <div className="container-auth-layout">
-      <div className="left-section">
-      </div>
+      <div className="left-section"></div>
       <div className="right-section">
-      <img
+        <img
           src="images/authlayoutimages/fundo_4.jpg"
           alt="auth layout"
           className="auth-layout-image"
@@ -25,8 +24,25 @@ const AuthenticationLayout = () => {
             <p>Password</p>
             <input className="input-login-password" id="login-password-id" name="login-password" placeholder="Password" type="password" required></input>
           </div>
+
           <div className="overlay-content-login-button">
             <button>Log in</button>
+          </div>
+          
+          <div className="overlay-content-divider">
+            <span>or</span>
+          </div>
+
+          <div className="overlay-content-login-api">
+            <div className="login-api spotify">
+              <button>Login with Spotify</button>
+            </div>
+            <div className="login-api deezer">
+              <button>Login with Deezer</button>
+            </div>
+            <div className="login-api google">
+              <button>Login with Google</button>
+            </div>
           </div>
         </div>
       </div>
