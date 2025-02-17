@@ -123,6 +123,17 @@ When the input is focused or filled, move the label upwards
   left: 10px;
   font-size: 12px;
 }
+.overlay-content-login-username input:focus,
+.overlay-content-login-password input:focus {
+ border-color: var(--blue-vibrant);
+ box-shadow: 0 0 8px rgba(61, 85, 204, 0.4);
+ transition: all .3s ease;
+}
+.overlay-content-login-username input:hover,
+.overlay-content-login-password input:hover {
+ border-color: rgba(61, 85, 204, 0.8);
+}
+
 .overlay-content .overlay-content-login-button {
   display: flex;
   align-items: center;
