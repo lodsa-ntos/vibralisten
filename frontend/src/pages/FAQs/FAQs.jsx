@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
 import "./FAQs.css";
