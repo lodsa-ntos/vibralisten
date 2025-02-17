@@ -30,7 +30,11 @@ const AuthenticationLayout = () => {
           </div>
 
           <div className="overlay-content-login-button">
-            <button>Log in</button>
+            <button> <img
+          src="Logo/music_symbol_blue_vibrant.svg"
+          alt="Music Symbol"
+          className="login-logo-image" style={{ marginRight: "10px" }}
+        />Login</button>
           </div>
 
           <div className="overlay-content-forgot-pass">
@@ -38,7 +42,7 @@ const AuthenticationLayout = () => {
           </div>
           
           <div className="overlay-content-divider">
-            <span>or</span>
+            <span>OR</span>
           </div>
 
           <div className="overlay-content-login-api">
