@@ -4,6 +4,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+
 import { useEffect } from "react";
 import Home from "./pages/Home/Home";
 import FAQs from "./pages/FAQs/FAQs";
@@ -13,6 +14,7 @@ import Terms from "./pages/Terms/Terms";
 import Privacy from "./pages/Privacy/Privacy";
 import Preferences from "./pages/Preferences/Preferences";
 import PrefBanner from "./components/PrefBanner/PrefBanner";
+import AuthenticationLayout from "./pages/Authentication/AuthLayout";
 import "./assets/styles/global.css";
 
 const ScrollToSection = () => {
@@ -37,7 +39,8 @@ const App = () => {
         <PrefBanner />
         <ScrollToSection />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AuthenticationLayout />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

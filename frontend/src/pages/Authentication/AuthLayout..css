@@ -1,0 +1,37 @@
+.container-auth-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.left-section {
+  display: flex;
+  flex: 0.3;
+  background-color: var(--white);
+  justify-content: center;
+  align-items: center;
+}
+.right-section {
+  position: relative;
+  flex: 0.7;
+  background-color: #0a4a6b;
+}
+.right-section .auth-layout-image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+.overlay-box {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-120%);
+  width: 30%;
+  height: 90%;  
+  background-color: var(--white);
+  box-shadow: 0 2px 50px rgba(0, 0, 0, 0.3);
+  border-top: 4px solid var(--blue-vibrant);
+  padding: 20px 20px;
+}
