@@ -45,7 +45,7 @@
 ````
 git clone git@github.com:lodsa-ntos/vibralisten-frontend.git
 
-cd vibralisten-frontend
+cd vibralisten
 cd frontend
 `````
 
