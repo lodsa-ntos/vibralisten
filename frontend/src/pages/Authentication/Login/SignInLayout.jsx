@@ -35,7 +35,7 @@ const SignInLayout = () => {
           </div>
 
           <div className="overlay-content-forgot-pass">
-            <a>Forgot your password?</a>
+            <a href="/forgotpasswordpage">Forgot your password?</a>
           </div>
           
           <div className="overlay-content-divider">
