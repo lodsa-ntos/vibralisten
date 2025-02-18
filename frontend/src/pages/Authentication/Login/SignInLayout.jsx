@@ -3,14 +3,63 @@ import { FaSpotify } from "react-icons/fa";
 import { FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
+import Lottie from "lottie-react";
+import musicLoading from "../../../assets/animations/loadingMusic.json";
 import "./SignInLayout.css";
 
 const SignInLayout = ({ userId }) => {
 
   const [background, setBackground] = useState("images/authlayoutimages/default.jpg");
   const [ fixedBackground, setFixedBackground ] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ isChecking, setIsChecking ] = useState(false);
+  const [ isValid, setIsValid ] = useState(null);
+  const [ isInputValue, setIsInputValue ] = useState("");
   const [ userName, setuserName ] = useState("");
 
+  // Função para verificar se o input é válido (e-mail ou username existente)
+  // Function to check if the input is valid (existing e-mail or username)
+  const validateInput = async (value) => {
+    setIsChecking(true);
+
+    try {
+      const response = await fetch(`/validate-user?input=${value}`);
+      const data = await response.json();
+
+      setIsValid(data.valid);
+
+    } catch (error) {
+      console.error("Validation error: ", error);
+      setIsValid(false);
+    } finally {
+      setIsChecking(false);
+    }
+  };
+
+  // Atualiza o estado sempre que o utilizador escrever
+  // Updates the status whenever the user types
+  const handleChange= (event) => {
+    const value = event.target.value;
+    setIsInputValue(value);
+
+    // Verificar se é um e-mail válido ou username válido
+    // Check if it's a valid e-mail or username
+    if (value.length > 3) {
+      validateInput(value);
+    } else {
+      // Reset status
+      setIsValid(null);
+    }
+  }; 
+
+  const handleLogin = async () => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      console.log("Login successful!");
+    }, 3000);
+  };
   // Carregar o fundo guardado do user ao iniciar
   // Load the user's saved background at startup
   useEffect(() => {
@@ -99,22 +148,43 @@ const SignInLayout = ({ userId }) => {
         </h3>
         <div className="overlay-content">
           <div className="overlay-content-login-username">
-            <input type="email" id="login-username-email" name="login-username" className="peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600peer block w-full rounded-lg border border-gray-300 bg-transparent px-2 pt-5 pb-2 text-gray-900 dark:border-gray-600 dark:text-white focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " required></input>
+            <input 
+              type="email" 
+              id="login-username-email" 
+              name="login-username"
+              className={`
+              peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600peer block w-full rounded-lg border border-gray-300 bg-transparent px-2 pt-5 pb-2 text-gray-900 dark:border-gray-600 dark:text-white focus:border-blue-600 focus:outline-none focus:ring-0
+              ${isValid === true ? "input-valid" : isValid === false || isInputValue.length ? "input-invalid" : ""}
+              `} 
+              placeholder=" " 
+              value={isInputValue}
+              onChange={handleChange}
+              required
+            />
+
             <label htmlFor="login-username-email" className="absolute left-2 top-2 text-sm text-gray-500 dark:text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-[-50%] peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-blue-600">E-mail or username</label>
-          </div>
-
-          <div className="overlay-content-login-password">
-            <input className="peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600peer block w-full rounded-lg border border-gray-300 bg-transparent px-2 pt-5 pb-2 text-gray-900 dark:border-gray-600 dark:text-white focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " id="login-password-id" name="login-password" type="password" required></input>
-
-            <label htmlFor="login-username-password" className="absolute left-2 top-2 text-sm text-gray-500 dark:text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-[-50%] peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-blue-600">Password</label>
+         
           </div>
 
           <div className="overlay-content-login-button">
-            <button>Let’s Go <GiMusicalNotes size={20} style={{ marginLeft: "10px", color: "white"}}/></button>
-          </div>
-
-          <div className="overlay-content-forgot-pass">
-            <a href="/forgotpasswordpage">Forgot your password?</a>
+            <button onClick={handleLogin} 
+            disabled={isLoading || isValid === false || isChecking || isInputValue.length < 3}
+            
+            className={isValid === false || isInputValue.length < 3 ? "disabled-btn" : ""}>
+              {
+                isLoading ? (
+                  <Lottie
+                  animationData={musicLoading}
+                  loop={true}
+                  style={{ width: 40, height: 40 }}
+                  />
+                ) : (
+                  <>
+                  Let’s Go <GiMusicalNotes size={20} style={{ marginLeft: "10px", color: "white"}}/>
+                  </>
+                )
+              }
+              </button>
           </div>
           
           <div className="overlay-content-divider">
