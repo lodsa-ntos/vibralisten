@@ -1,20 +1,82 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaSpotify } from "react-icons/fa";
 import { FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
 import "./SignInLayout.css";
 
-const SignInLayout = () => {
+const SignInLayout = ({ userId }) => {
+
+  const [background, setBackground] = useState("images/authlayoutimages/default.jpg");
+  const [ fixedBackground, setFixedBackground] = useState(false);
+
+  useEffect(() => {
+    const fetchBackground = async () => {
+      try {
+        const response = await fetch(`/user-background/${userId}`);
+        const data = await response.json();
+        setBackground(data.background);
+
+      } catch (error) {
+        console.error("Error fetching background: ", error);
+      }
+    };
+
+    fetchBackground();
+  }, [userId]);
+
+  const toggleFixedBackground = async () => {
+    
+    try {
+        // Alterna o estado antes da requisição para melhorar a UX
+        // Toggle the state before the request to improve UX
+        setFixedBackground(prev => !prev);
+        await fetch(`/update-user-background`, {
+            method: "POST",
+            headers:{ "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userId,
+                backgroundUrl: background,
+                // Alternar antes da requisição
+                // Toggle before request
+                fixedBackground: !fixedBackground,
+            }),
+        });
+
+        // Verifica se a requisição foi bem-sucedida
+        // Checks if the request was successful
+        if (!response.ok) {
+            throw new Error("Failed to update background.");
+        }
+
+        const data = await response.json();
+        console.log("Background updated successfully: ", data.message);
+
+    } catch (error) {
+        console.error("Error updating background: ", error);
+
+        // Revertemos o estado caso ocorra um erro
+        // We revert the state if an error occurs
+        setFixedBackground(prev => !prev);
+    }
+}
+
   return (
     <div className="container-auth-layout">
       <div className="left-section"></div>
       <div className="right-section">
         <img
-          src="images/authlayoutimages/fundo_4.jpg"
+          src={background}
           alt="auth layout"
           className="auth-layout-image"
         />
+        <button
+        className="toggle-fixed-bg"
+        onClick={() => setFixedBackground
+          (!fixedBackground)}
+        >
+          {fixedBackground ? "Disable Fixed Background" : "Enable Fixed Fund"}
+        </button>
       </div>
       <div className="overlay-box">
         <h3>Sign in to <span className="overlay-word-vibran">VIBRA</span>LISTE<span className="overlay-word-vibran">N</span></h3>
