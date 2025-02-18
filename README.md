@@ -65,7 +65,7 @@ npm run dev
 # 🚀 Live Demo
 
 
-🔗 [Visit VibraListenbble](https://www.vibralisten.com)
+🔗 [Visit VibraListen](https://www.vibralisten.com)
 <br><br>
 
 ## 📩 Contributing
