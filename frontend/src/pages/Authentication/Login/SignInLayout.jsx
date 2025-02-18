@@ -2,6 +2,7 @@ import React from "react";
 import { FaSpotify } from "react-icons/fa";
 import { FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { GiMusicalNotes } from "react-icons/gi";
 import "./SignInLayout.css";
 
 const SignInLayout = () => {
@@ -30,11 +31,7 @@ const SignInLayout = () => {
           </div>
 
           <div className="overlay-content-login-button">
-            <button> <img
-          src="Logo/music_symbol_blue_vibrant.svg"
-          alt="Music Symbol"
-          className="login-logo-image" style={{ marginRight: "10px" }}
-        />Login</button>
+            <button>Let’s Go <GiMusicalNotes size={20} style={{ marginLeft: "10px", color: "white"}}/></button>
           </div>
 
           <div className="overlay-content-forgot-pass">
@@ -58,7 +55,7 @@ const SignInLayout = () => {
           </div>
 
           <div className="overlay-content-register">
-            <p className="register-link">Don't have an account? <a href="/signup">Sign up.</a></p>
+            <p className="register-link">New here? Let’s get you started with some fresh tunes! <a href="/signup">Sign up!</a></p>
           </div>
         </div>
       </div>
