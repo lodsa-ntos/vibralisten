@@ -2,9 +2,9 @@ import React from "react";
 import { FaSpotify } from "react-icons/fa";
 import { FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import "./AuthLayout..css";
+import "./SignInLayout.css";
 
-const AuthenticationLayout = () => {
+const SignInLayout = () => {
   return (
     <div className="container-auth-layout">
       <div className="left-section"></div>
@@ -66,4 +66,4 @@ const AuthenticationLayout = () => {
   );
 }
 
-export default AuthenticationLayout;
+export default SignInLayout;
