@@ -58,7 +58,7 @@ const SignInLayout = () => {
           </div>
 
           <div className="overlay-content-register">
-            <p className="register-link">Don't have an account? <a>Sign up.</a></p>
+            <p className="register-link">Don't have an account? <a href="/signup">Sign up.</a></p>
           </div>
         </div>
       </div>

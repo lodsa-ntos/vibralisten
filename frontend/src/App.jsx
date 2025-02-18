@@ -15,6 +15,7 @@ import Privacy from "./pages/Privacy/Privacy";
 import Preferences from "./pages/Preferences/Preferences";
 import PrefBanner from "./components/PrefBanner/PrefBanner";
 import SignInLayout from "./pages/Authentication/Login/SignInLayout";
+import SignUpLayout from "./pages/Authentication/Register/SignUpLayout";
 import "./assets/styles/global.css";
 
 const ScrollToSection = () => {
@@ -40,6 +41,7 @@ const App = () => {
         <ScrollToSection />
         <Routes>
           <Route path="/" element={<SignInLayout />} />
+          <Route path="/signup" element={<SignUpLayout />} />
           <Route path="/home" element={<Home />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/about" element={<About />} />
