@@ -25,6 +25,24 @@
   left: 0;
   object-fit: cover;
 }
+.toggle-fixed-bg {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 20;
+  transition: opacity .3s ease-in-out;
+}
+.toggle-fixed-bg {
+  opacity: 0;
+}
+.right-section:hover .toggle-fixed-bg {
+  opacity: 1;
+}
 
 .overlay-box img {
   display: flex;

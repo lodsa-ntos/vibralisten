@@ -8,14 +8,18 @@ import "./SignInLayout.css";
 const SignInLayout = ({ userId }) => {
 
   const [background, setBackground] = useState("images/authlayoutimages/default.jpg");
-  const [ fixedBackground, setFixedBackground] = useState(false);
+  const [ fixedBackground, setFixedBackground ] = useState(false);
+  const [ userName, setuserName ] = useState("");
 
+  // Carregar o fundo guardado do user ao iniciar
+  // Load the user's saved background at startup
   useEffect(() => {
     const fetchBackground = async () => {
       try {
         const response = await fetch(`/user-background/${userId}`);
         const data = await response.json();
         setBackground(data.background);
+        setFixedBackground(data.fixedBackground);
 
       } catch (error) {
         console.error("Error fetching background: ", error);
@@ -24,6 +28,14 @@ const SignInLayout = ({ userId }) => {
 
     fetchBackground();
   }, [userId]);
+
+  useEffect(() => {
+    const savedUser = JSON.parse(localStorage.getItem("vibraUser"));
+
+    if (savedUser && savedUser.name) {
+      setuserName(savedUser.name);
+    }
+  }, []);
 
   const toggleFixedBackground = async () => {
     
@@ -72,14 +84,19 @@ const SignInLayout = ({ userId }) => {
         />
         <button
         className="toggle-fixed-bg"
-        onClick={() => setFixedBackground
-          (!fixedBackground)}
-        >
-          {fixedBackground ? "Disable Fixed Background" : "Enable Fixed Fund"}
+        onClick={toggleFixedBackground}>
+          {fixedBackground ? "Disable Fixed Background" : "Enable Fixed Background"}
         </button>
       </div>
       <div className="overlay-box">
-        <h3>Sign in to <span className="overlay-word-vibran">VIBRA</span>LISTE<span className="overlay-word-vibran">N</span></h3>
+        <h3> 
+          { userName ? (`Welcome back, ${userName}! Let’s vibe! 🎵`)
+          : (
+            <>
+            Sign in to <span className="overlay-word-vibran">VIBRA</span>LISTE<span className="overlay-word-vibran">N</span> 
+            </>
+          )}
+        </h3>
         <div className="overlay-content">
           <div className="overlay-content-login-username">
             <input type="email" id="login-username-email" name="login-username" className="peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600peer block w-full rounded-lg border border-gray-300 bg-transparent px-2 pt-5 pb-2 text-gray-900 dark:border-gray-600 dark:text-white focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " required></input>
