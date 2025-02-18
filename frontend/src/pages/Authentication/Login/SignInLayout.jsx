@@ -120,7 +120,34 @@ const SignInLayout = ({ userId }) => {
         // We revert the state if an error occurs
         setFixedBackground(prev => !prev);
     }
-}
+  }
+
+  const handleRequestLogicCode = async () => {
+    setIsLoading(true);
+    
+    try {
+        
+        const response = await fetch(`/send-login-code`, {
+            method: "POST",
+            headers:{ "Content-Type": "application/json" },
+            body: JSON.stringify({ emailOrUsername: isInputValue }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert("Login code sent! Check your email.");
+          setRedirectCodePage(true);
+        } else {
+          alert(data.message);
+        }
+
+    } catch (error) {
+        console.error("Error requesting login code: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <div className="container-auth-layout">
