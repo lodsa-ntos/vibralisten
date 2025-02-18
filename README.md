@@ -11,9 +11,8 @@
 <img src="https://github.com/lodsa-ntos/youtube-to-mp3-converter/blob/main/frontend/public/images/vibralisten_website.svg" width="1000px">
 </p>
 
-````
-🚀 Discover new artists and songs based on your taste with an interactive and modern media player.
-````
+> 🚀 Discover new artists and songs based on your taste with an interactive and modern media player.
+
 
 
 ## 🔥 Features
