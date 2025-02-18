@@ -43,7 +43,7 @@
 
 ### 1️⃣ Clone the repository
 ````
-git clone git@github.com:lodsa-ntos/vibralisten-frontend.git
+git clone git@github.com:lodsa-ntos/vibralisten.git
 
 cd vibralisten
 cd frontend
