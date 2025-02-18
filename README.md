@@ -1,83 +1,73 @@
-# 🎵 VibraListen - YouTube to MP3 Converter
+# 🎵 VibraListen – Personalized Music Discovery Platform
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Node Version](https://img.shields.io/badge/node-%3E%3D%2022.13.1-blue)
 ![License](https://img.shields.io/badge/license-MIT%20%7C%20GPL%20v3-blue)
 ![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
-> Convert YouTube videos into MP3 with ease!<br>
-A full-stack web application built with Node.js (backend) and React (frontend) that allows users to input a YouTube link and download the audio in MP3 format.
+> VibraListen is a Personalized Music Discovery Platform that helps users find new songs and artists based on their listening preferences. It integrates with APIs like Spotify, Deezer, Last.fm, and Genius to provide tailored recommendations and an engaging listening experience.
 
 ## 📌 Preview
 <p align="center">
 <img src="https://github.com/lodsa-ntos/youtube-to-mp3-converter/blob/main/frontend/public/images/vibralisten_website.svg" width="1000px">
 </p>
 
+````
+🚀 Discover new artists and songs based on your taste with an interactive and modern media player.
+````
 
 
-## 🚀 Features
-✔️ **Fast & Simple** → Convert YouTube videos to MP3 instantly.<br>
-🎨 **Modern UI** → Clean and responsive interface.<br>
-🔊 **MP3 Downloads** → High-quality audio conversion.<br>
-⛓️‍ **URL Validation** → Ensures only valid YouTube links are processed.<br>
-❎ **Error Handling** → Friendly messages for better UX.<br>
-🛡️ **Secure & Open Source** → Contributions are welcome!<br>
+## 🔥 Features
+✅ **Personalized Music Discovery** → Get recommendations based on your favorite artists and songs.<br>
+✅ **Login with Spotify, Deezer, or Google** → Seamless authentication options.<br>
+✅ **Interactive Media Player** → Explore new music while enjoying a sleek UI.<br>
+✅‍ **Mobile-Friendly & Responsive** → Enjoy the platform on any device.<br>
 
-## ⚡ Technologies Used
-### Backend
+## 🛠️ Tech Stack
+### 🎨 Frontend
 
-* **Node.js + Express** → Handles video conversion requests.
-* **ytdl-core** → Downloads and converts YouTube videos to MP3.
-* **Jest** → Used for testing the backend.
+* **React + Vite** → Fast and efficient interface development.
+* **Tailwind CSS** → Modern and responsive styling for a fluid UI.
 
-### Frontend
+### 🎵 APIs
 
-* **React + Vite** → Fast and efficient development.
-* **Tailwind CSS** → For a modern, responsive UI.
-* **Axios** → Handles API requests.
+* **Spotify** → Authentication and access to music libraries.
+* **Deezer** → Recommending music and discovering new artists.
+* **Last.fm** → Análise e sugestões musicais baseadas em histórico de reprodução.
+* **Genius** → Display of lyrics and information about songs.
+
+### 🌍 Hosting
+
+* **Vercel** → Fast and scalable deployment for the frontend
 <br><br><br>
 
 # 💻 How to Run Locally
 
 ### 1️⃣ Clone the repository
 ````
-git clone https://github.com/yourusername/youtube-to-mp3-converter.git
+git clone git@github.com:lodsa-ntos/vibralisten-frontend.git
 
-cd youtube-to-mp3-converter
+cd vibralisten-frontend
+cd frontend
 `````
 
 ### 2️⃣ Install Dependencies
 ````
 npm install
-cd backend && npm install
-cd frontend && npm install
 `````
 
-### 3️⃣ Run the Application
+### 3️⃣ Start development server:
 
-* Backend:
 ````
-cd backend
-npm start
+npm run dev
 `````
-
-* Frontend:
-````
-cd frontend
-npm start
-`````
-
 * Open the browser and go to: http://localhost:5173
 <br><br><br>
-# 🧪 Running Tests
+
+# 🚀 Live Demo
 
 
-To run backend tests:
-````
-cd backend
-npm test
-`````
-
-This will execute Jest tests to validate backend functionality.
+🔗 [Visit VibraListenbble](https://www.vibralisten.com)
+<br><br>
 
 ## 📩 Contributing
 
@@ -88,10 +78,6 @@ Pull requests are highly appreciated! 🚀
 3️⃣ Make your changes<br>
 4️⃣ Test everything<br>
 5️⃣ Submit a pull request 🎉<br>
-
-## ⚠️ Disclaimer
-🔹 This project is for educational purposes only.<br>
-🔹 Please ensure you comply with YouTube's terms of service when using it.
 
 ## 📜 Licence
 
