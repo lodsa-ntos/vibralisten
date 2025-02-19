@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  Navigate,
   useLocation,
 } from "react-router-dom";
 
@@ -17,6 +18,7 @@ import PrefBanner from "./components/PrefBanner/PrefBanner";
 import SignInLayout from "./pages/Authentication/Login/SignInLayout";
 import SignUpLayout from "./pages/Authentication/Register/SignUpLayout";
 import ForgotPassword from "./pages/Authentication/ForgotPass/ForgotPassword";
+import { useAuth } from "./hook/useAuth";
 import "./assets/styles/global.css";
 
 const ScrollToSection = () => {
@@ -34,7 +36,24 @@ const ScrollToSection = () => {
   return null;
 };
 
+// Componente para rotas protegidas
+// Component for protected routes
+const ProtectedRoute = ({ element }) => {
+  const { user } = useAuth();
+
+  return user ? element : <Navigate to="/" replace />;
+};
+
+// Componente para redirecionar utilizadores logados para /home se já estiverem autenticado
+// Component to redirect logged-in users to /home if they are already authenticated
+const PublicRoute = ({ element }) => {
+  const { user } = useAuth();
+
+  return user ? <Navigate to="/home" replace /> : element;
+};
+
 const App = () => {
+  
   return (
     <>
       <Router>
@@ -44,6 +63,7 @@ const App = () => {
           <Route path="/" element={<SignInLayout />} />
           <Route path="/signup" element={<SignUpLayout />} />
           <Route path="/forgotpasswordpage" element={<ForgotPassword />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/about" element={<About />} />
