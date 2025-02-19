@@ -79,7 +79,9 @@ const App = () => {
           <Route path="/privacy" element={<ProtectedRoute element={<Privacy />} />} />
           <Route path="/preferences" element={<ProtectedRoute element={<Preferences />} />} />
 
-          
+          {/*Redireciona para a página principal caso a rota não exista*/}
+          {/*Redirects to the home page if the route doesn't exist*/}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </>
