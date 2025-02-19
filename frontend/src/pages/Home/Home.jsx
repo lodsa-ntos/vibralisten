@@ -1,4 +1,7 @@
 import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext"
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import About from "../About/About";
 import FAQs from "../FAQs/FAQs";
@@ -10,6 +13,15 @@ import "../../assets/styles/global.css";
 import "./Home.css";
 
 const Home = () => {
+
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div>
       <div className="container-layout">
@@ -21,6 +33,8 @@ const Home = () => {
           <div className="home-below-header-spacing"></div>
           {/* featured-title */}
           <h1>
+            Welcome, {user.username}!
+            <button onClick={handleLogout}>Logout</button>
             <span className="home-tilte1">Convert YouTube videos to </span> <span className="home-tilte2">MP3</span> in
             seconds.
           </h1>
