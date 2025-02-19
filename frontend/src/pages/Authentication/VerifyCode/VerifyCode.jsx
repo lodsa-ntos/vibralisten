@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { VscUnverified } from "react-icons/vsc";
 import { TbError404 } from "react-icons/tb";
+import { AuthContext } from "../../../context/AuthContext";
 
 const VerifyCode = ({ emailOrUsername }) => {
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const { email } = location.state || {};
@@ -33,6 +36,12 @@ const VerifyCode = ({ emailOrUsername }) => {
       throw new Error(data.message);
     }
 
+    // Guarda o utilizador autenticado no contexto da autenticação
+    // Saves the authenticated user in the authentication context
+    login(data.user, data.token);
+
+    // Redireciona para a página Home
+    // Redirects to Home page
     navigate("/home");
 
     } catch (error) {
