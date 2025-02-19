@@ -77,10 +77,10 @@ const App = () => {
           <Route path="/forgotpasswordpage" element={<PublicRoute element={<ForgotPassword />} />} />
           <Route path="/verify-code" element={<PublicRoute element={<VerifyCode />} />} />
 
+          <Route path="/home" element={<PrivateRoute element={<Home />} />} />
 
           {/*Rotas protegidas: Apenas para utilizadores logados*/}
           {/*Protected routes: Only for logged in users*/}
-          <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
           <Route path="/faqs" element={<ProtectedRoute element={<FAQs />} />} />
           <Route path="/about" element={<ProtectedRoute element={<About />} />} />
           <Route path="/contact" element={<ProtectedRoute element={<Contact />} />} />
