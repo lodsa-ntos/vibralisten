@@ -18,7 +18,7 @@ import PrefBanner from "./components/PrefBanner/PrefBanner";
 import SignInLayout from "./pages/Authentication/Login/SignInLayout";
 import SignUpLayout from "./pages/Authentication/Register/SignUpLayout";
 import ForgotPassword from "./pages/Authentication/ForgotPass/ForgotPassword";
-import { useAuth } from "./hook/useAuth";
+import useAuth  from "./hook/useAuth";
 import "./assets/styles/global.css";
 
 const ScrollToSection = () => {
@@ -53,7 +53,6 @@ const PublicRoute = ({ element }) => {
 };
 
 const App = () => {
-  
   return (
     <>
       <Router>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from " react";
+import { useEffect, useState } from "react";
 
 /*
 * Ao entrar no site, o utilizador será redirecionado automaticamente para a home caso esteja logado.
