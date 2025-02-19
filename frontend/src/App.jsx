@@ -5,7 +5,8 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 import { useEffect } from "react";
 import Home from "./pages/Home/Home";
 import FAQs from "./pages/FAQs/FAQs";
@@ -35,6 +36,14 @@ const ScrollToSection = () => {
   }, [location]);
 
   return null;
+};
+
+// Componente para rotas protegidas
+// Component for protected routes
+const PrivateRoute = ({ element }) => {
+  const { user } = useContext(AuthContext);
+
+  return user ? element : <Navigate to="/" />;
 };
 
 // Componente para rotas protegidas
