@@ -3,6 +3,7 @@ import { FaSpotify } from "react-icons/fa";
 import { FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
+import { data, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import musicLoading from "../../../assets/animations/loadingMusic.json";
 import "./SignInLayout.css";
@@ -10,12 +11,43 @@ import "./SignInLayout.css";
 const SignInLayout = ({ userId }) => {
 
   const [background, setBackground] = useState("images/authlayoutimages/default.jpg");
+  const [ isValid, setIsValid ] = useState(null);
+  const [error, setError] = useState(null);
   const [ fixedBackground, setFixedBackground ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(false);
   const [ isChecking, setIsChecking ] = useState(false);
-  const [ isValid, setIsValid ] = useState(null);
   const [ isInputValue, setIsInputValue ] = useState("");
   const [ userName, setuserName ] = useState("");
+  const navigate = useNavigate();
+
+  const handleSendCode = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+
+      const response = await fetch(`/send-login-code`, {
+        method: "POST",
+        headers:{ "Content-Type": "application/json" },
+        body: JSON.stringify({
+            emailOrUsername: isInputValue
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+
+      navigate("/verify-code", { state: { email: isInputValue } });
+
+    } catch (error) {
+      setError(data.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Função para verificar se o input é válido (e-mail ou username existente)
   // Function to check if the input is valid (existing e-mail or username)
@@ -60,6 +92,7 @@ const SignInLayout = ({ userId }) => {
       console.log("Login successful!");
     }, 3000);
   };
+
   // Carregar o fundo guardado do user ao iniciar
   // Load the user's saved background at startup
   useEffect(() => {
