@@ -19,6 +19,7 @@ const SignInLayout = ({ userId }) => {
   const [ isInputValue, setIsInputValue ] = useState("");
   const [ userName, setuserName ] = useState("");
   const navigate = useNavigate();
+
   const isValidEmail = (value) => /\S+@\S+\.\S+/.test(value);
   const isValidPhoneNumber = (value) => /^\+?[0-9]{7,15}$/.test(value);
 
@@ -50,8 +51,8 @@ const SignInLayout = ({ userId }) => {
     }
   };
 
-  // Função para verificar se o input é válido (e-mail ou username existente)
-  // Function to check if the input is valid (existing e-mail or username)
+  // Função para verificar se o input é válido (phone number, e-mail ou username existente)
+  // Function to check if the input is valid (existing phone number, e-mail or username)
   const validateInput = async (value) => {
     setIsChecking(true);
 

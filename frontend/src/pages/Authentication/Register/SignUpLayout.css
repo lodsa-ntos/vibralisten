@@ -73,12 +73,14 @@
   letter-spacing: 0.3px;
   line-height: 1.2;
 }
-.overlay-content-signup-username {
+.overlay-content-signup-username,
+.overlay-content-signup-fullname {
   padding-bottom: 16px;
   position: relative;
   
 }
-.overlay-content-signup-username input{
+.overlay-content-signup-username input,
+.overlay-content-signup-fullname input {
   appearance: none;
   background-image: none;
   border: 1px solid var(--border-color, #4A4A4A);
@@ -93,7 +95,8 @@
   transition: all .3s ease-in-out;
   outline: none;
 }
-.overlay-content-signup-username label {
+.overlay-content-signup-username label,
+.overlay-content-signup-fullname label {
   position: absolute;
   left: 12px;
   top: 35%;
@@ -112,19 +115,23 @@
 When the input is focused or filled, move the label upwards
 */
 .overlay-content-signup-username input:focus + label,
-.overlay-content-signup-username input:not(:placeholder-shown) + label{
+.overlay-content-signup-username input:not(:placeholder-shown) + label,
+.overlay-content-signup-fullname input:focus + label,
+.overlay-content-signup-fullname input:not(:placeholder-shown) + label {
   color: #3d55cc;
   outline: none;
   top: 0;
   left: 10px;
   font-size: 12px;
 }
-.overlay-content-signup-username input:focus {
+.overlay-content-signup-username input:focus,
+.overlay-content-signup-fullname input:focus {
  border-color: var(--blue-vibrant);
  box-shadow: 0 0 8px rgba(61, 85, 204, 0.4);
  transition: all .3s ease;
 }
-.overlay-content-signup-username input:hover {
+.overlay-content-signup-username input:hover,
+.overlay-content-signup-fullname input:hover {
  border-color: rgba(61, 85, 204, 0.8);
 }
 
@@ -260,4 +267,12 @@ When the input is focused or filled, move the label upwards
 .overlay-signup-content-register a:hover {
   text-decoration: underline;
   color: var(--blue-vibrant);
+}
+
+.overlay-signup-content p.error-message-phone-email {
+  display: block;
+  font-size: 10px;
+  margin-top: -10px;
+  color: #ef4444;
+  font-weight: 400;
 }

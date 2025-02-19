@@ -88,7 +88,7 @@
   margin: 0px;
   color: var(--black);
   letter-spacing: 0.3px;
-  line-height: 1.2;
+  line-height: 1.6;
 }
 .overlay-content-login-username {
   padding-bottom: 16px;
@@ -328,7 +328,7 @@ When the input is focused or filled, move the label upwards
 }
 
 .error-message-user {
-color: #ef4444;
-font-size: 14px;
-margin-top: 8px;
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 8px;
 }
