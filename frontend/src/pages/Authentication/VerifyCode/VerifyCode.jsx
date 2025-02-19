@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { VscUnverified } from "react-icons/vsc";
+import { TbError404 } from "react-icons/tb";
 
 const VerifyCode = ({ emailOrUsername }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const VerifyCode = ({ emailOrUsername }) => {
   const [isVerifying, setIsVerifying] = useState(false);
 
   if (!email) {
-    return <p>Invalid access. Please request a new login code.</p>
+    return <p style={{ marginRight: "10px", marginLeft: "10px", alignItems: "center", justifyContent: "center", display: "flex", marginTop: "50px"}}><TbError404 size={20} style={{ marginRight: "10px", marginLeft: "10px", alignItems: "center", justifyContent: "center", display: "flex"}}/> Invalid access. Please request a new login code.</p>
   }
 
   const handleVerifyCode = async () => {

@@ -18,7 +18,8 @@ import PrefBanner from "./components/PrefBanner/PrefBanner";
 import SignInLayout from "./pages/Authentication/Login/SignInLayout";
 import SignUpLayout from "./pages/Authentication/Register/SignUpLayout";
 import ForgotPassword from "./pages/Authentication/ForgotPass/ForgotPassword";
-import useAuth  from "./hook/useAuth";
+import useAuth from "./hook/useAuth";
+import VerifyCode from "./pages/Authentication/VerifyCode/VerifyCode";
 import "./assets/styles/global.css";
 
 const ScrollToSection = () => {
@@ -65,11 +66,11 @@ const App = () => {
           <Route path="/" element={<PublicRoute element={<SignInLayout />} />} />
           <Route path="/signup" element={<PublicRoute element={<SignUpLayout />} />} />
           <Route path="/forgotpasswordpage" element={<PublicRoute element={<ForgotPassword />} />} />
+          <Route path="/verify-code" element={<PublicRoute element={<VerifyCode />} />} />
 
 
           {/*Rotas protegidas: Apenas para utilizadores logados*/}
           {/*Protected routes: Only for logged in users*/}
-          <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
           <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
           <Route path="/faqs" element={<ProtectedRoute element={<FAQs />} />} />
           <Route path="/about" element={<ProtectedRoute element={<About />} />} />
