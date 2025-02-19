@@ -3,9 +3,53 @@ import { FaSpotify } from "react-icons/fa";
 import { FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TbMusicShare } from "react-icons/tb";
+import { AuthContext } from "../../../context/AuthContext";
+import { useState, useContext } from "react";
+import { data, useNavigate } from "react-router-dom";
 import "./SignUpLayout.css";
 
 const SignUpLayout = () => {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: ""
+  });
+
+  handleSignUp = async () => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers:{ "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+
+      // Autenticar utilizador e redirecionar para home
+      // Authenticate user and redirect to home
+      login(data.user, data.token);
+      navigate("/home");
+
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div className="container-signup-layout">
       <div className="left-signup-section"></div>
