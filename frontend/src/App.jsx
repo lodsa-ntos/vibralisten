@@ -60,17 +60,26 @@ const App = () => {
         <PrefBanner />
         <ScrollToSection />
         <Routes>
-          <Route path="/" element={<SignInLayout />} />
-          <Route path="/signup" element={<SignUpLayout />} />
-          <Route path="/forgotpasswordpage" element={<ForgotPassword />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/faqs" element={<FAQs />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/preferences" element={<Preferences />} />
+
+          {/*Rotas públicas: Apenas para utilizadores não logados*/}
+          {/*Public routes: For non-logged in users only*/}
+          <Route path="/" element={<PublicRoute element={<SignInLayout />} />} />
+          <Route path="/signup" element={<PublicRoute element={<SignUpLayout />} />} />
+          <Route path="/forgotpasswordpage" element={<PublicRoute element={<ForgotPassword />} />} />
+
+
+          {/*Rotas protegidas: Apenas para utilizadores logados*/}
+          {/*Protected routes: Only for logged in users*/}
+          <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
+          <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
+          <Route path="/faqs" element={<ProtectedRoute element={<FAQs />} />} />
+          <Route path="/about" element={<ProtectedRoute element={<About />} />} />
+          <Route path="/contact" element={<ProtectedRoute element={<Contact />} />} />
+          <Route path="/terms" element={<ProtectedRoute element={<Terms />} />} />
+          <Route path="/privacy" element={<ProtectedRoute element={<Privacy />} />} />
+          <Route path="/preferences" element={<ProtectedRoute element={<Preferences />} />} />
+
+          
         </Routes>
       </Router>
     </>
