@@ -19,6 +19,8 @@ const SignInLayout = ({ userId }) => {
   const [ isInputValue, setIsInputValue ] = useState("");
   const [ userName, setuserName ] = useState("");
   const navigate = useNavigate();
+  const isValidEmail = (value) => /\S+@\S+\.\S+/.test(value);
+  const isValidPhoneNumber = (value) => /^\+?[0-9]{7,15}$/.test(value);
 
   const handleSendCode = async () => {
     setIsLoading(true);
@@ -34,16 +36,15 @@ const SignInLayout = ({ userId }) => {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message);
+        const errorData = await response.json();
+        throw new Error(errorData.message);
       }
 
       navigate("/verify-code", { state: { email: isInputValue } });
 
     } catch (error) {
-      setError(data.message);
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -55,6 +56,12 @@ const SignInLayout = ({ userId }) => {
     setIsChecking(true);
 
     try {
+
+      if (!isValidEmail(value) && !isValidPhoneNumber(value) && value.length < 3) {
+        setIsValid(false);
+        return;
+      }
+
       const response = await fetch(`/validate-user?input=${value}`);
       const data = await response.json();
 
@@ -222,12 +229,14 @@ const SignInLayout = ({ userId }) => {
               required
             />
 
-            <label htmlFor="login-username-email" className="absolute left-2 top-2 text-sm text-gray-500 dark:text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-[-50%] peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-blue-600">E-mail or username</label>
+            <label htmlFor="login-username-email" className="absolute left-2 top-2 text-sm text-gray-500 dark:text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-[-50%] peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-blue-600">Mobile number, username or e-mail</label>
          
           </div>
 
+          {error && <p className="error-message-user">{error}</p>}
+
           <div className="overlay-content-login-button">
-            <button onClick={handleLogin} 
+            <button onClick={handleSendCode} 
             disabled={isLoading || isValid === false || isChecking || isInputValue.length < 3}
             
             className={isValid === false || isInputValue.length < 3 ? "disabled-btn" : ""}>
