@@ -19,6 +19,10 @@ const VerifyCode = ({ emailOrUsername }) => {
     const data = await response.json();
     
     if (response.ok) {
+
+      localStorage.setItem("vibraToken", data.token);
+      localStorage.setItem("vibraUser", JSON.stringify(data.user));
+
       alert("Login successful! Redirecting...");
       windows.location.href ="/home";
     } else {
