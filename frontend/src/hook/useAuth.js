@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 /*
 * Ao entrar no site, o utilizador será redirecionado automaticamente para a home caso esteja logado.
@@ -17,7 +18,7 @@ const useAuth = () => {
         }
     });
 
-    return { user };
+    return useContext(AuthContext);
 };
     
 export default useAuth;

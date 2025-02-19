@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { TbMusicShare } from "react-icons/tb";
 import { AuthContext } from "../../../context/AuthContext";
 import { useState, useContext } from "react";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./SignUpLayout.css";
 
 const SignUpLayout = () => {
