@@ -1,4 +1,7 @@
 /* VibraListen - Global Styles */
+@import "tailwindcss/preflight";
+@import "tailwindcss";
+@tailwind utilities;
 
 :root {
   /* Paleta de cores

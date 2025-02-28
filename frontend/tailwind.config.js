@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
-export const content = ["./src/**/*.{js,jsx,ts,tsx}"];
-export const theme = {
+export default {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   extend: {
     colors: {
       "blue-vibrant": "#3d55cc",
