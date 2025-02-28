@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --blue-vibrant: #3d55cc;
+  --dark-grey: #141a33;
+  --grey: #505673;
+  --grey2: #878CA8;
+  --light-grey: #dadef2;
+  --light-blue-grey2: #f5f6fa;
+  --white: #FFFFFF;
+  --black: #0A0F1E;
+  --border-color:#7c7c7c; 
+
+  /* Tipografia 
+  Typography
+  */
+  --geral-typography: 'Satoshi', sans-serif;
+}

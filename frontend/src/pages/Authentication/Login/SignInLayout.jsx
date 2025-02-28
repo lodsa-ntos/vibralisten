@@ -12,10 +12,12 @@ const LoginScreen = () => {
   return (
     <div className="flex h-screen font-satoshi">
       {/** Left: Form */}
-      <div className="w-1/2 flex flex-col justify-center items-center bg-dark-grey text-white p-10">
-      <h3 className="text-4xl font-bold text-blue-vibrant"> 
+      <div className="w-1/2 flex flex-col justify-center items-center bg-dark-grey text-black p-10">
+      <h1 className="text-4xl font-bold text-blue-vibrant"> 
             Sign in to <span className="overlay-word-vibran">VIBRA</span>LISTE<span className="overlay-word-vibran">N</span> 
-        </h3>
+      </h1>
+      <p className="mt-2 text-grey2"></p>
+
         <div className="overlay-content">
           <div className="overlay-content-login-username">
             <input 
@@ -65,7 +67,7 @@ const LoginScreen = () => {
           </div>
         </div>
       </div>
-      <div className="w-1/2 bg-black relative">
+      <div className="w-1/2 bg-amber-500 relative">
         <div className="absolute inset-0 bg-cover bg-center opacity-60"
         style={{ backgroundImage: "url('/frontend/public/images/authlayoutimages/default.jpg')" }}
         >

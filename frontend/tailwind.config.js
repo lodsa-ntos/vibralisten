@@ -1,22 +1,23 @@
 /** @type {import('tailwindcss').Config} */
-
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  extend: {
-    colors: {
-      "blue-vibrant": "#3d55cc",
-      "dark-grey": "#141a33",
-      "grey": "#505673",
-      "grey2": "#878CA8",
-      "light-grey": "#dadef2",
-      "light-blue-grey2": "#f5f6fa",
-      "white": "#FFFFFF",
-      "black": "#0A0F1E",
-      "border-color": "#7c7c7c",
-    },
-    fontFamily: {
-      satoshi: ["Satoshi", "sans-serif"]
+  content: ["./src/**/*.{js,jsx,ts,tsx}"], // Define onde o Tailwind deve procurar por classes usadas
+  theme: {
+    extend: {
+      colors: {
+        "blue-vibrant": "#3d55cc",
+        "dark-grey": "#141a33",
+        "grey": "#505673",
+        "grey2": "#878CA8",
+        "light-grey": "#dadef2",
+        "light-blue-grey2": "#f5f6fa",
+        "white": "#FFFFFF",
+        "black": "#0A0F1E",
+        "border-color": "#7c7c7c",
+      },
+      fontFamily: {
+        satoshi: ["Satoshi", "sans-serif"],
+      },
     },
   },
+  plugins: [],
 };
-export const plugins = [];
