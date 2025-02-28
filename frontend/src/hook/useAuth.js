@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 /*
@@ -7,18 +7,20 @@ import { AuthContext } from "../context/AuthContext";
 */
 const useAuth = () => {
 
-    const [user, setUser] = useState(null);
+    const { user, login } = useContext(AuthContext);
 
     useEffect(() => {
-        const token = localStorage.getItem("vibraToken");
-        const storedUser = localStorage.getItem("vibraUser");
+        
+        const token = localStorage.getItem("token");
+        const storedUser = localStorage.getItem("user");
 
-        if (token && storedUser) {
-            setUser(JSON.parse(storedUser));
+        if (token && storedUser && !user) {
+            login(JSON.parse(storedUser), token);
         }
-    });
 
-    return useContext(AuthContext);
+    }, [user, login]);
+
+    return { user };
 };
     
 export default useAuth;

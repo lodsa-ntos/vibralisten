@@ -41,9 +41,11 @@ const ScrollToSection = () => {
 // Componente para rotas protegidas
 // Component for protected routes
 const PrivateRoute = ({ element }) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
-  return user ? element : <Navigate to="/" />;
+  const storedUser = localStorage.getItem("user");
+
+  return user || storedUser ? element : <Navigate to="/" />;
 };
 
 // Componente para rotas protegidas

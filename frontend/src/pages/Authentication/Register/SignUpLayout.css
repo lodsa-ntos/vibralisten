@@ -269,10 +269,12 @@ When the input is focused or filled, move the label upwards
   color: var(--blue-vibrant);
 }
 
-.overlay-signup-content p.error-message-phone-email {
+.overlay-signup-content p.error-message-phone-email,
+.overlay-signup-content p.error-message-fullname {
   display: block;
   font-size: 10px;
   margin-top: -10px;
   color: #ef4444;
   font-weight: 400;
+  margin-bottom: 5px;
 }

@@ -17,37 +17,78 @@ const SignInLayout = ({ userId }) => {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ isChecking, setIsChecking ] = useState(false);
   const [ isInputValue, setIsInputValue ] = useState("");
-  const [ userName, setuserName ] = useState("");
+  const [ userName, setUserName ] = useState("");
+
+  const [user, setUser] = useState(() => {
+
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : null;
+
+    } catch (error) {
+      console.error("Error parsing user from localStorage: ", error.message);
+      return null;
+    }
+  });
+
   const navigate = useNavigate();
 
   const isValidEmail = (value) => /\S+@\S+\.\S+/.test(value);
   const isValidPhoneNumber = (value) => /^\+?[0-9]{7,15}$/.test(value);
 
-  const handleSendCode = async () => {
-    setIsLoading(true);
+  const handleLoginOrSignup = async () => {
+    setIsChecking(true);
     setError(null);
 
     try {
+      const response = await fetch(`http://localhost:3000/api/auth/check-user?emailOrPhone=${isInputValue}`);
+      const data = await response.json();
 
-      const response = await fetch(`/send-login-code`, {
-        method: "POST",
-        headers:{ "Content-Type": "application/json" },
-        body: JSON.stringify({
-            emailOrUsername: isInputValue
-        }),
-      });
+      // 🟢 DEBUG
+      console.log("Check-user response: ", data);
+
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
+        throw new Error("Failed to check user.");
       }
 
-      navigate("/verify-code", { state: { email: isInputValue } });
+      if (data.exists) {
+
+        localStorage.setItem("pendingUser", JSON.stringify(data.user));
+
+        await fetch("http://localhost:3000/api/auth/send-otp", {
+          method: "POST",
+          headers:{ "Content-Type": "application/json" },
+          body: JSON.stringify({
+              emailOrPhone: isInputValue
+          }),
+        });
+
+        // 🟢 DEBUG
+        console.log("✅ OTP sent to: ", isInputValue);
+  
+        navigate("/verify-code", { 
+          state: { 
+            emailOrPhone: isInputValue,
+            userId: data.user.userId,
+            type: "login"
+          } 
+        });
+  
+      } else {
+        console.log("❌ User not found, redirecting to signup.");
+        navigate("/signup", { 
+          state: { 
+            emailOrPhone: isInputValue 
+          } 
+        });
+      }
 
     } catch (error) {
-      setError(error.message);
+      console.error("Error checking user: ", error.message)
+      setError("An error occurred. Please try again.");
     } finally {
-      setIsLoading(false);
+      setIsChecking(false);
     }
   };
 
@@ -55,51 +96,64 @@ const SignInLayout = ({ userId }) => {
   // Function to check if the input is valid (existing phone number, e-mail or username)
   const validateInput = async (value) => {
     setIsChecking(true);
+    setIsValid(null);
 
     try {
+      const trimmedValue = value.trim();
 
-      if (!isValidEmail(value) && !isValidPhoneNumber(value) && value.length < 3) {
+      if (!isValidEmail(trimmedValue) && !isValidPhoneNumber(trimmedValue)) {
         setIsValid(false);
+        setIsChecking(false);
         return;
       }
 
-      const response = await fetch(`/validate-user?input=${value}`);
+      const response = await fetch(`http://localhost:3000/api/auth/check-user?emailOrPhone=${value}`);
       const data = await response.json();
 
-      setIsValid(data.valid);
+      // 🟢 DEBUG
+      console.log("Check-user response: ", data);
+
+      if (data.exists) {
+        setIsValid(true);
+        console.log("✅ Valid user! isValid updated to true.");
+      } else {
+        setIsValid(false);
+        console.log("❌ User not found! isValid updated to false.");
+      }
+
+      if (!response.ok) {
+        throw new Error("Failed to validate user.");
+      }
 
     } catch (error) {
-      console.error("Validation error: ", error);
+      console.error("Validation error: ", error.message);
       setIsValid(false);
     } finally {
       setIsChecking(false);
     }
   };
 
+  useEffect(() => {
+    console.log("Updated isValid state: ", isValid);
+  }, [isValid]);
+
   // Atualiza o estado sempre que o utilizador escrever
   // Updates the status whenever the user types
   const handleChange= (event) => {
-    const value = event.target.value;
+    const value = event.target.value.trim();
     setIsInputValue(value);
+
+    console.log("✍️ Input entered: ", value);
 
     // Verificar se é um e-mail válido ou username válido
     // Check if it's a valid e-mail or username
-    if (value.length > 3) {
+    if (value.length >= 3) {
       validateInput(value);
     } else {
       // Reset status
       setIsValid(null);
     }
   }; 
-
-  const handleLogin = async () => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log("Login successful!");
-    }, 3000);
-  };
 
   // Carregar o fundo guardado do user ao iniciar
   // Load the user's saved background at startup
@@ -123,7 +177,7 @@ const SignInLayout = ({ userId }) => {
     const savedUser = JSON.parse(localStorage.getItem("vibraUser"));
 
     if (savedUser && savedUser.name) {
-      setuserName(savedUser.name);
+      setUserName(savedUser.name);
     }
   }, []);
 
@@ -163,33 +217,6 @@ const SignInLayout = ({ userId }) => {
     }
   }
 
-  const handleRequestLogicCode = async () => {
-    setIsLoading(true);
-    
-    try {
-        
-        const response = await fetch(`/send-login-code`, {
-            method: "POST",
-            headers:{ "Content-Type": "application/json" },
-            body: JSON.stringify({ emailOrUsername: isInputValue }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          alert("Login code sent! Check your email.");
-          setRedirectCodePage(true);
-        } else {
-          alert(data.message);
-        }
-
-    } catch (error) {
-        console.error("Error requesting login code: ", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
   return (
     <div className="container-auth-layout">
       <div className="left-section"></div>
@@ -217,12 +244,12 @@ const SignInLayout = ({ userId }) => {
         <div className="overlay-content">
           <div className="overlay-content-login-username">
             <input 
-              type="email" 
+              type="text" 
               id="login-username-email" 
               name="login-username"
               className={`
               peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600peer block w-full rounded-lg border border-gray-300 bg-transparent px-2 pt-5 pb-2 text-gray-900 dark:border-gray-600 dark:text-white focus:border-blue-600 focus:outline-none focus:ring-0
-              ${isValid === true ? "input-valid" : isValid === false || isInputValue.length ? "input-invalid" : ""}
+              ${isValid === true ? "input-valid" : isValid === false && isInputValue.length > 3 ? "input-invalid" : ""}
               `} 
               placeholder=" " 
               value={isInputValue}
@@ -237,10 +264,10 @@ const SignInLayout = ({ userId }) => {
           {error && <p className="error-message-user">{error}</p>}
 
           <div className="overlay-content-login-button">
-            <button onClick={handleSendCode} 
-            disabled={isLoading || isValid === false || isChecking || isInputValue.length < 3}
+            <button onClick={handleLoginOrSignup} 
+            disabled={isLoading || isChecking || !isValid}
             
-            className={isValid === false || isInputValue.length < 3 ? "disabled-btn" : ""}>
+            className={isValid === false ? "disabled-btn" : ""}>
               {
                 isLoading ? (
                   <Lottie

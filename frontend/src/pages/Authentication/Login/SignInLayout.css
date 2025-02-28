@@ -110,14 +110,6 @@
   transition: border-color .3s ease-in-out, box-shadow .3s ease-in-out;
   outline: none;
 }
-.overlay-content-login-username .input-valid {
-  border-color: #22c55e !important;
-  box-shadow: 0 0 5px rgba(34, 197, 94, 0.5) !important;
-}
-.overlay-content-login-username .input-invalid {
-  border-color: #ef4444 !important;
-  box-shadow: 0 0 5px rgba(239, 68, 68, 0.5) !important;
-}
 .overlay-content-login-username label {
   position: absolute;
   left: 12px;
@@ -145,32 +137,7 @@ When the input is focused or filled, move the label upwards
   left: 10px;
   font-size: 12px;
 }
-.overlay-content-login-username input:focus.input-valid  + label,
-.overlay-content-login-username input:not(:placeholder-shown) + label {
-  color: #22c55e !important;
-  outline: none;
-  top: 0;
-  left: 10px;
-  font-size: 12px;
-}
-.overlay-content-login-username input:focus.input-invalid  + label,
-.overlay-content-login-username input:not(:placeholder-shown) + label {
-  color: #ef4444 !important;
-  outline: none;
-  top: 0;
-  left: 10px;
-  font-size: 12px;
-}
-.overlay-content-login-username input:focus.input-valid {
-  border-color: #22c55e !important;
-  box-shadow: 0 0 5px rgba(34, 197, 94, 0.5) !important;
-  transition: all .3s ease;
-}
-.overlay-content-login-username input:focus.input-invalid {
-  border-color: #ef4444 !important;
-  box-shadow: 0 0 5px rgba(239, 68, 68, 0.5) !important;
-  transition: all .3s ease;
- }
+
 .overlay-content-login-username input:hover {
  border-color: rgba(61, 85, 204, 0.8);
 }

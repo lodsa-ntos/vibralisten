@@ -2,29 +2,68 @@ import { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export const AuthProvider = ({ children }) => { 
 
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    const storedUser = localStorage.getItem("authUser");
+  const [user, setUser] = useState(() => {
 
-    if (token && storedUser) {
-      setUser(JSON.parse(storedUser));
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : null;
+
+    } catch (error) {
+      console.error("Error parsing user from localStorage: ", error.message);
+      return null;
     }
-  }, []);
+  });
 
   const login = (userData, token) => {
     setUser(userData);
-    localStorage.setItem("authToken", token);
-    localStorage.setItem("authUser", JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("token", token);
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("authUser");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    setTimeout(() => {
+      window.location.href = "/"
+    }, 0);
   };
+
+  useEffect(() => {
+    const checkUserSession = async () => {
+      const storedToken= localStorage.getItem("token");
+
+      if (storedToken) {
+        try {
+          const response = await fetch("http://localhost:3000/api/auth/me", {
+            headers: {
+              "Authorization": `Bearer ${storedToken}`
+            }
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            setUser(data.user);
+            setTimeout(() => {
+              window.location.href = "/home"
+            }, 0);
+          } else {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            setUser(null);
+          }
+
+        } catch (error) {
+          console.error("Error fetching user: ", error);
+        }
+      };
+    };
+
+    checkUserSession();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
