@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./Header.css";
-import "./ActiveEffect";
 import getActivePage from "./ActiveEffect";
 import { Link } from "react-router-dom";
 

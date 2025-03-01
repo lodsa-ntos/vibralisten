@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from "axios";
 import { PiUserCircleCheckDuotone } from "react-icons/pi";
 import { LiaTimesCircle } from "react-icons/lia";
-import "./Contact.css";
 
 const Contact = () => {
 

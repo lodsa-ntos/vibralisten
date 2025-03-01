@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./PrefBanner.css";
 
 const PrefBanner = () => {
   const [showBanner, setShowBanner] = useState(false);

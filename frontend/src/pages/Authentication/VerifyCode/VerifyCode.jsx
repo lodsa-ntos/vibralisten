@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { VscUnverified } from "react-icons/vsc";
 import { TbError404 } from "react-icons/tb";
 import { AuthContext } from "../../../context/AuthContext";
-import "./VerifyCode.css";
 
 const VerifyCode = () => {
   const { login } = useContext(AuthContext);

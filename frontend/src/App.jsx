@@ -21,7 +21,6 @@ import SignUpLayout from "./pages/Authentication/Register/SignUpLayout";
 import ForgotPassword from "./pages/Authentication/ForgotPass/ForgotPassword";
 import useAuth from "./hook/useAuth";
 import VerifyCode from "./pages/Authentication/VerifyCode/VerifyCode";
-import "./assets/styles/global.css";
 
 const ScrollToSection = () => {
   const location = useLocation();
@@ -68,7 +67,6 @@ const App = () => {
   return (
     <>
       <Router>
-        <PrefBanner />
         <ScrollToSection />
         <Routes>
 

@@ -4,6 +4,7 @@
     "@tailwindcss/vite": "^4.0.9",
     "axios": "^1.7.9",
     "lottie-react": "^2.4.1",
+    "postcss-import": "^16.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",

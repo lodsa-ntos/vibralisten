@@ -6,7 +6,6 @@ import { BsGithub } from "react-icons/bs";
 import { FaLinkedin } from "react-icons/fa";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import "../Header/ActiveEffect";
-import "./Footer.css";
 
 const Footer = () => {
   const activePage = getActivePage();

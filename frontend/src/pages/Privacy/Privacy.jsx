@@ -2,8 +2,6 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import ScrollToTopButton from "../../components/Button/ScrollToTopButton/ScrollToTopButton";
-import "../../assets/styles/global.css";
-import "./Privacy.css";
 
 const Privacy = () => {
   return (

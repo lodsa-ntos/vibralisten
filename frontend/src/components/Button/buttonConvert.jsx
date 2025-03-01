@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_BASE_URL, CSRF_BASE_URL } from "../../config/generalConfigFrontend";
-import "./buttonConvert.css";
 
 const ButtonConvert = () => {
   const [isValid, setIsValid] = useState(null);

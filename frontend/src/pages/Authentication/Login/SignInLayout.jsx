@@ -2,7 +2,6 @@ import React from "react";
 import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
-import "../../../assets/styles/global.css"
 
 const LoginScreen = () => {
   return (
@@ -11,28 +10,20 @@ const LoginScreen = () => {
       <div className="w-full md:w-5/12 flex items-center justify-center bg-dark-grey text-black p-10">
         <div className="max-w-md w-full">
           <h1 className="text-4xl font-bold text-blue-vibrant">
-            Sign in to <span className="text-black">VIBRA</span>LISTEN
+            Sign in to <span className="text-blue-600">VIBRA</span>LISTE<span className="text-blue-600">N</span>
           </h1>
-          <p className="mt-2 text-grey2">Sign in to your account</p>
+          <div className="mb-11.5 h-24 dark:hidden"></div>
 
           {/** Input E-mail */}
-          <input 
-            type="text" 
-            id="login" 
-            name="login-username"
-            className="peer block px-3 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:border-transparent"
-            placeholder=" "
-            required
-          />
-          <label 
-            htmlFor="login" 
-            className="absolute left-3 top-3 text-sm text-gray-500 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-focus:top-3 peer-focus:text-sm peer-focus:text-blue-vibrant"
-          >
-            Mobile number, username or e-mail
-          </label>
+          <div class="relative">
+                <input type="text" id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+
+                <label for="floating_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Mobile number, username or e-mail
+                </label>
+              </div>
 
           {/** Submit Button */}
-          <button className="mt-4 flex items-center justify-center w-full bg-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all">
+          <button className="mt-4 flex items-center justify-center w-full bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all">
             Let’s Go <GiMusicalNotes size={20} className="ml-2" />
           </button>
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { BiMailSend } from "react-icons/bi";
-import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
   return (

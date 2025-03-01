@@ -1,17 +1,11 @@
 export default {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        "blue-vibrant": "var(--blue-vibrant)",
-        "dark-grey": "var(--dark-grey)",
-      },
-      spacing: {
-        "s": "var(--space-s)",
-        "m": "var(--space-m)",
-      },
-      fontFamily: {
-        satoshi: ["Satoshi", "sans-serif"],
-      },
-    },
+    extend: {},
   },
-};
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
