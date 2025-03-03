@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: "rgb(var(--color-blueforce-white) / <alpha-value>)",
-          100: "rgb(var(--color-blueforce-100) / <alpha-value>)",
-          200: "rgb(var(--color-blueforce-200) / <alpha-value>)",
-          300: "rgb(var(--color-blueforce-300) / <alpha-value>)",
-          400: "rgb(var(--color-blueforce-400) / <alpha-value>)",
-          500: "rgb(var(--color-blueforce-500) / <alpha-value>)",
-          600: "rgb(var(--color-blueforce-600) / <alpha-value>)",
-          700: "rgb(var(--color-blueforce-700) / <alpha-value>)",
-          800: "rgb(var(--color-blueforce-800) / <alpha-value>)",
+        blueforce: {
+          50: '#FFFFFF !important',
+          100: '#f5f6fa !important',
+          200: '#dadef2 !important',
+          300: '#7c7c7c !important',
+          400: '#878CA8 !important',
+          500: '#505673 !important',
+          600: '#3d55cc !important', 
+          700: '#141a33 !important',
+          800: '#0A0F1E !important',
         },
       },
       fontFamily: {
