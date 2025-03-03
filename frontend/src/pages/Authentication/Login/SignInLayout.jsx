@@ -57,7 +57,7 @@ const LoginScreen = () => {
           </div>
 
           {/** Submit Button */}
-          <button className="mt-4 flex items-center justify-center w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:ring-2 hover:ring-blue-400 hover:ring-opacity-50 tracking-wide">
+          <button className="mt-4 flex items-center justify-center w-full bg hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:ring-2 hover:ring-blue-400 hover:ring-opacity-50 tracking-wide">
             Start Listening{" "}
             <GiMusicalNotes size={20} className="ml-2 animate-ping" />
           </button>

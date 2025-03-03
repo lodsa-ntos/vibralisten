@@ -5,15 +5,15 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: "rgb(var(--blue-force-white) / <alpha-value>)",
-          100: "rgb(var(--blue-force-100) / <alpha-value>)",
-          200: "rgb(var(--blue-force-200) / <alpha-value>)",
-          300: "rgb(var(--blue-force-300) / <alpha-value>)",
-          400: "rgb(var(--blue-force-400) / <alpha-value>)",
-          500: "rgb(var(--blue-force-500) / <alpha-value>)",
-          600: "rgb(var(--blue-force-600) / <alpha-value>)",
-          700: "rgb(var(--blue-force-700) / <alpha-value>)",
-          800: "rgb(var(--blue-force-800) / <alpha-value>)",
+          50: "rgb(var(--color-blueforce-white) / <alpha-value>)",
+          100: "rgb(var(--color-blueforce-100) / <alpha-value>)",
+          200: "rgb(var(--color-blueforce-200) / <alpha-value>)",
+          300: "rgb(var(--color-blueforce-300) / <alpha-value>)",
+          400: "rgb(var(--color-blueforce-400) / <alpha-value>)",
+          500: "rgb(var(--color-blueforce-500) / <alpha-value>)",
+          600: "rgb(var(--color-blueforce-600) / <alpha-value>)",
+          700: "rgb(var(--color-blueforce-700) / <alpha-value>)",
+          800: "rgb(var(--color-blueforce-800) / <alpha-value>)",
         },
       },
       fontFamily: {
