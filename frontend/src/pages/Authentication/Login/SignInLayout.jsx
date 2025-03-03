@@ -2,6 +2,7 @@ import React from "react";
 import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
+import { MiniPlayer } from "../../../components/MiniPlayer/miniPlayer";
 
 const LoginScreen = () => {
   return (
@@ -29,12 +30,14 @@ const LoginScreen = () => {
             </h1>
           </div>
 
-          <h2 style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} className="text-3xl font-bold text-[#dadef2] mt-2 text-center tracking-wide drop-shadow-sm">
-            Feel the Beat. Live the Vibe.
+          <h2 style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px", animation: "fadeInSlow 1.2s ease-in-out forwards"}} className="text-3xl font-bold text-[#dadef2] mt-2 text-center tracking-wide drop-shadow-sm">
+            <span className="animate-ping delay-800 duration-600">Feel the Beat. </span>
+            <span className="animate-pulse delay-1000">Live the Vibe.</span>
           </h2>
 
           <div className="mb-11.5 h-16 dark:hidden">
-            <p style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} className="mt-6 text-center text-lg text-gray-600">
+            <p style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} 
+            className="mt-6 text-center text-lg text-gray-600">
               Your music journey starts here!
             </p>
           </div>
@@ -75,15 +78,16 @@ const LoginScreen = () => {
             <button
               style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }}
               className="flex items-center justify-center w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg
-            transition-all duration-200 shadow-md hover:shadow-lg"
-            >
+            transition-all duration-200 shadow-md hover:shadow-lg">
               <FaSpotify size={20} className="mr-2" /> Login with Spotify
             </button>
+
             <button 
             style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }}
             className="flex items-center justify-center w-full bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
               <FaDeezer size={20} className="mr-2" /> Login with Deezer
             </button>
+
             <button 
             style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }}
             className="flex items-center justify-center w-full bg-white text-black border border-gray-300 py-3 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-md hover:shadow-lg">
@@ -92,14 +96,11 @@ const LoginScreen = () => {
           </div>
 
           <p className="mt-8 text-center text-sm text-gray-500">
-            <span style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} className="inline-block animate-bounce">🎵</span> Don't have
-            an account?
+            <span style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} className="inline-block animate-bounce">🎵</span> Don't have an account?
             <a
-            style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }}
+              style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }}
               href="/signup"
-              className="text-[#3d55cc] font-semibold hover:underline hover:text-blue-400 !important transition-all duration-200"
-            >
-              {" "}
+              className="text-[#3d55cc] font-semibold hover:underline hover:text-blue-400 !important transition-all duration-200">
               Join the vibe!
             </a>
           </p>
@@ -108,6 +109,7 @@ const LoginScreen = () => {
 
       {/** Right: Background */}
       <div className="hidden md:block md:w-7/12 relative bg-blue-700">
+        <MiniPlayer />
         <div
           className="absolute inset-0 bg-cover bg-center opacity-95 blur-[2px] hover:opacity-100 hover:blur-none transition-all duration-700 ease-in-out "
           style={{
