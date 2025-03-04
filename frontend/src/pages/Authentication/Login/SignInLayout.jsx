@@ -108,14 +108,11 @@ const LoginScreen = () => {
       </div>
 
       {/** Right: Background */}
-      <div className="hidden md:block md:w-7/12 relative bg-blue-700">
-        <MiniPlayer />
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-95 blur-[2px] hover:opacity-100 hover:blur-none transition-all duration-700 ease-in-out "
-          style={{
-            backgroundImage: "url('/images/authlayoutimages/default.jpg')",
-          }}
-        ></div>
+      <div className="hidden md:block md:w-7/12 relative bg-gray-950">
+        <video class="w-full h-full rounded-lg" controls autoPlay muted>
+          <source src="videos/video_4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   );
