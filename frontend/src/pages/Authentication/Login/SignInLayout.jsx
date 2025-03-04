@@ -2,7 +2,7 @@ import React from "react";
 import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
-import { MiniPlayer } from "../../../components/MiniPlayer/miniPlayer";
+import { VideoPlayer } from "../../../components/VideoPlayer/VideoPlayer"; 
 
 const LoginScreen = () => {
   return (
@@ -109,10 +109,7 @@ const LoginScreen = () => {
 
       {/** Right: Background */}
       <div className="hidden md:block md:w-7/12 relative bg-gray-950">
-        <video class="w-full h-full rounded-lg" controls autoPlay muted>
-          <source src="videos/video_4.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <VideoPlayer />
       </div>
     </div>
   );
