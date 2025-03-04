@@ -46,8 +46,8 @@ export const VideoPlayer = () => {
       className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out object-cover ${fade}`} 
       autoPlay
       muted
+      loop
       playsInline
-      controls
       >
         <source src={videoList[currentVideo]} type="video/mp4" />
         Your browser does not support the video tag.

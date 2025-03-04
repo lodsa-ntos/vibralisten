@@ -108,7 +108,7 @@ const LoginScreen = () => {
       </div>
 
       {/** Right: Background */}
-      <div className="hidden md:block md:w-7/12 relative bg-gray-950">
+      <div className="hidden md:block md:w-7/12 relative bg-gray-950 border-l-4 border-[#3d55cc]">
       <VideoPlayer />
       </div>
     </div>
