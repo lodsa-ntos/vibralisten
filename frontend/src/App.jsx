@@ -6,9 +6,13 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useEffect } from "react";
-import { PublicHome } from "./pages/Home/PublicHome";
-import UserHome from "./pages/Home/UserHome";
 import { AuthProvider } from "./context/AuthContext";
+import { PublicHome } from "./pages/Home/PublicHome";
+import { Login } from "./pages/Authentication/Login/Login";
+import { Signup } from "./pages/Authentication/Signup/Signup";
+import { VerifyOTP } from "./pages/Authentication/VerifyOTP/VerifyOTP";
+import { UserHome } from "./pages/Home/UserHome";
+
 
 const ScrollToSection = () => {
   const location = useLocation();

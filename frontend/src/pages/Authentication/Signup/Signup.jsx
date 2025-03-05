@@ -7,7 +7,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignUpLayout = () => {
+export const Signup = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -200,5 +200,3 @@ const SignUpLayout = () => {
     </div>
   );
 }
-
-export default SignUpLayout;

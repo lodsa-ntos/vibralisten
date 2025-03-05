@@ -7,9 +7,9 @@ import About from "../About/About";
 import FAQs from "../FAQs/FAQs";
 import Contact from "../Contact/Contact";
 import Footer from "../../components/Footer/Footer";
-import ScrollToTopButton from "../../components/Button/ScrollToTopButton/ScrollToTopButton";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
-const UserHome = () => {
+export const UserHome = () => {
 
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -80,5 +80,3 @@ const UserHome = () => {
     </div>
   );
 };
-
-export default UserHome;

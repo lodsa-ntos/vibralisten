@@ -5,7 +5,7 @@ import { VscUnverified } from "react-icons/vsc";
 import { TbError404 } from "react-icons/tb";
 import { AuthContext } from "../../../context/AuthContext";
 
-const VerifyCode = () => {
+export const VerifyOTP = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -141,5 +141,3 @@ const VerifyCode = () => {
       </div>
     );
 };
-
-export default VerifyCode;

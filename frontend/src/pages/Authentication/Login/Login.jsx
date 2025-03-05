@@ -2,9 +2,9 @@ import React from "react";
 import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
-import { VideoPlayer } from "../../../components/VideoPlayer/VideoPlayer"; 
+import { VideoPlayer } from "../../../components/VideoPlayer"; 
 
-const LoginScreen = () => {
+export const Login = () => {
   return (
     <div className="flex h-screen font-satoshi">
       {/** Left: Form */}
@@ -114,5 +114,3 @@ const LoginScreen = () => {
     </div>
   );
 };
-
-export default LoginScreen;
