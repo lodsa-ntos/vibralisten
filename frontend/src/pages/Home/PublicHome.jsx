@@ -12,9 +12,9 @@ export const PublicHome = () => {
   }
 
   return (
-    <div>
+    <div className="text-center items-center justify-center mt-10">
       <h1>🎵 Welcome to VibraListen!</h1>
-      <p>Explore and discover new vibes.</p>
+      <p> Explore and discover new vibes.</p>
 
       
     </div>
