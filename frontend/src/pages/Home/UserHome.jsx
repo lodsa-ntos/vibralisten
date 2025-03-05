@@ -2,11 +2,11 @@ import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext"
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header";
 import About from "../About/About";
 import FAQs from "../FAQs/FAQs";
 import Contact from "../Contact/Contact";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../components/Footer";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 export const UserHome = () => {

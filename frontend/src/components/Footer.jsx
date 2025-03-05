@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import getActivePage from "../ActiveEffect";
+import getActivePage from "../components/ActiveEffect";
 import { FaDribbble } from "react-icons/fa6";
 import { BsGithub } from "react-icons/bs";
 import { FaLinkedin } from "react-icons/fa";
 import { MdOutlinePrivacyTip } from "react-icons/md";
-import "../ActiveEffect";
 
 const Footer = () => {
   const activePage = getActivePage();

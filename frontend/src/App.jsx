@@ -12,6 +12,7 @@ import { Login } from "./pages/Authentication/Login/Login";
 import { Signup } from "./pages/Authentication/Signup/Signup";
 import { VerifyOTP } from "./pages/Authentication/VerifyOTP/VerifyOTP";
 import { UserHome } from "./pages/Home/UserHome";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 
 const ScrollToSection = () => {
@@ -35,8 +36,14 @@ const App = () => {
       <Router>
         <ScrollToSection />
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<PublicHome />} />
-          <Route path="/home" element={<UserHome />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+
+          {/* Protected Routes */}
+          <Route path="/home" element={<ProtectedRoute> <UserHome /> </ProtectedRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
