@@ -1,12 +1,9 @@
 import {
-  BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
   useLocation,
 } from "react-router-dom";
 import { useEffect } from "react";
-import { AuthProvider } from "./context/AuthContext";
 import { PublicHome } from "./pages/Home/PublicHome";
 import { Login } from "./pages/Authentication/Login/Login";
 import { Signup } from "./pages/Authentication/Signup/Signup";
@@ -32,9 +29,8 @@ const ScrollToSection = () => {
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <ScrollToSection />
+    <>
+      <ScrollToSection />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<PublicHome />} />
@@ -44,9 +40,8 @@ const App = () => {
 
           {/* Protected Routes */}
           <Route path="/home" element={<ProtectedRoute> <UserHome /> </ProtectedRoute>} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+      </Routes>
+    </>
   );
 };
 

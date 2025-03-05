@@ -1,12 +1,10 @@
 import { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => { 
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
   // Verifica se existe uma sessão salva no localStorage
   // Checks if there is a session saved in localStorage
@@ -26,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(response.data.user));
       // Redirecionar após login
       // Redirect after login
-      navigate("/home");
+      navigate("/verify-otp");
 
     } catch (error) {
       console.error("Signup error: ", error.response.data.message);
@@ -43,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(response.data.user));
       // Redirecionar após login
       // Redirect after login
-      navigate("/home");
+      navigate("/verify-otp");
 
     } catch (error) {
       console.error("Login error: ", error.response.data.message);
@@ -57,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    navigate("/login");
+    gotoLogin();
   };
 
   return (
