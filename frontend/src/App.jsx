@@ -6,7 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useEffect } from "react";
-import PublicHome from "./pages/Home/PublicHome";
+import { PublicHome } from "./pages/Home/PublicHome";
 import UserHome from "./pages/Home/UserHome";
 import { AuthProvider } from "./context/AuthContext";
 
