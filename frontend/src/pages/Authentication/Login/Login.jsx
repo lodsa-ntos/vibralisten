@@ -127,7 +127,7 @@ export const Login = () => {
                         </div>
 
                          {/** Signup navegation */}
-                        <div class="text-center justify-center text-[13px] font-medium text-gray-500 dark:text-gray-300">
+                        <div class="text-center justify-center text-[14px] font-medium text-gray-500 dark:text-gray-300">
                         <span style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} className="inline-block animate-bounce">🎵</span> New here? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create your free account and explore!</a>
                         </div>
                     </form>
