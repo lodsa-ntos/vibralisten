@@ -87,7 +87,7 @@ export const Login = () => {
                         <form onSubmit={handleLogin} className="space-y-6" action="#">
                             <h5 className="text-xl font-medium text-gray-200 dark:text-white">Sign in to our platform</h5>
                             <div className="flex flex-col mb-2">
-                                <label htmlFor="name"
+                                <label htmlFor="login_id"
                                     className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">
                                     Mobile number, username or e-mail
                                 </label>
@@ -120,7 +120,7 @@ export const Login = () => {
                                     />
                                 </div>
 
-                                {error && <p className="error">{error}</p>}
+                                {error && <p className="text-red-500 text-sm pt-2 font-semibold dark:text-white">{error}</p>}
                             </div>
                             
                             {/** Button: Login */}

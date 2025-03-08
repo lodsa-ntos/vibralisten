@@ -1,4 +1,10 @@
-export const getCsrfToken = () => {
-  const match = document.cookie.match(new RegExp("(^| )XSRF-TOKEN=([^;]+)"));
-  return match ? match[2] : null;
+export const getCsrfToken = async () => {
+
+  const response = await fetch("http://localhost:3000/csrf-token", {
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  return data.csrfToken;
 };
