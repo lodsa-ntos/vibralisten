@@ -7,6 +7,8 @@ export const OTPVerification = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [purpose, setPurpose] = useState("");
+  const [canResend, setCanResend] = useState(true);
+  const [resendTimer, setResendTimer] = useState(30);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -52,6 +54,27 @@ export const OTPVerification = () => {
 
     setIsLoading(false);
   };
+
+  const handleResendOTP = () => {
+    if (!canResend) return;
+    setCanResend(false);
+    setResendTimer(30);
+
+    // API para reenviar OTP
+    // API to resend OTP
+    fetch("https://localhost:3000/api/auth/resend-otp")
+    .then(() => console.log("OTP reenviado"));
+
+    const interval = setInterval(() => {
+      setResendTimer(prev => {
+        if (prev === 1) {
+          clearInterval(interval);
+          setCanResend(true);
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }
 
   return (
     <div style={{ 
@@ -120,7 +143,14 @@ export const OTPVerification = () => {
               </button>
             </div>
 
-            <p className="text-sm !mt-8 text-center text-gray-500">Didn't receive a code? <a href="javascript:void(0);" className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">Resend OTP</a></p>
+            <p className="text-sm !mt-8 text-center text-gray-500">Didn't receive a code? 
+              <button 
+              onClick={handleResendOTP} 
+              className={`ml-1 font-semibold ${canResend ? "text-blue-600 hover:underline" : "text-gray-400 cursor-not-allowed"}`} disabled={!canResend}
+              >
+                {canResend ? "Resend OTP" : `Wait ${resendTimer}s`}
+              </button>
+              </p>
           </form>
         </div>
         <div className="max-md:mt-8">
