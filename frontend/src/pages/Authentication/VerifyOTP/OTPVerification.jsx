@@ -1,10 +1,133 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { RiMusicAiLine } from "react-icons/ri";
 
 export const OTPVerification = () => {
 
+  const [otp, setOtp] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [purpose, setPurpose] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setPurpose(params.get("purpose") || "login");
+  }, []);
+
+  const handleVerifyOTP = async () => {
+    setIsLoading(true);
+    setError("");
+
+    let endpoint = "";
+
+    if (purpose === "login") {
+      endpoint = "https://localhost:3000/api/auth/verify-login";
+    } else if (purpose === "signup") {
+      endpoint = "https://localhost:3000/api/auth/verify-signup";
+    } else if (purpose === "recovery") {
+      endpoint = "https://localhost:3000/api/auth/verify-recovery";
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ otp }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        if (purpose === "login" || purpose === "signup") {
+          localStorage.setItem("token", data.token);
+          window.location.href = "/home";
+        } else if (purpose === "recovery") {
+          window.location.href = "/reset-account";
+        }
+      } else {
+        setError("Invalid OTP Code. Please try again.");
+      }
+    } catch (error) {
+      setError("Something went wrong. Please try again.");
+    }
+
+    setIsLoading(false);
+  };
+
   return (
-     <div>
-      sfsdfsdfs
-     </div>
+    <div style={{ 
+      fontFamily: "Satoshi", 
+      letterSpacing: "0.2px" 
+      }}  className="font-[sans-serif]">
+    <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
+
+      {/* Logo in the top left corner */}
+      <div className="absolute -top-6 left-6 text-2x1 cursor-pointer z-10">
+        <img
+          src="Logo/vibralisten_logo_w.svg"
+          className="mb-11.5 w-40 h-40 mr-2 dark:hidden inline-block object-contain drop-shadow-[0px_4px_10px_rgba(255,255,255,0.4)]"
+          alt="vibralisten_logo"
+        />
+      </div>
+
+      {/* Copyright */}
+      <div className="absolute bottom-6 right-7 text-gray-800 z-10 inline-flex">
+        <p className="text-sm opacity-80 mr-1">© 2025 VIBRALISTEN. Your sound, your vibe. </p><RiMusicAiLine className=" items-center justify-center content-center animate-bounce"/>
+      </div>
+
+      <div className="grid md:grid-cols-2 items-center gap-6 max-w-6xl w-full">
+        <div className="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+          <form className="space-y-4">
+            <div className="mb-8">
+              <h3 className="text-gray-800 text-3xl font-bold text-center">
+                {purpose === "login" && "Enter OTP to Log In"}
+                {purpose === "signup" && "Verify Your Account"}
+                {purpose === "recovery" && "Enter OTP to Reset Password"}
+              </h3>
+              <p className="text-gray-500 text-sm mt-4 leading-relaxed">We sent a 6-digit code to your email/phone. Enter it below.</p>
+            </div>
+
+            <div className="flex justify-center space-x-3 my-4">
+              {[...Array(6)].map((_, i) => (
+                <input 
+                  key={i} 
+                  type="text" 
+                  maxLength="1"
+                  className="w-10 h-12 text-xl text-center border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  onChange={(e) => {
+                    setOtp(prev => prev.slice(0, i) + e.target.value + prev.slice(i + 1));
+                    if (e.target.value && i < 5) {
+                      document.getElementById(`otp-${ii+1}`).focus();
+                    }
+                  }}
+                  id={`otp-${i}`}
+                />
+              ))}
+            </div>
+
+            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+            <div class="!mt-8">
+              <button type="button" onClick={handleVerifyOTP} className="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition">
+              {isLoading ? (
+                <>
+                <svg className="animate-spin h-5 w-5 mr-2 text-white" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l4-4-4-4v4a8 8 0 00-8 8z"></path>
+                </svg>
+                Verifying...
+                </>
+              ) : "Verify & Continue"}
+              </button>
+            </div>
+
+            <p className="text-sm !mt-8 text-center text-gray-500">Didn't receive a code? <a href="javascript:void(0);" className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">Resend OTP</a></p>
+          </form>
+        </div>
+        <div className="max-md:mt-8">
+          <img src="https://readymadeui.com/login-image.webp" className="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover" alt="Dining Experience" />
+        </div>
+      </div>
+    </div>
+  </div>
     );
 };

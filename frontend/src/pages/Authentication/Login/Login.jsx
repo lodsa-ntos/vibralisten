@@ -18,9 +18,9 @@ export const Login = () => {
         // Div main container
         <div style={{ 
             fontFamily: "Satoshi, sans-serif", 
-            letterSpacing: "0.5px" 
+            letterSpacing: "0.2px" 
             }} 
-            className="relative flex h-screen bg-gray-50 bg-[url(images/authlayoutimages/fundo_19.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-black/40 object-contain">
+            className="relative flex h-screen font-[sans-serif] bg-gray-50 bg-[url(images/authlayoutimages/fundo_19.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-black/40 object-contain">
         
             {/* Gradient to darken the bottom part */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent"></div>
@@ -110,7 +110,7 @@ export const Login = () => {
 
                             <div className="flex items-center my-6">
                                 <div className="flex-grow border-t-2 border-gray-500/30"></div>
-                                <span style={{ fontFamily: "Satoshi, sans-serif" }} className="px-4 text-gray-200">or login with</span>
+                                <span style={{ fontFamily: "Satoshi, sans-serif" }} className="px-4 text-gray-200">or continue with</span>
                                 <div className="flex-grow border-t-2 border-gray-500/30"></div>
                             </div>
                             
