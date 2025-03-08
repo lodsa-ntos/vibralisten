@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { PublicHome } from "./pages/Home/PublicHome";
 import { Login } from "./pages/Authentication/Login/Login";
 import { Signup } from "./pages/Authentication/Signup/Signup";
-import { VerifyOTP } from "./pages/Authentication/VerifyOTP/VerifyOTP";
+import { OTPVerification  } from "./pages/Authentication/VerifyOTP/OTPVerification";
 import { UserHome } from "./pages/Home/UserHome";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/" element={<PublicHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/verify-otp" element={<VerifyOTP />} />
+          <Route path="/verify-otp" element={<OTPVerification />} />
 
           {/* Protected Routes */}
           <Route path="/home" element={<ProtectedRoute> <UserHome /> </ProtectedRoute>} />
