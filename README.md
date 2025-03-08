@@ -6,6 +6,8 @@
 
 > VibraListen is a Personalized Music Discovery Platform that helps users find new songs and artists based on their listening preferences. It integrates with APIs like Spotify, Deezer, Last.fm, and Genius to provide tailored recommendations and an engaging listening experience.
 
+>📌 *This project is in the development phase. Some functionalities may not be available at the moment.*
+
 ## 📌 Preview
 <p align="center">
 <img src="https://github.com/lodsa-ntos/youtube-to-mp3-converter/blob/main/frontend/public/images/vibralisten_website.svg" width="1000px">
