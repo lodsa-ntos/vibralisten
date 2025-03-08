@@ -3,15 +3,37 @@ import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { RiMusicAiLine } from "react-icons/ri";
+import { loginUser } from "../../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
 
     const [ isLoading, setIsLoading ] = React.useState(false);
+    const [loginInput, setLoginInput] = React.useState("");
+    const [error, setError] = React.useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
         setIsLoading(true);
-        setTimeout(() => setIsLoading(false), 2000);
+        setError("");
+
+        try {
+            const data = await loginUser(loginInput);
+
+            if (data.success) {
+                localStorage.setItem("userId", data.userId);
+                localStorage.setItem("loginMethod", data.loginMethod);
+
+                // Redirecionar para verificação OTP, passando o propósito
+                // Redirect to OTP check, passing the purpose
+                navigate(`verify-otp?purpose=login`);
+            }
+        } catch (err) {
+            setError(err.message);
+        }
+
+        setIsLoading(false);
     }
 
     return (
@@ -51,7 +73,7 @@ export const Login = () => {
             {/* Flexible container */}
             <div className="flex flex-1 items-center justify-center p-4 sm:p-6 lg:p-8">
 
-                <div class="z-10 w-full text-white max-w-sm border border-gray-500/30 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mt-8 lg:mt-8 backdrop-blur-sm">
+                <div className="z-10 w-full text-white max-w-sm border border-gray-500/30 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mt-8 lg:mt-8 backdrop-blur-sm">
 
                     {/* Header - Title Form */}
                     <div className="w-full text-gray-500 dark:text-gray-400 p-2 min-h-[20px] rounded-t-lg flex flex-col justify-center border-t-1 border border-gray-500/30 dark:border-gray-700 backdrop-blur-sm">
@@ -61,26 +83,26 @@ export const Login = () => {
                     </div>
 
                     {/* Login Form */}
-                    <div class="flex flex-col w-full max-w-sm mx-auto p-4 border-t-1 border border-gray-500/30 backdrop-blur-sm shadow">
-                        <form className="space-y-6" action="#">
+                    <div className="flex flex-col w-full max-w-sm mx-auto p-4 border-t-1 border border-gray-500/30 backdrop-blur-sm shadow">
+                        <form onSubmit={handleLogin} className="space-y-6" action="#">
                             <h5 className="text-xl font-medium text-gray-200 dark:text-white">Sign in to our platform</h5>
-                            <div class="flex flex-col mb-2">
-                                <label for="name"
+                            <div className="flex flex-col mb-2">
+                                <label htmlFor="name"
                                     className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">
                                     Mobile number, username or e-mail
                                 </label>
-                                <div class="relative">
-                                    <div class="absolute flex border border-transparent left-0 top-0 h-full w-10">
-                                        <div class="flex items-center justify-center rounded-tl rounded-bl z-10 bg-gray-100 text-gray-600 text-lg h-full w-full">
+                                <div className="relative">
+                                    <div className="absolute flex border border-transparent left-0 top-0 h-full w-10">
+                                        <div className="flex items-center justify-center rounded-tl rounded-bl z-10 bg-gray-100 text-gray-600 text-lg h-full w-full">
                                             <svg viewBox="0 0 24 24"
                                                 width="24"
                                                 height="24"
                                                 stroke="currentColor"
-                                                stroke-width="2"
+                                                strokeWidth="2"
                                                 fill="none"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="h-5 w-5">
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="h-5 w-5">
                                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                 <circle cx="12" cy="7" r="4"></circle>
                                             </svg>
@@ -91,20 +113,19 @@ export const Login = () => {
                                         name="login"
                                         type="text"
                                         placeholder="Mobile number, username or e-mail"
+                                        value={loginInput}
+                                        onChange={(e) => setLoginInput(e.target.value)}
                                         required
                                         className="bg-gray-50 text-gray-900 text-sm relative w-full border rounded dark:placeholder-gray-400 dark:bg-gray-600 focus:border-indigo-400 focus:outline-none py-2 pr-2 pl-12"
                                     />
                                 </div>
+
+                                {error && <p className="error">{error}</p>}
                             </div>
                             
                             {/** Button: Login */}
                             <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 focus:cursor-wait font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            onClick={handleLogin}> {isLoading ? <DotLottieReact
-                            src="animations/Spinner.json"
-                            loop
-                            autoplay
-                            className="w-6 h-6"
-                            /> : "Dive into the Sound! 🚀"}
+                            disabled={isLoading}> {isLoading ? "Loading..." : "Dive into the Sound! 🚀"}
                             </button>
                             
 
@@ -137,8 +158,8 @@ export const Login = () => {
                             </div>
 
                             {/** Signup navegation */}
-                            <div class="text-center justify-center text-[14px] font-medium text-gray-200 dark:text-gray-300">
-                            <span style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} className="inline-block animate-bounce">🎵</span> Don't have an account? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">
+                            <div className="text-center justify-center text-[14px] font-medium text-gray-200 dark:text-gray-300">
+                            <span style={{ fontFamily: "Satoshi, sans-serif", letterSpacing: "0.5px" }} className="inline-block animate-bounce">🎵</span> Don't have an account? <a href="#" className="text-blue-700 hover:underline dark:text-blue-500">
                                 Join the vibe!</a>
                             </div>
                         </form>
