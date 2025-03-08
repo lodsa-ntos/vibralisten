@@ -1,6 +1,6 @@
 import { getCsrfToken } from "../utils/getCsrfToken";
 
-export const loginUser = async (loginInput) => {
+export const loginUser = async (loginData) => {
   try {
 
     const csrfToken = await getCsrfToken();
@@ -9,7 +9,7 @@ export const loginUser = async (loginInput) => {
       throw new Error("CSRF Token is missing");
     }
 
-    console.log("Sending loginInput: ", loginInput);
+    console.log("Sending loginInput: ", loginData);
 
     const response = await fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
@@ -18,7 +18,7 @@ export const loginUser = async (loginInput) => {
         "XSRF-TOKEN": await getCsrfToken(),
        },
       credentials: "include",
-      body: JSON.stringify({ login: loginInput }),
+      body: JSON.stringify(loginData),
     });
 
     console.log("Response from the backend: ", response);
@@ -30,7 +30,7 @@ export const loginUser = async (loginInput) => {
     }
 
     const data = await response.json();
-    console.error("✅ Data received from backend: ", data);
+    console.log("✅ Data received from backend: ", data);
 
     return data;
 

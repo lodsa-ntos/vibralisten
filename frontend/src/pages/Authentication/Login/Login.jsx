@@ -1,10 +1,10 @@
 import React from "react";
 import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { RiMusicAiLine } from "react-icons/ri";
 import { loginUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
+import { detectLoginType } from "../../../utils/detectLoginType";
 
 export const Login = () => {
 
@@ -22,23 +22,31 @@ export const Login = () => {
 
         try {
 
+            const loginData = detectLoginType(loginInput);
+            console.log("Sending to login: ", loginData) // Debug
+
             if (!loginInput.trim()) {
                 throw new Error("Please provide an email, phone number, or username.");
             }
 
-            const data = await loginUser(loginInput);
-            console.log("Backend response: ", data);
+            const data = await loginUser(loginData);
+            console.log("✅ Backend response: ", data);
 
-            if (data.success) {
+            if (data && data.success) {
+                console.log("✅ Redirecting to OTP...");
                 localStorage.setItem("userId", data.userId);
                 localStorage.setItem("loginMethod", data.loginMethod);
 
                 // Redirecionar para verificação OTP, passando o propósito
                 // Redirect to OTP check, passing the purpose
-                navigate(`verify-otp?purpose=login`);
+                navigate(`/verify-otp?purpose=login`);
+            } else {
+                console.error("❌ Error: Invalid response from the backend ", data);
+                setError("Login failed. Please try again.");
             }
+
         } catch (err) {
-            console.error("Error trying to log in: ", err);
+            console.error("Error trying to log in: ", err.message);
             setError(err.message);
         }
 
