@@ -22,11 +22,11 @@ export const OTPVerification = () => {
     let endpoint = "";
 
     if (purpose === "login") {
-      endpoint = "https://localhost:3000/api/auth/verify-login";
+      endpoint = "http://localhost:3000/api/auth/verify-login";
     } else if (purpose === "signup") {
-      endpoint = "https://localhost:3000/api/auth/verify-signup";
+      endpoint = "http://localhost:3000/api/auth/verify-signup";
     } else if (purpose === "recovery") {
-      endpoint = "https://localhost:3000/api/auth/verify-recovery";
+      endpoint = "http://localhost:3000/api/auth/verify-recovery";
     }
 
     try {
@@ -62,7 +62,7 @@ export const OTPVerification = () => {
 
     // API para reenviar OTP
     // API to resend OTP
-    fetch("https://localhost:3000/api/auth/resend-otp")
+    fetch("http://localhost:3000/api/auth/resend-otp")
     .then(() => console.log("OTP reenviado"));
 
     const interval = setInterval(() => {
