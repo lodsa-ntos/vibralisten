@@ -1,5 +1,8 @@
 # 🛡 Security Policy
 
+## Reporting a Vulnerability
+If you discover a security issue, please email [lodex1993@hotmail.com] instead of opening an issue.
+
 ## 🔐 Supported Versions
 We actively maintain the latest release and apply security fixes when needed.
 
