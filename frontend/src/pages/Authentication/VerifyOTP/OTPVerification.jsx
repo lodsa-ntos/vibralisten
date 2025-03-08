@@ -119,7 +119,7 @@ export const OTPVerification = () => {
                   onChange={(e) => {
                     setOtp(prev => prev.slice(0, i) + e.target.value + prev.slice(i + 1));
                     if (e.target.value && i < 5) {
-                      document.getElementById(`otp-${ii+1}`).focus();
+                      document.getElementById(`otp-${i+1}`).focus();
                     }
                   }}
                   id={`otp-${i}`}
@@ -130,7 +130,7 @@ export const OTPVerification = () => {
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
             <div class="!mt-8">
-              <button type="button" onClick={handleVerifyOTP} className="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition">
+              <button type="button" onClick={handleVerifyOTP} className="w-full flex items-center justify-center shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition">
               {isLoading ? (
                 <>
                 <svg className="animate-spin h-5 w-5 mr-2 text-white" viewBox="0 0 24 24">
