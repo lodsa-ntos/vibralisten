@@ -84,7 +84,7 @@ export const OTPVerification = () => {
     <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
 
       {/* Logo in the top left corner */}
-      <div className="absolute -top-6 left-6 text-2x1 cursor-pointer z-10">
+      <div className="absolute -top-6 left-8 w-32 sm:w-40 text-2x1 cursor-pointer z-10">
         <img
           src="Logo/vibralisten_logo_w.svg"
           className="mb-11.5 w-40 h-40 mr-2 dark:hidden inline-block object-contain drop-shadow-[0px_4px_10px_rgba(255,255,255,0.4)]"
@@ -93,12 +93,12 @@ export const OTPVerification = () => {
       </div>
 
       {/* Copyright */}
-      <div className="absolute bottom-6 right-7 text-gray-800 z-10 inline-flex">
+      <div className="absolute -bottom-24 right-7 sm:bottom-6 text-gray-800 z-10 inline-flex">
         <p className="text-sm opacity-80 mr-1">© 2025 VIBRALISTEN. Your sound, your vibe. </p><RiMusicAiLine className=" items-center justify-center content-center animate-bounce"/>
       </div>
 
       <div className="grid md:grid-cols-2 items-center gap-6 max-w-6xl w-full">
-        <div className="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+        <div className="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto mt-20 sm:mt-0">
           <form className="space-y-4">
             <div className="mb-8">
               <h3 className="text-gray-800 text-3xl font-bold text-center">
@@ -115,7 +115,7 @@ export const OTPVerification = () => {
                   key={i} 
                   type="text" 
                   maxLength="1"
-                  className="w-10 h-12 text-xl text-center border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="w-10 h-12 text-xl text-center border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 outline-blue-600"
                   onChange={(e) => {
                     setOtp(prev => prev.slice(0, i) + e.target.value + prev.slice(i + 1));
                     if (e.target.value && i < 5) {
