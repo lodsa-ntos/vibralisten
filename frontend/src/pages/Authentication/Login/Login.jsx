@@ -18,8 +18,16 @@ export const Login = () => {
         setIsLoading(true);
         setError("");
 
+        console.log("Value of loginInput: ", loginInput)
+
         try {
+
+            if (!loginInput.trim()) {
+                throw new Error("Please provide an email, phone number, or username.");
+            }
+
             const data = await loginUser(loginInput);
+            console.log("Backend response: ", data);
 
             if (data.success) {
                 localStorage.setItem("userId", data.userId);
@@ -30,6 +38,7 @@ export const Login = () => {
                 navigate(`verify-otp?purpose=login`);
             }
         } catch (err) {
+            console.error("Error trying to log in: ", err);
             setError(err.message);
         }
 
@@ -114,7 +123,10 @@ export const Login = () => {
                                         type="text"
                                         placeholder="Mobile number, username or e-mail"
                                         value={loginInput}
-                                        onChange={(e) => setLoginInput(e.target.value)}
+                                        onChange={(e) => {
+                                            console.log("New value entered: ", e.target.value);
+                                            setLoginInput(e.target.value);
+                                        }}
                                         required
                                         className="bg-gray-50 text-gray-900 text-sm relative w-full border rounded dark:placeholder-gray-400 dark:bg-gray-600 focus:border-indigo-400 focus:outline-none py-2 pr-2 pl-12"
                                     />
