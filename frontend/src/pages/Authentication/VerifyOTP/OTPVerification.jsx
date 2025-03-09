@@ -81,14 +81,15 @@ export const OTPVerification = () => {
             refreshToken: data.refreshToken
           };
 
-          localStorage.setItem("user", JSON.stringify(userData));
-          setUser(userData);
-          console.log("✅ User authenticated and stored: ", userData);
+          console.log("✅ Saving user data before navigation...");
 
-          console.log("✅ Navigating to /home...");
+          setUser(userData);
+          localStorage.setItem("user", JSON.stringify(userData));
+
           setTimeout(() => {
+            console.log("✅ Navigating to /home...");
             navigate("/home");
-          }, 500);
+          }, 200);
 
       } else {
         setError("Invalid OTP Code. Please try again.");

@@ -32,14 +32,16 @@ const App = () => {
     <>
       <ScrollToSection />
         <Routes>
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />} >
+            <Route path="/home" element={<UserHome />} />
+          </Route>
+
           {/* Public Routes */}
           <Route path="/" element={<PublicHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/verify-otp" element={<OTPVerification />} />
-
-          {/* Protected Routes */}
-          <Route path="/home" element={<ProtectedRoute> <UserHome /> </ProtectedRoute>} />
       </Routes>
     </>
   );
