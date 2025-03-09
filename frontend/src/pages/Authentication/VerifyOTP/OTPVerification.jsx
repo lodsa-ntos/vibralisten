@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RiMusicAiLine } from "react-icons/ri";
+import { getCsrfToken } from "../../../utils/detectLoginType";
 
 export const OTPVerification = () => {
 
@@ -30,10 +31,17 @@ export const OTPVerification = () => {
     }
 
     try {
+
+      const csrfToken = await getCsrfToken();
+
       const response = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ otp }),
+        headers: { 
+          "Content-Type": "application/json",
+          "XSRF-TOKEN": csrfToken,
+         },
+        credentials: "include",
+        body: JSON.stringify({otp}),
       });
 
       const data = await response.json();
