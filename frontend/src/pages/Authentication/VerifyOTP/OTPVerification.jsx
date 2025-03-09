@@ -71,21 +71,25 @@ export const OTPVerification = () => {
       console.log("✅ Data received from backend: ", data);
 
       if (data && data.success) {
-        if (purpose === "login" || purpose === "signup") {
-          localStorage.setItem("token", data.token);
-          setUser({ id: userId, token: data.token });
-          console.log("✅ Setting user: ", { id: userId, token: data.token });
+          
+        const userData = {
+            id: data.user._id,
+            username: data.user.username,
+            email: data.user.email,
+            phone: data.user.phone,
+            token: data.token,
+            refreshToken: data.refreshToken
+          };
+
+          localStorage.setItem("user", JSON.stringify(userData));
+          setUser(userData);
+          console.log("✅ User authenticated and stored: ", userData);
+
           console.log("✅ Navigating to /home...");
           setTimeout(() => {
             navigate("/home");
-          }, 100);
+          }, 500);
 
-        } else if (purpose === "recovery") {
-          setUser({ id: userId, token: data.token });
-          setTimeout(() => {
-            navigate("/reset-account");
-          }, 100);
-        }
       } else {
         setError("Invalid OTP Code. Please try again.");
       }
