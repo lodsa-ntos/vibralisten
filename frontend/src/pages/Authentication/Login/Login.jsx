@@ -5,6 +5,7 @@ import { RiMusicAiLine } from "react-icons/ri";
 import { loginUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
 import { detectLoginType } from "../../../utils/detectLoginType";
+import { useAuth } from "../../../hook/useAuth";
 
 export const Login = () => {
 
@@ -12,6 +13,7 @@ export const Login = () => {
     const [loginInput, setLoginInput] = React.useState("");
     const [error, setError] = React.useState("");
     const navigate = useNavigate();
+    const { setUser } = useAuth();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -33,13 +35,19 @@ export const Login = () => {
             console.log("✅ Backend response: ", data);
 
             if (data && data.success) {
-                console.log("✅ Redirecting to OTP...");
-                localStorage.setItem("userId", data.userId);
-                localStorage.setItem("loginMethod", data.loginMethod);
+                const sessionResponse = await fetch("http://localhost:3000/api/auth/sessions", { withCredentials: true });
 
-                // Redirecionar para verificação OTP, passando o propósito
-                // Redirect to OTP check, passing the purpose
-                navigate(`/verify-otp?purpose=login`);
+                if (sessionResponse.data && sessionResponse.data.user) {
+                    console.log("✅ Session confirmed, user authenticated: ", sessionResponse.data.user);
+                    setUser(sessionResponse.data.user);
+
+                    // Redirecionar para verificação OTP, passando o propósito
+                    // Redirect to OTP check, passing the purpose
+                    navigate(`/verify-otp?purpose=login`);
+                  
+                } else {
+                    throw new Error("Session validation failed.");
+                  }
             } else {
                 console.error("❌ Error: Invalid response from the backend ", data);
                 setError("Login failed. Please try again.");
