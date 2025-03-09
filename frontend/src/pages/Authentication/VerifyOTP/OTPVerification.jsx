@@ -61,41 +61,34 @@ export const OTPVerification = () => {
 
       console.log("Response OTP Code from the backend: ", response);
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("🔴 Error received OTP from the backend: ", errorData);
-      throw new Error(errorData.message || "Verify OTP failed");
-    }
-
-      const data = await response.json();
-      console.log("✅ Data received from backend: ", data);
-
-      if (data && data.success) {
-          
-        const userData = {
-            id: data.user._id,
-            username: data.user.username,
-            email: data.user.email,
-            phone: data.user.phone,
-            token: data.token,
-            refreshToken: data.refreshToken
-          };
-
-          console.log("✅ Saving user data before navigation...");
-
-          setUser(userData);
-          localStorage.setItem("user", JSON.stringify(userData));
-
-          setTimeout(() => {
-            console.log("✅ Navigating to /home...");
-            navigate("/home");
-          }, 200);
-
-      } else {
-        setError("Invalid OTP Code. Please try again.");
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("🔴 Error received OTP from the backend: ", errorData);
+        throw new Error(errorData.message || "Verify OTP failed");
       }
+
+      console.log("✅ OTP Verified! Checking session...");
+
+      const sessionResponse = await fetch("http://localhost:3000/api/auth/sessions", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!sessionResponse.ok) {
+        throw new Error("Session verification failed.");
+      }
+
+      const sessionData = await sessionResponse.json();
+      console.log("✅ Session confirmed, user authenticated: ", sessionData.user);
+
+      setUser(sessionData.user);
+
+      console.log("✅ Navigating to /home... ");
+      navigate("/home");
+
     } catch (error) {
       setError("Something went wrong. Please try again.");
+      console.log("❌ OTP Verification Error: ", error);
     }
 
     setIsLoading(false);
