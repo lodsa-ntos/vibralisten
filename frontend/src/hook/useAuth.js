@@ -8,5 +8,9 @@ export const useAuth = () => {
     throw new Error("❌ useAuth is missing.");
   }
 
-  return context;
+  return {
+    user: context.user,
+    isAuthenticated: !context.isLoading && !!context.user,
+    isLoading: context.isLoading,
+  };
 }

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { RiMusicAiLine } from "react-icons/ri";
 import { getCsrfToken } from "../../../utils/getCsrfToken";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hook/useAuth";
 
 export const OTPVerification = () => {
-
+  const { setUser } = useAuth();
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -72,9 +73,18 @@ export const OTPVerification = () => {
       if (data && data.success) {
         if (purpose === "login" || purpose === "signup") {
           localStorage.setItem("token", data.token);
-          navigate(`/home`);
+          setUser({ id: userId, token: data.token });
+          console.log("✅ Setting user: ", { id: userId, token: data.token });
+          console.log("✅ Navigating to /home...");
+          setTimeout(() => {
+            navigate("/home");
+          }, 100);
+
         } else if (purpose === "recovery") {
-          navigate(`/reset-account`);
+          setUser({ id: userId, token: data.token });
+          setTimeout(() => {
+            navigate("/reset-account");
+          }, 100);
         }
       } else {
         setError("Invalid OTP Code. Please try again.");

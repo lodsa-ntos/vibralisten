@@ -12,9 +12,14 @@ export const AuthProvider = ({ children }) => {
   // Verifica se existe uma sessão salva no localStorage
   // Checks if there is a session saved in localStorage
   useEffect(() => {
+    console.log("🔄 Checking localStorage for user...");
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
+      console.log("✅ User found in localStorage: ", JSON.parse(storedUser));
       setUser(JSON.parse(storedUser));
+      console.log("User set from localStorage: ",JSON.parse(storedUser));
+    } else {
+      console.log("❌ No user found in localStorage.");
     }
     setIsLoading(false);
   }, []);
@@ -26,11 +31,6 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post("http://localhost:3000/api/auth/signup", formData);
       setUser(response.data.user);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      setTimeout(() => {
-        // Redirecionar após home
-        // Redirect after home
-        navigate(`/home`);
-      }, 100);
 
     } catch (error) {
       console.error("Signup error: ", error.response.data.message);
@@ -43,16 +43,20 @@ export const AuthProvider = ({ children }) => {
   const login = async (formData) => {
     try {
       const response = await axios.post("http://localhost:3000/api/auth/login", formData);
-      setUser(response.data.user);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      setTimeout(() => {
-        // Redirecionar após home
-        // Redirect after home
+      if (response.data.user) {
+        console.log("✅ Login successful. User: ", response.data.user);
+
+        setUser(response.data.user);
+        console.log("User form: ", formData);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+
         navigate(`/home`);
-      }, 100);
+      } else {
+        throw new Error("User data is missing");
+      }
 
     } catch (error) {
-      console.error("Login error: ", error.response.data.message);
+      console.error("❌ Login error: ", error.response.data.message || error.message);
       throw new Error(error.response.data.message || "Login failed");
     }
   };
@@ -60,16 +64,21 @@ export const AuthProvider = ({ children }) => {
   // Função de Logout
   // Logout
   const logout = () => {
+    console.error("🔴 Logging out...");
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    navigate("/login");
   };
 
-  const isAuthenticated = !!user;
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user, navigate]);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, signup, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
