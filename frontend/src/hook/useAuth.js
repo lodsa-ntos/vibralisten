@@ -10,7 +10,9 @@ export const useAuth = () => {
 
   return {
     user: context.user,
-    isAuthenticated: !context.isLoading && !!context.user,
+    isAuthenticated: !!context.user,
     isLoading: context.isLoading,
+    login: context.login,
+    lougout: context.lougout,
   };
 }

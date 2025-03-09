@@ -5,13 +5,10 @@ export const ProtectedRoute = () => {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
-    console.log(isLoading);
+    console.log("🔄 Loading user authentication...");
     return <p className="flex text-center items-center justify-center mt-72">Loading...</p>;
   }
 
   console.log("🔍 isAuthenticated: ", isAuthenticated);
-
-  console.log("🔍 User Context: ", useAuth());
-
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace/>;
 };
