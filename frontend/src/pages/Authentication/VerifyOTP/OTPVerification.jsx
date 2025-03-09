@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RiMusicAiLine } from "react-icons/ri";
 import { getCsrfToken } from "../../../utils/getCsrfToken";
+import { useNavigate } from "react-router-dom";
 
 export const OTPVerification = () => {
 
@@ -10,6 +11,7 @@ export const OTPVerification = () => {
   const [purpose, setPurpose] = useState("");
   const [canResend, setCanResend] = useState(true);
   const [resendTimer, setResendTimer] = useState(30);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -70,9 +72,9 @@ export const OTPVerification = () => {
       if (data && data.success) {
         if (purpose === "login" || purpose === "signup") {
           localStorage.setItem("token", data.token);
-          window.location.href = "/home";
+          navigate(`/home`);
         } else if (purpose === "recovery") {
-          window.location.href = "/reset-account";
+          navigate(`/reset-account`);
         }
       } else {
         setError("Invalid OTP Code. Please try again.");

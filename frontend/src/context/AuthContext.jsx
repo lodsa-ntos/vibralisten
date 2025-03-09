@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => { 
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Verifica se existe uma sessão salva no localStorage
   // Checks if there is a session saved in localStorage
@@ -27,7 +29,7 @@ export const AuthProvider = ({ children }) => {
       setTimeout(() => {
         // Redirecionar após home
         // Redirect after home
-        window.location.href = "/home";
+        navigate(`/home`);
       }, 100);
 
     } catch (error) {
@@ -46,7 +48,7 @@ export const AuthProvider = ({ children }) => {
       setTimeout(() => {
         // Redirecionar após home
         // Redirect after home
-        window.location.href = "/home";
+        navigate(`/home`);
       }, 100);
 
     } catch (error) {

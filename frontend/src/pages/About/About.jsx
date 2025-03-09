@@ -125,7 +125,6 @@ const About = () => {
       </div>
 
       {/* CTA button */}
-      <ButtonCTA />
     </React.Fragment>
   );
 };

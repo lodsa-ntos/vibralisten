@@ -30,7 +30,7 @@ export const UserHome = () => {
           <div className="home-below-header-spacing"></div>
           {/* featured-title */}
           <h1>
-            Welcome, {user.fullName}!
+            Welcome!
             <button onClick={handleLogout}>Logout</button>
             <span className="home-tilte1">Convert YouTube videos to </span> <span className="home-tilte2">MP3</span> in
             seconds.
@@ -42,7 +42,6 @@ export const UserHome = () => {
           {/* Space below the subtitle */}
           <div className="home-below-subtitle"></div>
           {/* Button */}
-          <ButtonConvert />
 
           <div className="spacing-between-link-box-btn"></div>
 
