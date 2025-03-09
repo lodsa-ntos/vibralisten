@@ -22,9 +22,11 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post("http://localhost:3000/api/auth/signup", formData);
       setUser(response.data.user);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      // Redirecionar após login
-      // Redirect after login
-      navigate("/verify-otp");
+      setTimeout(() => {
+        // Redirecionar após home
+        // Redirect after home
+        window.location.href = "/home";
+      }, 100);
 
     } catch (error) {
       console.error("Signup error: ", error.response.data.message);
@@ -39,9 +41,11 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post("http://localhost:3000/api/auth/login", formData);
       setUser(response.data.user);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      // Redirecionar após login
-      // Redirect after login
-      navigate("/verify-otp");
+      setTimeout(() => {
+        // Redirecionar após home
+        // Redirect after home
+        window.location.href = "/home";
+      }, 100);
 
     } catch (error) {
       console.error("Login error: ", error.response.data.message);
@@ -55,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    gotoLogin();
+    window.location.href = "/login";
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RiMusicAiLine } from "react-icons/ri";
-import { getCsrfToken } from "../../../utils/detectLoginType";
+import { getCsrfToken } from "../../../utils/getCsrfToken";
 
 export const OTPVerification = () => {
 
@@ -20,6 +20,14 @@ export const OTPVerification = () => {
     setIsLoading(true);
     setError("");
 
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      setError("User ID not found. Please login again.");
+      setIsLoading(false);
+      return;
+    }
+
     let endpoint = "";
 
     if (purpose === "login") {
@@ -34,6 +42,10 @@ export const OTPVerification = () => {
 
       const csrfToken = await getCsrfToken();
 
+      if (!csrfToken) {
+        throw new Error("CSRF Token is missing");
+      }
+
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { 
@@ -41,12 +53,21 @@ export const OTPVerification = () => {
           "XSRF-TOKEN": csrfToken,
          },
         credentials: "include",
-        body: JSON.stringify({otp}),
+        body: JSON.stringify({ userId, otp }),
       });
 
-      const data = await response.json();
+      console.log("Response OTP Code from the backend: ", response);
 
-      if (data.success) {
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("🔴 Error received OTP from the backend: ", errorData);
+      throw new Error(errorData.message || "Verify OTP failed");
+    }
+
+      const data = await response.json();
+      console.log("✅ Data received from backend: ", data);
+
+      if (data && data.success) {
         if (purpose === "login" || purpose === "signup") {
           localStorage.setItem("token", data.token);
           window.location.href = "/home";
@@ -137,7 +158,7 @@ export const OTPVerification = () => {
 
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
-            <div class="!mt-8">
+            <div className="!mt-8">
               <button type="button" onClick={handleVerifyOTP} className="w-full flex items-center justify-center shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition">
               {isLoading ? (
                 <>
