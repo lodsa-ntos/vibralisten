@@ -13,7 +13,9 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("🔄 Checking session...");
       
-      const response = await axios.get("http://localhost:3000/api/auth/session", { withCredentials: true });
+      const response = await axios.get("http://localhost:3000/api/auth/session", {
+         withCredentials: true, 
+      });
 
       if (response.data && response.data.user) {
         setUser(response.data.user);

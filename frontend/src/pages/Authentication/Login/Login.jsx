@@ -35,7 +35,11 @@ export const Login = () => {
             console.log("✅ Backend response: ", data);
 
             if (data && data.success) {
-                const sessionResponse = await fetch("http://localhost:3000/api/auth/session", { withCredentials: true });
+                console.log("✅ Login request successful, checking session...");
+
+                const sessionResponse = await fetch("http://localhost:3000/api/auth/session", { 
+                    withCredentials: true,
+                });
 
                 if (sessionResponse.data && sessionResponse.data.user) {
                     console.log("✅ Session confirmed, user authenticated: ", sessionResponse.data.user);
