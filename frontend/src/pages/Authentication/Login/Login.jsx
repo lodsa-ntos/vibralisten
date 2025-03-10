@@ -37,6 +37,7 @@ export const Login = () => {
             if (data && data.success) {
                 console.log("✅ Login request successful, checking session...");
 
+                
                 const sessionResponse = await fetch("http://localhost:3000/api/auth/session", { 
                     withCredentials: true,
                 });

@@ -13,12 +13,20 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("🔄 Checking session...");
       
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        console.log("⚠️ No access token found.");
+        setUser(null);
+        setIsLoading(false);
+        return;
+      }
+
       const response = await axios.get("http://localhost:3000/api/auth/session", {
          withCredentials: true,
          headers: {
           // Envia o Access Token no cabeçalho para autorizar a requisição
           // Sends the Access Token in the header to authorise the request
-          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          "Authorization": `Bearer ${token}`
          }
       });
 
