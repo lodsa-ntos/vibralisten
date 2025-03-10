@@ -39,16 +39,27 @@ export const Login = () => {
 
                 if (data.token) {
                     localStorage.setItem("accessToken", data.token);
+                    if (data.user?.id) {
+                        localStorage.setItem("userId", data.user.id);
+                    } else {
+                        throw new Error("User ID not received.");
+                    }
+                    localStorage.setItem("refreshToken", data.refreshToken);
                     console.log("✅ Access Token saved. ");
                 } else {
                     throw new Error("Access Token not received.");
                 }
 
                 const accessToken = localStorage.getItem("accessToken");
+                const userId = localStorage.getItem("userId");
 
-                if (!accessToken) {
-                    throw new Error("Access token is missing. User needs to log in again.");
+                console.log("✅ UserID provided: ", data.user?.id || "");
+
+                if (!accessToken || !userId) {
+                    throw new Error("Session storage failed. Please log in again.");
                 }
+
+                console.log("✅ Tokens confirmed. Proceeding.. ");
 
                 const sessionResponse = await fetch("http://localhost:3000/api/auth/session", { 
                     method: "GET",
