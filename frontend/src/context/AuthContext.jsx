@@ -49,6 +49,35 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     checkSession();
   }, []);
+
+  // Função de Login
+  // Login
+  const login = async (loginData) => {
+    try {
+
+      console.log("🔄 Sending login request...");
+
+      await axios.get("http://localhost:3000/api/auth/login", loginData, {
+        withCredentials: true
+      });
+
+      if (response.data && response.data.success) {
+        console.log("✅ Login successful! Storing tokens...");
+
+        localStorage.setItem("accessToken", response.data.token);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+        setUser(response.data.user);
+
+        return { success: true };
+
+      } else {
+        console.log("❌ Invalid login response.");
+      }
+    } catch (error) {
+      console.error("❌ Error during login: ", error);
+      return { success: false, message: "Login failed. Try again." };
+    }
+  };
   
   // Função de Logout
   // Logout
@@ -57,13 +86,17 @@ export const AuthProvider = ({ children }) => {
       await axios.get("http://localhost:3000/api/auth/logout", {});
 
       console.log("✅ User logged out.");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      setUser(null);
+
     } catch (error) {
       console.error("❌ Error logging out: ", error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, setUser, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, setUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
