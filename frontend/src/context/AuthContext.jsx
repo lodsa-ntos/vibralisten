@@ -83,13 +83,25 @@ export const AuthProvider = ({ children }) => {
   // Logout
   const logout = async () => {
     try {
-      await axios.get("http://localhost:3000/api/auth/logout", {});
+      await axios.post("http://localhost:3000/api/auth/logout", {
+        withCredentials: true
+      });
 
-      console.log("✅ User logged out.");
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      setUser(null);
+      if (response.data.message === "Logout successful!") {
+        console.log("✅ User logged out successfully.");
 
+        // Remover tokens do LocalStorage
+        // Remove tokens from LocalStorage
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("user");
+
+        // Limpar estado global
+        // Clear global status
+        setUser(null);
+      } else {
+        throw new Error("Logout failed.");
+      }
     } catch (error) {
       console.error("❌ Error logging out: ", error);
     }
