@@ -21,14 +21,9 @@ export const UserHome = () => {
     try {
 
       const csrfToken = await getCsrfToken();
-      const refreshToken = localStorage.getItem("refreshToken");
       
       if (!csrfToken) {
         throw new Error("CSRF Token is missing");
-      }
-
-      if (!refreshToken) {
-        throw new Error("No refresh token found.");
       }
 
       const response = await fetch("http://localhost:3000/api/auth/logout", {
@@ -38,7 +33,6 @@ export const UserHome = () => {
           "XSRF-TOKEN": csrfToken,
          },
         credentials: "include",
-        body: JSON.stringify({ token: refreshToken }),
       });
 
       console.log("Logout backend: ", response);
@@ -51,7 +45,6 @@ export const UserHome = () => {
 
       logout();
       console.log("✅ Logout successfully ");
-      console.log("✅ Navigating to public home... ");
       navigate("/");
 
     } catch (error) {
