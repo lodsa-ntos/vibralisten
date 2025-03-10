@@ -12,15 +12,18 @@ export const AuthProvider = ({ children }) => {
   const checkSession = async () => {
     try {
       console.log("🔄 Checking session...");
+      
       const response = await axios.get("http://localhost:3000/api/auth/sessions", { withCredentials: true });
 
       if (response.data && response.data.user) {
         setUser(response.data.user);
         console.log("✅ Session found, user authenticated: ", response.data.user);
+
       } else {
         setUser(null);
         console.log("❌ No active session found.");
       }
+
     } catch (error) {
       console.error("⚠️ Error checking session: ", error);
       setUser(null);
