@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext"
 import { useNavigate } from "react-router-dom";
@@ -21,9 +21,14 @@ export const UserHome = () => {
     try {
 
       const csrfToken = await getCsrfToken();
+      const refreshToken = localStorage.getItem("refreshToken");
       
       if (!csrfToken) {
         throw new Error("CSRF Token is missing");
+      }
+
+      if (!refreshToken) {
+        throw new Error("No refresh token found.");
       }
 
       const response = await fetch("http://localhost:3000/api/auth/logout", {
@@ -33,10 +38,10 @@ export const UserHome = () => {
           "XSRF-TOKEN": csrfToken,
          },
         credentials: "include",
-        body: JSON.stringify({}),
+        body: JSON.stringify({ token: refreshToken }),
       });
 
-      console.log("Response from the backend: ", response);
+      console.log("Logout backend: ", response);
 
       if (!response.ok) {
         const errorData = await response.json();
