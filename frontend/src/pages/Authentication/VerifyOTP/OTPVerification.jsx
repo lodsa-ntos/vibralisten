@@ -69,7 +69,7 @@ export const OTPVerification = () => {
 
       console.log("✅ OTP Verified! Checking session...");
 
-      const sessionResponse = await fetch("http://localhost:3000/api/auth/sessions", {
+      const sessionResponse = await fetch("http://localhost:3000/api/auth/session", {
         method: "GET",
         credentials: "include",
       });
