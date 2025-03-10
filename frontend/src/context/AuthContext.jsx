@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { getCsrfToken } from "../utils/getCsrfToken";
 
 export const AuthContext = createContext();
 
@@ -89,8 +90,20 @@ export const AuthProvider = ({ children }) => {
         throw new Error("No refresh token found for logout.");
       }
 
-      await axios.post("http://localhost:3000/api/auth/logout", { token: refreshToken }, {
-        withCredentials: true
+      const csrfToken = await getCsrfToken();
+            
+      if (!csrfToken) {
+        throw new Error("CSRF Token is missing");
+      }
+
+      await axios.post("http://localhost:3000/api/auth/logout", 
+        { token: refreshToken }, 
+        {
+        withCredentials: true,
+        headers: { 
+          "Content-Type": "application/json",
+          "XSRF-TOKEN": csrfToken,
+        },
       });
 
       console.log("✅ User logged out successfully.");

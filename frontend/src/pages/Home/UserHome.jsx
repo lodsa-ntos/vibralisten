@@ -31,7 +31,7 @@ export const UserHome = () => {
         headers: { 
           "Content-Type": "application/json",
           "XSRF-TOKEN": csrfToken,
-         },
+        },
         credentials: "include",
       });
 
