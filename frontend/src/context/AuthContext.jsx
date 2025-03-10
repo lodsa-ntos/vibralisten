@@ -35,8 +35,7 @@ export const AuthProvider = ({ children }) => {
         console.log("✅ Session found, user authenticated: ", response.data.user);
 
       } else {
-        setUser(null);
-        console.log("❌ No active session found.");
+        logout();
       }
 
     } catch (error) {
