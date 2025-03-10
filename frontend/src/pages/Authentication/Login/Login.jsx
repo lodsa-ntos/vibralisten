@@ -37,27 +37,49 @@ export const Login = () => {
             if (data && data.success) {
                 console.log("✅ Login request successful, checking session...");
 
-                
+                if (data.token) {
+                    localStorage.setItem("accessToken", data.token);
+                    console.log("✅ Access Token saved. ");
+                } else {
+                    throw new Error("Access Token not received.");
+                }
+
+                const accessToken = localStorage.getItem("accessToken");
+
+                if (!accessToken) {
+                    throw new Error("Access token is missing. User needs to log in again.");
+                }
+
                 const sessionResponse = await fetch("http://localhost:3000/api/auth/session", { 
-                    withCredentials: true,
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Content-Type": "application/json"
+                    }
                 });
 
-                if (sessionResponse.data && sessionResponse.data.user) {
-                    console.log("✅ Session confirmed, user authenticated: ", sessionResponse.data.user);
-                    setUser(sessionResponse.data.user);
+                if (!sessionResponse.ok) {
+                    throw new Error("Session validation failed.");
+                }
+
+                const sessionData = await sessionResponse.json();
+
+                if (sessionData.user) {
+                    console.log("✅ Session confirmed, user authenticated: ", sessionData.user);
+                    setUser(sessionData.user);
 
                     // Redirecionar para verificação OTP, passando o propósito
                     // Redirect to OTP check, passing the purpose
                     navigate(`/verify-otp?purpose=login`);
                   
                 } else {
-                    throw new Error("Session validation failed.");
+                    throw new Error("No user data received.");
                   }
             } else {
                 console.error("❌ Error: Invalid response from the backend ", data);
                 setError("Login failed. Please try again.");
             }
-
         } catch (err) {
             console.error("Error trying to log in: ", err.message);
             setError(err.message);
