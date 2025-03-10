@@ -14,7 +14,12 @@ export const AuthProvider = ({ children }) => {
       console.log("🔄 Checking session...");
       
       const response = await axios.get("http://localhost:3000/api/auth/session", {
-         withCredentials: true, 
+         withCredentials: true,
+         headers: {
+          // Envia o Access Token no cabeçalho para autorizar a requisição
+          // Sends the Access Token in the header to authorise the request
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+         }
       });
 
       if (response.data && response.data.user) {
