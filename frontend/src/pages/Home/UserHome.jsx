@@ -16,7 +16,7 @@ export const UserHome = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
