@@ -12,7 +12,7 @@ export const useAuth = () => {
     user: context.user,
     isAuthenticated: !!context.user,
     isLoading: context.isLoading,
-    login: context.login,
-    lougout: context.lougout,
+    setUser: context.setUser,
+    logout: context.logout,
   };
 }
