@@ -23,7 +23,9 @@ export const OTPVerification = () => {
     setIsLoading(true);
     setError("");
 
-    const userId = localStorage.getItem("userId");
+    const storedUser = localStorage.getItem("user");
+    const user = storedUser ? JSON.parse(storedUser) : null;
+    const userId = user ? user.id : null;
 
     if (!userId) {
       setError("User ID not found. Please login again.");
@@ -169,7 +171,7 @@ export const OTPVerification = () => {
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
             <div className="!mt-8">
-              <button type="button" onClick={handleVerifyOTP} className="w-full flex items-center justify-center shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition">
+              <button type="button" onClick={handleVerifyOTP} className="w-full flex items-center justify-center shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition" disabled={isLoading}>
               {isLoading ? (
                 <>
                 <svg className="animate-spin h-5 w-5 mr-2 text-white" viewBox="0 0 24 24">
