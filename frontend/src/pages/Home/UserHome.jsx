@@ -8,15 +8,51 @@ import FAQs from "../FAQs/FAQs";
 import Contact from "../Contact/Contact";
 import Footer from "../../components/Footer";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
+import { getCsrfToken } from "../../utils/getCsrfToken";
 
 export const UserHome = () => {
-
   const { user, logout } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/");
+  const handleLogout = async () => {
+    setError("");
+
+    try {
+
+      const csrfToken = await getCsrfToken();
+      
+      if (!csrfToken) {
+        throw new Error("CSRF Token is missing");
+      }
+
+      const response = await fetch("http://localhost:3000/api/auth/logout", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "XSRF-TOKEN": csrfToken,
+         },
+        credentials: "include",
+        body: JSON.stringify({}),
+      });
+
+      console.log("Response from the backend: ", response);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("🔴 Logout Error: ", errorData);
+        throw new Error(errorData.message || "Logout failed");
+      }
+
+      logout();
+      console.log("✅ Logout successfully ");
+      console.log("✅ Navigating to public home... ");
+      navigate("/");
+
+    } catch (error) {
+      setError("Something went wrong. Please try again.");
+      console.log("❌ Logout Error: ", error);
+    }
   };
 
   return (
@@ -30,10 +66,8 @@ export const UserHome = () => {
           <div className="home-below-header-spacing"></div>
           {/* featured-title */}
           <h1>
-            Welcome!
+            {error && <p className="text-red-500">{error}</p>}
             <button onClick={handleLogout}>Logout</button>
-            <span className="home-tilte1">Convert YouTube videos to </span> <span className="home-tilte2">MP3</span> in
-            seconds.
           </h1>
           {/* Space below the featured title */}
           <div className="home-below-featured-title"></div>
