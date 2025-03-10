@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
         console.log("✅ Login successful! Storing tokens...");
 
         localStorage.setItem("accessToken", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
         localStorage.setItem("refreshToken", response.data.refreshToken);
         setUser(response.data.user);
 

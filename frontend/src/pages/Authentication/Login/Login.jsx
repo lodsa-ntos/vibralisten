@@ -39,22 +39,22 @@ export const Login = () => {
 
                 if (data.token) {
                     localStorage.setItem("accessToken", data.token);
-                    if (data.user?.id) {
-                        localStorage.setItem("userId", data.user.id);
-                    } else {
-                        throw new Error("User ID not received.");
-                    }
                     localStorage.setItem("refreshToken", data.refreshToken);
-                    console.log("✅ Access Token saved. ");
+                    if (data.user) {
+                        localStorage.setItem("user", JSON.stringify(data.user));
+                        console.log("✅ Access Token and User data saved.");
+                    } else {
+                        throw new Error("User data not received.");
+                    }
+
                 } else {
                     throw new Error("Access Token not received.");
                 }
 
                 const accessToken = localStorage.getItem("accessToken");
-                const userId = localStorage.getItem("userId");
-
-                console.log("✅ UserID provided: ", data.user?.id || "");
-
+                const user = JSON.parse(localStorage.getItem("user"));
+                const userId = user ? user.id : null;
+                
                 if (!accessToken || !userId) {
                     throw new Error("Session storage failed. Please log in again.");
                 }
