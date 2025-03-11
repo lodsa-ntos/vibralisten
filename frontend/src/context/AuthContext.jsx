@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (!user) return;
     checkSession();
   }, []);
 
