@@ -11,16 +11,17 @@ export const AuthProvider = ({ children }) => {
   // verificar sessão ativa
   // check active session
   const checkSession = async () => {
-    try {
-      console.log("🔄 Checking session...");
-      
-      const token = localStorage.getItem("accessToken");
+
+    const token = localStorage.getItem("accessToken");
       if (!token) {
-        console.log("⚠️ No access token found.");
+        console.warn("⚠️ No access token found. Skipping session check.");
         setUser(null);
         setIsLoading(false);
         return;
       }
+
+    try {
+      console.log("🔄 Checking session...");
 
       const response = await axios.get("http://localhost:3000/api/auth/session", {
          withCredentials: true,
@@ -34,13 +35,17 @@ export const AuthProvider = ({ children }) => {
       if (response.data && response.data.user) {
         setUser(response.data.user);
         console.log("✅ Session found, user authenticated: ", response.data.user);
-
       } else {
-        logout();
+        console.warn("⚠️ Session not found, clearing user state. ");
+        setUser(null);
       }
 
     } catch (error) {
-      console.error("⚠️ Error checking session: ", error);
+      if (error.response && error.response.status === 401) {
+        console.warn("⚠️ User not authenticated. Clearing session. ");
+      } else {
+        console.error("❌ Error checking session: ", error);
+      }
       setUser(null);
     }
     setIsLoading(false);
