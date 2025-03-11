@@ -6,6 +6,7 @@ export const loginUser = async (loginData) => {
     const csrfToken = await getCsrfToken();
 
     if (!csrfToken) {
+      console.error("❌ CSRF Token is missing. Possible issue with cookies or session.");
       throw new Error("CSRF Token is missing");
     }
 

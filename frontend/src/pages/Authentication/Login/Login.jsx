@@ -15,6 +15,17 @@ export const Login = () => {
     const navigate = useNavigate();
     const { setUser } = useAuth();
 
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setLoginInput(value);
+
+        if (value.length > 0 && value.length < 6) {
+            setError("Enter at least 6 characters.");
+        } else {
+            setError("");
+        }
+    }
+
     const handleLogin = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -91,9 +102,16 @@ export const Login = () => {
                 console.error("❌ Error: Invalid response from the backend ", data);
                 setError("Login failed. Please try again.");
             }
-        } catch (err) {
-            console.error("Error trying to log in: ", err.message);
-            setError(err.message);
+        } catch (error) {
+            console.error("Error trying to log in: ", error.message);
+
+            if (error.message.includes("CSRF Token")) {
+                setError("Something went wrong. Please refresh the page.");
+            } else if (error.message.includes("Unauthorized")) {
+                setError("Invalid login details. Please check and try again.");
+            } else {
+                setError("Oops! Something went wrong. Please try again.");
+            }
         }
 
         setIsLoading(false);
@@ -177,10 +195,7 @@ export const Login = () => {
                                         type="text"
                                         placeholder="Mobile number, username or e-mail"
                                         value={loginInput}
-                                        onChange={(e) => {
-                                            console.log("New value entered: ", e.target.value);
-                                            setLoginInput(e.target.value);
-                                        }}
+                                        onChange={handleInputChange}
                                         required
                                         className="bg-gray-50 text-gray-900 text-sm relative w-full border rounded dark:placeholder-gray-400 dark:bg-gray-600 focus:border-indigo-400 focus:outline-none py-2 pr-2 pl-12"
                                     />
