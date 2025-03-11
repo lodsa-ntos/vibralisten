@@ -122,7 +122,12 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
 
     } catch (error) {
-      console.error("❌ Error logging out: ", error);
+
+      if (error.response && error.response.status === 400) {
+        console.warn("⚠️ User not authenticated. Clearing logout. ");
+      } else {
+        console.error("❌ Error logging out: ", error);
+      }
     }
   };
 
