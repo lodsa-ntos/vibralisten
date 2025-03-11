@@ -193,10 +193,9 @@ export const Login = () => {
                                     <input id="login_id"
                                         name="login"
                                         type="text"
-                                        placeholder="Mobile number, username or e-mail"
+                                        placeholder="Enter your email, phone or username"
                                         value={loginInput}
                                         onChange={handleInputChange}
-                                        required
                                         className="bg-gray-50 text-gray-900 text-sm relative w-full border rounded dark:placeholder-gray-400 dark:bg-gray-600 focus:border-indigo-400 focus:outline-none py-2 pr-2 pl-12"
                                     />
                                 </div>
@@ -205,8 +204,8 @@ export const Login = () => {
                             </div>
                             
                             {/** Button: Login */}
-                            <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 focus:cursor-wait font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            disabled={isLoading}> {isLoading ? "Loading..." : "Dive into the Sound! 🚀"}
+                            <button type="submit" className={`w-full text-white ${loginInput.length < 6 ?"bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-cente cursor-not-allowed" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 focus:cursor-wait font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" }`}
+                            disabled={loginInput.length < 6 || isLoading}> {isLoading ? "Loading..." : "Dive into the Sound! 🚀"}
                             </button>
                             
 
