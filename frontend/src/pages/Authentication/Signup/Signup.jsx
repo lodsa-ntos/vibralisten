@@ -7,6 +7,67 @@ import { RiMusicAiLine } from "react-icons/ri";
 
 export const Signup = () => {
 
+  const handleSignUp = async () => {
+    setIsLoading(true);
+    setEmailOrPhoneError(null);
+    setFullNameError(null);
+
+    console.log("🔍 Form Data before sending: ", formData)
+
+    const isValid = validateSignUpInput(formData.email, formData.phone, formData.fullname);
+    if (!isValid) {
+      setIsLoading(false);
+      return;
+    }
+    
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/send-otp", {
+        method: "POST",
+        headers:{ "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email || null,
+          phone: formData.phone || null,
+          fullname: formData.fullname || null,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+
+      console.log("✅ OTP enviado para novo usuário: ", {
+        email: formData.email,
+        phone: formData.phone,
+        fullName: formData.fullname,
+      });
+
+      localStorage.setItem("signupData", JSON.stringify({ 
+        state: { 
+          email: formData.email || null, 
+          phone: formData.phone || null, 
+          fullname: formData.fullname || null, 
+        } 
+      }));
+
+      // Autenticar utilizador e redirecionar para home
+      // Authenticate user and redirect to home
+      navigate("/verify-code", {
+        state: {
+          email: formData.email,
+          phone: formData.phone,
+          fullName: formData.fullname,
+          type: "signup"
+        }
+      });
+
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div style={{ 
       fontFamily: "Satoshi", 
