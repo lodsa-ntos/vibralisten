@@ -77,8 +77,17 @@ export const AuthProvider = ({ children }) => {
       console.log("✅ Signup successful! ", response.data);
 
       localStorage.setItem("userId", response.data.userId);
+      localStorage.setItem("email", response.data.email);
+      localStorage.setItem("fullName", response.data.fullName);
+      localStorage.setItem("phone", response.data.phone);
       
-      return { success: true, userId: response.data.userId };
+      return { 
+        success: true, 
+        userId: response.data.userId,
+        email: response.data.email,
+        fullName: response.data.fullName,
+        phone: response.data.phone,
+      };
 
       
     } catch (error) {
@@ -104,12 +113,11 @@ export const AuthProvider = ({ children }) => {
         console.log("✅ Login successful! Storing tokens...");
 
         localStorage.setItem("accessToken", response.data.token);
-        localStorage.setItem("userId", response.data.userId);
         localStorage.setItem("refreshToken", response.data.refreshToken);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("userId", response.data._id);
 
         setUser(response.data.user);
-
         return { success: true };
 
       } else {

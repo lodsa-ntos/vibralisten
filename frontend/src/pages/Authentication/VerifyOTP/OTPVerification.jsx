@@ -23,12 +23,22 @@ export const OTPVerification = () => {
     setIsLoading(true);
     setError("");
 
-    const storedUser = localStorage.getItem("user");
-    const user = storedUser ? JSON.parse(storedUser) : null;
-    const userId = user ? user.id : null;
+    const userId = localStorage.getItem("_id");
+    const email = localStorage.getItem("email");
+    const fullName = localStorage.getItem("fullName");
+    const phone = localStorage.getItem("phone");
 
-    if (!userId) {
-      setError("User ID not found. Please login again.");
+    console.log("📌 Data recovered from LocalStorage:");
+    console.log("userId: ", userId);
+    console.log("otp: ", otp);
+    console.log("fullName: ", fullName);
+    console.log("email: ", email);
+    console.log("phone: ", phone);
+
+
+    console.log("📌 userId before sending the request: ", userId);
+    if (!userId || !otp || otp.length !== 6) {
+      setError("User not found. Please login again.");
       setIsLoading(false);
       return;
     }
@@ -47,9 +57,13 @@ export const OTPVerification = () => {
 
       const csrfToken = await getCsrfToken();
 
-      if (!csrfToken) {
-        throw new Error("CSRF Token is missing");
-      }
+      if (!csrfToken) throw new Error("CSRF Token is missing");
+
+      const payload = purpose === "signup"
+      ? { userId, otp, fullName, email, phone }
+      : { userId, otp };
+
+      console.log("✅ Payload enviado:", payload);
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -58,14 +72,11 @@ export const OTPVerification = () => {
           "XSRF-TOKEN": csrfToken,
          },
         credentials: "include",
-        body: JSON.stringify({ userId, otp }),
+        body: JSON.stringify(payload),
       });
-
-      console.log("Response OTP Code from the backend: ", response);
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error("🔴 Error received OTP from the backend: ", errorData);
         throw new Error(errorData.message || "Verify OTP failed");
       }
 
@@ -80,10 +91,12 @@ export const OTPVerification = () => {
         throw new Error("Session verification failed.");
       }
 
-      const sessionData = await sessionResponse.json();
-      console.log("✅ Session confirmed, user authenticated: ", sessionData.user);
+      const data = await sessionResponse.json();
+      console.log("✅ OTP Verified! User authenticated: ", data.user);
 
-      setUser(sessionData.user);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.removeItem("userId")
+      setUser(data.user);
 
       console.log("✅ Navigating to /home... ");
       navigate("/home");

@@ -64,7 +64,9 @@ export const Login = () => {
 
                 const accessToken = localStorage.getItem("accessToken");
                 const user = JSON.parse(localStorage.getItem("user"));
-                const userId = user ? user.id : null;
+                const userId = user ? user._id : null;
+
+                console.log("✅ userId DB: ", userId);
                 
                 if (!accessToken || !userId) {
                     throw new Error("Session storage failed. Please log in again.");
