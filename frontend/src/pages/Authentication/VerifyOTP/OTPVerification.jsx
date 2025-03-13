@@ -23,7 +23,7 @@ export const OTPVerification = () => {
     setIsLoading(true);
     setError("");
 
-    const userId = localStorage.getItem("_id");
+    const userId = localStorage.getItem("userId");
     const email = localStorage.getItem("email");
     const fullName = localStorage.getItem("fullName");
     const phone = localStorage.getItem("phone");
