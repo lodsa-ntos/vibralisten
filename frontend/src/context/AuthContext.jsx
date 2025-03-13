@@ -74,8 +74,10 @@ export const AuthProvider = ({ children }) => {
          },
       });
 
-      console.log("✅ Signup  successful! ", response.data);
+      console.log("✅ Signup successful! ", response.data);
 
+      localStorage.setItem("userId", response.data.userId);
+      
       return { success: true, userId: response.data.userId };
 
       
@@ -94,7 +96,7 @@ export const AuthProvider = ({ children }) => {
 
       console.log("🔄 Sending login request...");
 
-      await axios.get("http://localhost:3000/api/auth/login", loginData, {
+      await axios.post("http://localhost:3000/api/auth/login", loginData, {
         withCredentials: true
       });
 
@@ -104,6 +106,8 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("accessToken", response.data.token);
         localStorage.setItem("userId", response.data.userId);
         localStorage.setItem("refreshToken", response.data.refreshToken);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+
         setUser(response.data.user);
 
         return { success: true };

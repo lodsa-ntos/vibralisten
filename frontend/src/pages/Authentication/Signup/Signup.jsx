@@ -55,7 +55,11 @@ export const Signup = () => {
 
       if (response.success) {
         console.log("✅ Signup successful! Redirecting... ");
-        navigate(`/verify-otp?userId=${response.userId}&purpose=signup`);
+
+        if (response.userId) {
+          localStorage.setItem("userId", response.userId);
+        }
+        navigate(`/verify-otp?purpose=signup`);
       } else {
         setError(response.message);
       }
