@@ -31,7 +31,7 @@ export const Login = () => {
         setIsLoading(true);
         setError("");
 
-        console.log("Value of loginInput: ", loginInput)
+        console.log("Value of loginInput: ", loginInput);
 
         try {
 
