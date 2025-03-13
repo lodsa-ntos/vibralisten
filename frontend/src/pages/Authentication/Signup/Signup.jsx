@@ -1,71 +1,51 @@
-import React from "react";
-import { FaSpotify } from "react-icons/fa";
-import { FaDeezer } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TbMusicShare } from "react-icons/tb";
 import { RiMusicAiLine } from "react-icons/ri";
+import { SignupUser } from "../../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
+  const [signupData, setSignupData] = useState({
+    emailOrPhone: "",
+    fullName: "",
+  });
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSignUp = async () => {
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const valueName = e.target.name;
+    setSignupData({ ...signupData, [valueName]: value });
+}
+  const handleSignUp = async (event) => {
+    event.preventDefault();
     setIsLoading(true);
-    setEmailOrPhoneError(null);
-    setFullNameError(null);
+    setError("");
 
-    console.log("🔍 Form Data before sending: ", formData)
-
-    const isValid = validateSignUpInput(formData.email, formData.phone, formData.fullname);
-    if (!isValid) {
-      setIsLoading(false);
-      return;
-    }
-    
     try {
-      const response = await fetch("http://localhost:3000/api/auth/send-otp", {
-        method: "POST",
-        headers:{ "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email || null,
-          phone: formData.phone || null,
-          fullname: formData.fullname || null,
-        }),
-      });
+      console.log("🚀 Sending signup request with: ", signupData);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
-      }
+      const response = await SignupUser(signupData);
 
-      console.log("✅ OTP enviado para novo usuário: ", {
-        email: formData.email,
-        phone: formData.phone,
-        fullName: formData.fullname,
-      });
+      console.log("✅ Signup successful!", response);
 
-      localStorage.setItem("signupData", JSON.stringify({ 
-        state: { 
-          email: formData.email || null, 
-          phone: formData.phone || null, 
-          fullname: formData.fullname || null, 
-        } 
-      }));
-
-      // Autenticar utilizador e redirecionar para home
-      // Authenticate user and redirect to home
-      navigate("/verify-code", {
-        state: {
-          email: formData.email,
-          phone: formData.phone,
-          fullName: formData.fullname,
-          type: "signup"
-        }
-      });
+      navigate(`/verify-otp?purpose=signup`);
 
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
+      console.error("❌ Signup error: ", error.message);
+
+      if (error.message.includes("CSRF Token")) {
+        setError("Something went wrong. Try again.");
+      } else if (error.message.includes("Unauthorized")) {
+        setError("Invalid login details. Please check and try again.");
+      } else {
+        setError("Oops! Something went wrong. Please try again.");
+      }
     }
+    setIsLoading(false);
   }
 
   return (
@@ -84,11 +64,14 @@ export const Signup = () => {
           </div>
         </div>
 
+        {/* Registration form */}
         <div className="bg-white rounded-xl sm:px-6 px-4 py-10 max-w-md w-full h-max shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] max-lg:mx-auto">
           <form>
             <div className="mb-8">
               <h3 className="text-3xl text-center font-semibold text-slate-900">Discover music that moves you!</h3>
             </div>
+
+            {/* Social Logins */}
             <div className="sm:flex sm:items-start space-x-4 max-sm:space-y-4 mb-8">
               <button type="button" className="py-2.5 px-4 flex text-sm font-medium rounded-md bg-blue-100 hover:bg-blue-200 focus:outline-none">
               <FaSpotify className="size-5 text-green-500 mr-2" /> 
@@ -102,29 +85,52 @@ export const Signup = () => {
               </button>
             </div>
 
+            {/* Form inputs */}
             <div className="space-y-6">
               <div>
                 <label className="text-slate-800 text-sm font-medium mb-2 block">Your e-mail or phone number</label>
                 <div className="relative flex items-center">
-                  <input name="username" type="text" required className="w-full text-sm text-slate-800 border border-slate-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter e-mail or phone number" />
+                  <input
+                  name="emailOrPhone" 
+                  type="text" 
+                  required 
+                  value={signupData.emailOrPhone}
+                  onChange={handleInputChange}
+                  className="w-full text-sm text-slate-800 border border-slate-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter e-mail or phone number" />
                 </div>
               </div>
               <div>
                 <label className="text-slate-800 text-sm font-medium mb-2 block">Full name</label>
                 <div className="relative flex items-center">
-                  <input name="password" type="text" required className="w-full text-sm text-slate-800 border border-slate-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Type your full name here" />
+                  <input 
+                  name="fullName" 
+                  type="text" 
+                  required 
+                  value={signupData.fullName}
+                  onChange={handleInputChange}
+                  className="w-full text-sm text-slate-800 border border-slate-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Type your full name here" />
                 </div>
               </div>
             </div>
 
+            {/* Display error if any */}
+            {error && <p className="text-red-500 text-sm mt-4 text-center">{error}</p>}
+
+            {/* Signup button */}
             <div className="mt-8">
-              <button type="button" className="w-full shadow-xl py-2 px-4 text-[15px] font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
-              Let’s vibe! 🎵
+              <button 
+              type="submit"
+              disabled={isLoading}
+              className={`w-full text-white ${isLoading ?"bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-cente cursor-not-allowed" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 focus:cursor-wait font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" }`}>
+              {isLoading ? "Processing..." : "Let’s vibe! 🎵"}
               </button>
             </div>
+
+            {/* Login link */}
             <p className="text-sm mt-6 text-center text-slate-800">Already part of the vibe? <a href="/login" className="text-blue-600 font-medium hover:underline ml-1 whitespace-nowrap">Log in here!</a></p>
           </form>
         </div>
+        
         {/* Copyright */}
         <div className="w-auto my-0 border-gray-200 justify-end sm:justify-center dark:border-gray-700 lg:my-8">
           <div className="absolute right-5 sm:justify-center sm:items-center sm:text-center md:justify-center md:text-center">
