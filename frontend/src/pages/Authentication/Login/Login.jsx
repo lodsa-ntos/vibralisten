@@ -53,6 +53,9 @@ export const Login = () => {
                     localStorage.setItem("refreshToken", data.refreshToken);
                     if (data.user) {
                         localStorage.setItem("user", JSON.stringify(data.user));
+
+                        localStorage.setItem("userId", data.user._id);
+
                         console.log("✅ Access Token and User data saved.");
                     } else {
                         throw new Error("User data not received.");
@@ -64,9 +67,9 @@ export const Login = () => {
 
                 const accessToken = localStorage.getItem("accessToken");
                 const user = JSON.parse(localStorage.getItem("user"));
-                const userId = user ? user._id : null;
+                const userId = localStorage.getItem("userId");;
 
-                console.log("✅ userId DB: ", userId);
+                console.log("🔍 userId saved in LocalStorage: ", userId);
                 
                 if (!accessToken || !userId) {
                     throw new Error("Session storage failed. Please log in again.");

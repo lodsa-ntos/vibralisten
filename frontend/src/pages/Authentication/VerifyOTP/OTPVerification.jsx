@@ -35,7 +35,6 @@ export const OTPVerification = () => {
     console.log("email: ", email);
     console.log("phone: ", phone);
 
-
     console.log("📌 userId before sending the request: ", userId);
     if (!userId || !otp || otp.length !== 6) {
       setError("User not found. Please login again.");
