@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
 
       const csrfToken = await getCsrfToken();
 
-      const response = await fetch("http://localhost:3000/api/auth/signup", signupData, {
+      const response = await axios.post("http://localhost:3000/api/auth/signup", signupData, {
         withCredentials: true,
         headers: { 
           "Content-Type": "application/json",

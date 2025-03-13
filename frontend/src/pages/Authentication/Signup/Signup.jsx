@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaSpotify, FaDeezer } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TbMusicShare } from "react-icons/tb";
 import { RiMusicAiLine } from "react-icons/ri";
-import { SignupUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
 
 export const Signup = () => {
   const [signupData, setSignupData] = useState({
@@ -14,6 +14,7 @@ export const Signup = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { signup } = useContext(AuthContext);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^\d{9,15}$/;
 
@@ -50,14 +51,17 @@ export const Signup = () => {
     try {
       console.log("🚀 Sending signup request with: ", formattedData);
 
-      const response = await SignupUser(formattedData);
+      const response = await signup(formattedData);
 
-      console.log("✅ Signup successful!", response);
-
-      navigate(`/verify-otp?purpose=signup`);
+      if (response.success) {
+        console.log("✅ Signup successful! Redirecting... ");
+        navigate(`/verify-otp?userId=${response.userId}&purpose=signup`);
+      } else {
+        setError(response.message);
+      }
 
     } catch (error) {
-      console.error("❌ Signup error: ", error.message);
+      console.error("❌ Signup error: ", error);
 
       if (error.message.includes("CSRF Token")) {
         setError("Something went wrong. Try again.");
@@ -66,10 +70,12 @@ export const Signup = () => {
       } else if (error.message.includes("User already registered")) {
         setError("This account already exists. Please log in instead.");
       } else {
-        setError(error.message || "Oops! Something went wrong. Please try again.");
+        setError("Oops! Something went wrong. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
+    
   }
   
   return (
