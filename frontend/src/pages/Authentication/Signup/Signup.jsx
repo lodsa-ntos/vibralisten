@@ -14,6 +14,8 @@ export const Signup = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\d{9,15}$/;
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -25,10 +27,30 @@ export const Signup = () => {
     setIsLoading(true);
     setError("");
 
-    try {
-      console.log("🚀 Sending signup request with: ", signupData);
+    let email = "";
+    let phone = "";
 
-      const response = await SignupUser(signupData);
+    if (emailRegex.test(signupData.emailOrPhone)) {
+      email = signupData.emailOrPhone;
+    } else if (phoneRegex.test(signupData.emailOrPhone)) {
+      phone = signupData.emailOrPhone
+    } else {
+      setError("Please enter a valid email or phone number.");
+      setIsLoading(false);
+      return;
+    }
+
+    const formattedData = {
+      fullName: signupData.fullName
+    };
+
+    if (email) formattedData.email = email;
+    if (phone) formattedData.phone = phone;
+
+    try {
+      console.log("🚀 Sending signup request with: ", formattedData);
+
+      const response = await SignupUser(formattedData);
 
       console.log("✅ Signup successful!", response);
 
@@ -40,14 +62,16 @@ export const Signup = () => {
       if (error.message.includes("CSRF Token")) {
         setError("Something went wrong. Try again.");
       } else if (error.message.includes("Unauthorized")) {
-        setError("Invalid login details. Please check and try again.");
+        setError("Invalid details. Please check and try again.");
+      } else if (error.message.includes("User already registered")) {
+        setError("This account already exists. Please log in instead.");
       } else {
-        setError("Oops! Something went wrong. Please try again.");
+        setError(error.message || "Oops! Something went wrong. Please try again.");
       }
     }
     setIsLoading(false);
   }
-
+  
   return (
     <div style={{ 
       fontFamily: "Satoshi", 

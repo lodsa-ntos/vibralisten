@@ -56,6 +56,37 @@ export const AuthProvider = ({ children }) => {
     checkSession();
   }, []);
 
+  // Função de Signup
+  // Signup
+  const signup = async (signupData) => {
+    try {
+
+      setIsLoading(true);
+      console.log("🔄 Sending signup  request...", signupData);
+
+      const csrfToken = await getCsrfToken();
+
+      const response = await fetch("http://localhost:3000/api/auth/signup", signupData, {
+        withCredentials: true,
+        headers: { 
+          "Content-Type": "application/json",
+          "XSRF-TOKEN": csrfToken,
+         },
+      });
+
+      console.log("✅ Signup  successful! ", response.data);
+
+      return { success: true, userId: response.data.userId };
+
+      
+    } catch (error) {
+      console.error("❌ Signup error: ", error.response?.data?.message || error.message);
+      return { success: false, message: error.response?.data?.message || "Signup failed." };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Função de Login
   // Login
   const login = async (loginData) => {
@@ -133,7 +164,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, setUser, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, setUser, signup,  login, logout }}>
       {children}
     </AuthContext.Provider>
   );

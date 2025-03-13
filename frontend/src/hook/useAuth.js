@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { AuthContext } from "../context/AuthContext"
+import { AuthContext } from "../context/AuthContext";
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -13,6 +13,7 @@ export const useAuth = () => {
     isAuthenticated: !!context.user,
     isLoading: context.isLoading,
     setUser: context.setUser,
+    signup: context.signup,
     login: context.login,
     logout: context.logout,
   };
