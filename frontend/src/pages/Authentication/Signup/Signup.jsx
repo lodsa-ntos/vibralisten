@@ -66,7 +66,7 @@ export const Signup = () => {
 
         {/* Registration form */}
         <div className="bg-white rounded-xl sm:px-6 px-4 py-10 max-w-md w-full h-max shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] max-lg:mx-auto">
-          <form>
+          <form onSubmit={handleSignUp}>
             <div className="mb-8">
               <h3 className="text-3xl text-center font-semibold text-slate-900">Discover music that moves you!</h3>
             </div>
@@ -117,7 +117,7 @@ export const Signup = () => {
             {error && <p className="text-red-500 text-sm mt-4 text-center">{error}</p>}
 
             {/* Signup button */}
-            <div className="mt-8">
+            <div className="mt-4">
               <button 
               type="submit"
               disabled={isLoading}
