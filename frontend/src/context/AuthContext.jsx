@@ -47,8 +47,12 @@ export const AuthProvider = ({ children }) => {
         console.error("❌ Error checking session: ", error);
       }
       setUser(null);
+
+    } finally {
+      setIsLoading(false);
+      console.log("✅ isLoading state after checkSession: ", isLoading);
     }
-    setIsLoading(false);
+    
   };
 
   useEffect(() => {
