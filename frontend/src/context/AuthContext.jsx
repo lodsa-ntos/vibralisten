@@ -48,15 +48,16 @@ export const AuthProvider = ({ children }) => {
       }
       setUser(null);
 
-    } finally {
-      setIsLoading(false);
-      console.log("✅ isLoading state after checkSession: ", isLoading);
+    } finally {      
+      setIsLoading((prev) => {
+        console.log("✅ isLoading state changing from ", prev, " to false");
+        return false;
+      });
     }
     
   };
 
   useEffect(() => {
-    if (!user) return;
     checkSession();
   }, []);
 
@@ -180,7 +181,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, setUser, signup,  login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, setUser, checkSession, signup, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
