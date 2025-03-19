@@ -17,13 +17,42 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("🔄 Checking session...");
 
+      let accessToken = localStorage.getItem("accessToken");
+      let refreshToken = localStorage.getItem("refreshToken");
+
+      if (!accessToken) {
+        console.warn("⚠️ No access token found. Trying to refresh token...");
+
+        if (!refreshToken) {
+          console.warn("❌ No refresh token found. User needs to log in again.");
+          setUser(null);
+          setIsLoading(false);
+          return;
+        }
+
+        const refreshResponse = await axios.get("http://localhost:3000/api/auth/refresh-token",
+          { token: refreshToken },
+          { withCredentials: true }
+        );
+
+        if (refreshResponse.data && refreshResponse.data.accessToken) {
+          console.log("✅ Token refreshed successfully! ");
+          accessToken = refreshResponse.data.accessToken;
+          localStorage.setItem("accessToken", accessToken);
+        } else {
+          console.warn("❌ Refresh token is invalid or expired. Logging out. ");
+          logout();
+          return;
+        }
+      }
+
       const response = await axios.get("http://localhost:3000/api/auth/session", {
-         withCredentials: true,
-         headers: {
-          // Envia o Access Token no cabeçalho para autorizar a requisição
-          // Sends the Access Token in the header to authorise the request
-          "Authorization": `Bearer ${token}`
-         }
+        withCredentials: true,
+        headers: {
+         // Envia o Access Token no cabeçalho para autorizar a requisição
+         // Sends the Access Token in the header to authorise the request
+         "Authorization": `Bearer ${token}`
+        }
       });
 
       if (response.data && response.data.user) {
@@ -37,19 +66,37 @@ export const AuthProvider = ({ children }) => {
       }
 
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        console.warn("⚠️ User not authenticated. Clearing session. ");
+      console.warn("❌ Session check failed, trying to refresh token...");
+
+      let refreshToken = localStorage.getItem("refreshToken");
+
+      if (refreshToken) {
+        try {
+          const refreshResponse = await axios.get("http://localhost:3000/api/auth/refresh-token",
+            { token: refreshToken },
+            { withCredentials: true }
+          );
+
+          if (refreshResponse.data && refreshResponse.data.accessToken) {
+            console.log("✅ Token refreshed successfully! ");
+            accessToken = refreshResponse.data.accessToken;
+            localStorage.setItem("accessToken", accessToken);
+            checkSession();
+            return;
+
+          }
+
+        } catch (error) {
+          console.error("❌ Refresh token is invalid. Logging out.", error);
+          logout();
+        }
+
       } else {
-        console.error("❌ Error checking session: ", error);
+        logout();
       }
-      setUser(null);
-      logout();
 
     } finally {      
-      setIsLoading((prev) => {
-        console.log("✅ isLoading state changing from ", prev, " to false");
-        return false;
-      });
+      setIsLoading(false);
     }
     
   };
@@ -147,6 +194,8 @@ export const AuthProvider = ({ children }) => {
       if (!refreshToken) {
         console.warn("⚠️ No refresh token found. Skipping server logout.");
       } else {
+
+        console.log("🔄 Logging out from server...");
 
         const csrfToken = await getCsrfToken();
             
