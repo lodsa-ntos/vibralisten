@@ -10,7 +10,7 @@ export const ProtectedRoute = () => {
       console.log("🔄 Checking session...");
       checkSession();
     }
-  }, [isAuthenticated, isLoading]);
+  }, [isAuthenticated]);
 
   if (isLoading) {
     return <p className="flex text-center items-center justify-center mt-72">Loading...</p>;
