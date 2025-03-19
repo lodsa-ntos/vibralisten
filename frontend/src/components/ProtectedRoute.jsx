@@ -13,16 +13,10 @@ export const ProtectedRoute = () => {
   }, [isAuthenticated, isLoading]);
 
   if (isLoading) {
-    console.log("🔄 Loading user authentication...", isLoading);
     return <p className="flex text-center items-center justify-center mt-72">Loading...</p>;
-  }
-
-  if (!isAuthenticated) {
-    console.warn("⚠️ Unauthorized access attempt. Redirecting to /login...");
-    return <Navigate to="/login" replace />
   }
 
   console.log("✅ User authenticated. Granting access.");
   
-  return <Outlet />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
 };

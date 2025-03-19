@@ -7,18 +7,12 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => { 
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
   // verificar sessão ativa
   // check active session
   const checkSession = async () => {
-
-    const token = localStorage.getItem("accessToken");
-      if (!token) {
-        console.warn("⚠️ No access token found. Skipping session check.");
-        setUser(null);
-        setIsLoading(false);
-        return;
-      }
+    setIsLoading(true);
 
     try {
       console.log("🔄 Checking session...");
@@ -33,11 +27,13 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.data && response.data.user) {
-        setUser(response.data.user);
         console.log("✅ Session found, user authenticated: ", response.data.user);
+        setUser(response.data.user);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       } else {
         console.warn("⚠️ Session not found, clearing user state. ");
         setUser(null);
+        localStorage.removeItem("user");
       }
 
     } catch (error) {
@@ -47,6 +43,7 @@ export const AuthProvider = ({ children }) => {
         console.error("❌ Error checking session: ", error);
       }
       setUser(null);
+      logout();
 
     } finally {      
       setIsLoading((prev) => {
@@ -128,10 +125,12 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("userId", response.data._id);
 
         setUser(response.data.user);
+        setIsLoggedin(true);
         return { success: true };
 
       } else {
         console.log("❌ Invalid login response.");
+        return { success: false, message: "Invalid credentials." };
       }
     } catch (error) {
       console.error("❌ Error during login: ", error);
@@ -146,36 +145,33 @@ export const AuthProvider = ({ children }) => {
       const refreshToken = localStorage.getItem("refreshToken");
 
       if (!refreshToken) {
-        throw new Error("No refresh token found for logout.");
-      }
+        console.warn("⚠️ No refresh token found. Skipping server logout.");
+      } else {
 
-      const csrfToken = await getCsrfToken();
+        const csrfToken = await getCsrfToken();
             
-      if (!csrfToken) {
-        throw new Error("CSRF Token is missing");
-      }
+        if (!csrfToken) {
+          throw new Error("CSRF Token is missing");
+        }
 
-      await axios.post("http://localhost:3000/api/auth/logout", 
-        { token: refreshToken }, 
-        {
-        withCredentials: true,
-        headers: { 
-          "Content-Type": "application/json",
-          "XSRF-TOKEN": csrfToken,
-        },
-      });
+        await axios.post("http://localhost:3000/api/auth/logout", 
+          { token: refreshToken }, 
+          {
+          withCredentials: true,
+          headers: { 
+            "Content-Type": "application/json",
+            "XSRF-TOKEN": csrfToken,
+          },
+        });
+      }
 
       console.log("✅ User logged out successfully.");
-
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("user");
-      localStorage.removeItem("userId");
 
       // Limpar estado global
       // Clear global status
       localStorage.clear();
       setUser(null);
+      setIsLoggedin(false);
 
     } catch (error) {
 

@@ -2,6 +2,7 @@ import {
   Route,
   Routes,
   useLocation,
+  Navigate
 } from "react-router-dom";
 import { useEffect } from "react";
 import { PublicHome } from "./pages/Home/PublicHome";
@@ -10,6 +11,7 @@ import { Signup } from "./pages/Authentication/Signup/Signup";
 import { OTPVerification  } from "./pages/Authentication/VerifyOTP/OTPVerification";
 import { UserHome } from "./pages/Home/UserHome";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { useAuth } from "./hook/useAuth";
 
 
 const ScrollToSection = () => {
@@ -28,20 +30,36 @@ const ScrollToSection = () => {
 };
 
 const App = () => {
+  const { isAuthenticated, isLoading, checkSession } = useAuth();
+
+  useEffect (() => {
+    checkSession();
+  }, []);
+
   return (
     <>
       <ScrollToSection />
         <Routes>
           {/* Protected Routes */}
-          <Route element={<ProtectedRoute />} >
-            <Route path="/home" element={<UserHome />} />
-          </Route>
+          {isLoading ? (
+            <Route path="*" element={<p className="flex text-center items-center justify-center mt-72">Loading...</p>} />
+          ) : (
+            <>
+            {isAuthenticated ? (
+              <Route element={<ProtectedRoute />} >
+                <Route path="/home" element={<UserHome />} />
+              </Route>
+            ) : (
+              <Route path="/home" element={<Navigate to="/login" replace />} />
+            )}
 
-          {/* Public Routes */}
-          <Route path="/" element={<PublicHome />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/verify-otp" element={<OTPVerification />} />
+            {/* Public Routes */}
+            <Route path="/" element={<PublicHome />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/verify-otp" element={<OTPVerification />} />
+            </>
+          )}
       </Routes>
     </>
   );
