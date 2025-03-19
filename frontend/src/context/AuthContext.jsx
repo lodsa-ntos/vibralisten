@@ -174,6 +174,7 @@ export const AuthProvider = ({ children }) => {
 
       // Limpar estado global
       // Clear global status
+      localStorage.clear();
       setUser(null);
 
     } catch (error) {

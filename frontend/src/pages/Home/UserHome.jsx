@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext"
 import { useNavigate } from "react-router-dom";
@@ -22,9 +22,7 @@ export const UserHome = () => {
 
       const csrfToken = await getCsrfToken();
       
-      if (!csrfToken) {
-        throw new Error("CSRF Token is missing");
-      }
+      if (!csrfToken) throw new Error("CSRF Token is missing");
 
       const response = await fetch("http://localhost:3000/api/auth/logout", {
         method: "POST",
@@ -35,7 +33,8 @@ export const UserHome = () => {
         credentials: "include",
       });
 
-      console.log("Logout backend: ", response);
+      const data = await response.json();
+      console.log("Logout backend: ", data);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -43,8 +42,9 @@ export const UserHome = () => {
         throw new Error(errorData.message || "Logout failed");
       }
 
-      logout();
       console.log("✅ Logout successfully ");
+      
+      logout();
       navigate("/login");
 
     } catch (error) {
@@ -52,6 +52,13 @@ export const UserHome = () => {
       console.log("❌ Logout Error: ", error);
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      console.warn("⚠️ User not authenticated! Redirecting to login...");
+      navigate("/login")
+    }
+  }, [user, navigate]);
 
   return (
     <div>
