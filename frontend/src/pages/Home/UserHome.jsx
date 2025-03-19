@@ -37,9 +37,8 @@ export const UserHome = () => {
       console.log("Logout backend: ", data);
 
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error("🔴 Logout Error: ", errorData);
-        throw new Error(errorData.message || "Logout failed");
+        console.error("🔴 Logout Error: ", data);
+        throw new Error(data.message || "Logout failed");
       }
 
       console.log("✅ Logout successfully ");
