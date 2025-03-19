@@ -74,28 +74,37 @@ export const OTPVerification = () => {
         body: JSON.stringify(payload),
       });
 
+      console.log("🔍 Login response status: ", response.status);
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Verify OTP failed");
       }
 
-      console.log("✅ OTP Verified! Checking session...");
+      const responseData = await response.json();
+      console.log("✅ OTP Verified! Checking session...", responseData);
 
       const sessionResponse = await fetch("http://localhost:3000/api/auth/session", {
         method: "GET",
         credentials: "include",
       });
 
+      console.log("🔍 Login response status: ", sessionResponse.status);
+
       if (!sessionResponse.ok) {
         throw new Error("Session verification failed.");
       }
 
-      const data = await sessionResponse.json();
-      console.log("✅ OTP Verified! User authenticated: ", data.user);
+      const sessionData = await sessionResponse.json();
+      console.log("✅ User authenticated: ", sessionData.user);
 
-      localStorage.setItem("user", JSON.stringify(data.user));
+      if (!sessionData.user) {
+        throw new Error("User data is missing in session response.");
+      }
+
+      localStorage.setItem("user", JSON.stringify(sessionData.user));
       localStorage.removeItem("userId")
-      setUser(data.user);
+      setUser(sessionData.user);
 
       console.log("✅ Navigating to /home... ");
       navigate("/home");
