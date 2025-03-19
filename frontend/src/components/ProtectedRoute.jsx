@@ -6,17 +6,23 @@ export const ProtectedRoute = () => {
   const { isAuthenticated, isLoading, checkSession } = useAuth();
 
   useEffect (() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !isLoading) {
+      console.log("🔄 Checking session...");
       checkSession();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading]);
 
   if (isLoading) {
     console.log("🔄 Loading user authentication...", isLoading);
     return <p className="flex text-center items-center justify-center mt-72">Loading...</p>;
   }
 
-  console.log("🔍 isLoading: ", isLoading);
-  console.log("🔍 isAuthenticated: ", isAuthenticated);
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace/>;
+  if (!isAuthenticated) {
+    console.warn("⚠️ Unauthorized access attempt. Redirecting to /login...");
+    return <Navigate to="/login" replace />
+  }
+
+  console.log("✅ User authenticated. Granting access.");
+  
+  return <Outlet />;
 };
