@@ -45,7 +45,7 @@ export const UserHome = () => {
 
       logout();
       console.log("✅ Logout successfully ");
-      navigate("/");
+      navigate("/login");
 
     } catch (error) {
       setError("Something went wrong. Please try again.");
