@@ -58,7 +58,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    checkSession();
+    checkSession().then(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    });
   }, []);
 
   // Função de Signup
@@ -81,17 +86,17 @@ export const AuthProvider = ({ children }) => {
 
       console.log("✅ Signup successful! ", response.data);
 
-      localStorage.setItem("userId", response.data.userId);
-      localStorage.setItem("email", response.data.email);
-      localStorage.setItem("fullName", response.data.fullName);
-      localStorage.setItem("phone", response.data.phone);
+      localStorage.setItem("userId", response.data.user._id);
+      localStorage.setItem("email", response.data.user.email || "");
+      localStorage.setItem("fullName", response.data.user.fullName || "");
+      localStorage.setItem("phone", response.data.user.phone || "");
       
       return { 
         success: true, 
-        userId: response.data.userId,
-        email: response.data.email,
-        fullName: response.data.fullName,
-        phone: response.data.phone,
+        userId: response.data.user._id,
+        email: response.data.user.email,
+        fullName: response.data.user.fullName,
+        phone: response.data.user.phone,
       };
 
       
@@ -165,6 +170,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("user");
+      localStorage.removeItem("userId");
 
       // Limpar estado global
       // Clear global status
