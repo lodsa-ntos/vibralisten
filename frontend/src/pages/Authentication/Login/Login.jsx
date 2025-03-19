@@ -45,13 +45,13 @@ export const Login = () => {
             const data = await login(loginData, csrfToken);
             console.log("✅ Backend response: ", data);
 
-            if (!data && !data.success || !data.token || !data.user) {
+            if (!data || !data.success || !data.token || !data.user) {
                 throw new Error("Invalid response from server.");
             }
 
             localStorage.setItem("accessToken", data.token);
             localStorage.setItem("refreshToken", data.refreshToken);
-            localStorage.setItem("user", data.user);
+            localStorage.setItem("user", JSON.stringify(data.user));
             localStorage.setItem("userId", data.user._id);
 
             console.log("✅ Tokens and user stored. ");
