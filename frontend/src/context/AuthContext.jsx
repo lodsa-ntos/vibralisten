@@ -15,8 +15,8 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(true);
       console.log("🔄 Checking session...");
 
-      let accessToken = localStorage.getItem("accessToken");
-      let refreshToken = localStorage.getItem("refreshToken");
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
 
       if (!accessToken) {
         console.warn("⚠️ No access token found. Trying to refresh token...");
@@ -34,8 +34,8 @@ export const AuthProvider = ({ children }) => {
 
         if (refreshResponse.data && refreshResponse.data.accessToken) {
           console.log("✅ Token refreshed successfully! ");
-          accessToken = refreshResponse.data.accessToken;
-          localStorage.setItem("accessToken", accessToken);
+          const newAccessToken = refreshResponse.data.accessToken;
+          localStorage.setItem("accessToken", newAccessToken);
         } else {
           console.warn("❌ Refresh token is invalid or expired. Logging out. ");
           logout();
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.get("http://localhost:3000/api/auth/session", {
         withCredentials: true,
         headers: {
-         "Authorization": `Bearer ${accessToken}`
+         "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
         }
       });
 
@@ -75,9 +75,8 @@ export const AuthProvider = ({ children }) => {
   // Signup
   const signup = async (signupData) => {
     try {
-
       setIsLoading(true);
-      console.log("🔄 Sending signup  request...", signupData);
+      console.log("🔄 Sending signup request...", signupData);
 
       const csrfToken = await getCsrfToken();
 
@@ -89,22 +88,26 @@ export const AuthProvider = ({ children }) => {
          },
       });
 
-      console.log("✅ Signup successful! ", response.data);
+      if (response.data && response.data.user) {
+        console.log("✅ Signup successful! ", response.data);
 
-      localStorage.setItem("userId", response.data.user._id);
-      localStorage.setItem("email", response.data.user.email || "");
-      localStorage.setItem("fullName", response.data.user.fullName || "");
-      localStorage.setItem("phone", response.data.user.phone || "");
-      
-      return { 
-        success: true, 
-        userId: response.data.user._id,
-        email: response.data.user.email,
-        fullName: response.data.user.fullName,
-        phone: response.data.user.phone,
-      };
+        localStorage.setItem("accessToken", response.data.token);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("userId", response.data.user._id);
 
-      
+        setUser(response.data.user);
+
+        return { 
+          success: true, 
+          userId: response.data.user._id,
+          email: response.data.user.email,
+          fullName: response.data.user.fullName,
+          phone: response.data.user.phone,
+        };
+      } else {
+        throw new Error("Signup failed. No user data returned.");
+      }
     } catch (error) {
       console.error("❌ Signup error: ", error.response?.data?.message || error.message);
       return { success: false, message: error.response?.data?.message || "Signup failed." };
@@ -115,12 +118,14 @@ export const AuthProvider = ({ children }) => {
 
   // Função de Login
   // Login
-  const login = async (loginData) => {
+  const login = async (loginData, csrfToken) => {
     try {
-
+      setIsLoading(true);
       console.log("🔄 Sending login request...");
 
-      const csrfToken = await getCsrfToken();
+      if (!csrfToken) {
+        csrfToken = await getCsrfToken();
+      }
 
       const response = await axios.post("http://localhost:3000/api/auth/login", loginData, {
         withCredentials: true,
@@ -136,16 +141,19 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("accessToken", response.data.token);
         localStorage.setItem("refreshToken", response.data.refreshToken);
         localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("userId", response.data._id);
+        localStorage.setItem("userId", response.data.user._id);
 
         setUser(response.data.user);
         return { success: true };
-
+      } else {
+        throw new Error(response.data.message || "Login failed.");
       }
 
     } catch (error) {
-      console.error("❌ Error during login: ", error);
-      return { success: false, message: "Login failed. Try again." };
+      console.error("❌ Error during login: ", error.response?.data?.message || error.message);
+      return { success: false, message: error.response?.data?.message || "Login failed. Try again." };
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -153,32 +161,31 @@ export const AuthProvider = ({ children }) => {
   // Logout
   const logout = async () => {
     try {
+      const refreshToken = localStorage.getItem("refreshToken");
 
-      const csrfToken = await getCsrfToken();
+      if (!refreshToken) {
+        console.warn("⚠️ No refresh token found. Skipping server logout.");
+      } else {
+        const csrfToken = await getCsrfToken();
 
-      await axios.post("http://localhost:3000/api/auth/logout", 
-        { token: refreshToken }, 
-        {
-        withCredentials: true,
-        headers: { 
-          "XSRF-TOKEN": csrfToken,
-        },
-      });
+        await axios.post("http://localhost:3000/api/auth/logout", 
+          { token: refreshToken }, 
+          {
+          withCredentials: true,
+          headers: { 
+            "XSRF-TOKEN": csrfToken,
+          },
+        });
 
-      console.log("✅ User logged out successfully.");
-
+        console.log("✅ User logged out successfully.");
+      }
+    } catch (error) {
+      console.error("❌ Error logging out: ", error);
+    } finally {
       // Limpar estado global
       // Clear global status
       localStorage.clear();
       setUser(null);
-
-    } catch (error) {
-
-      if (error.response && error.response.status === 400) {
-        console.warn("⚠️ User not authenticated. Clearing logout. ");
-      } else {
-        console.error("❌ Error logging out: ", error);
-      }
     }
   };
 

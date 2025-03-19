@@ -6,6 +6,7 @@ import { loginUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
 import { detectLoginType } from "../../../utils/detectLoginType";
 import { useAuth } from "../../../hook/useAuth";
+import { getCsrfToken } from "../../../utils/getCsrfToken";
 
 export const Login = () => {
 
@@ -13,17 +14,13 @@ export const Login = () => {
     const [loginInput, setLoginInput] = React.useState("");
     const [error, setError] = React.useState("");
     const navigate = useNavigate();
-    const { setUser } = useAuth();
+    const { login, setUser } = useAuth();
 
     const handleInputChange = (e) => {
         const value = e.target.value;
         setLoginInput(value);
 
-        if (value.length > 0 && value.length < 6) {
-            setError("Enter at least 6 characters.");
-        } else {
-            setError("");
-        }
+        setError(value.length > 0 && value.length < 6 ? "Enter at least 6 characters." : "");
     }
 
     const handleLogin = async (event) => {
@@ -31,95 +28,48 @@ export const Login = () => {
         setIsLoading(true);
         setError("");
 
-        console.log("Value of loginInput: ", loginInput);
+        console.log("📩 Value of loginInput: ", loginInput);
 
         try {
-
-            const loginData = detectLoginType(loginInput);
-            console.log("Sending to login: ", loginData) // Debug
 
             if (!loginInput.trim()) {
                 throw new Error("Please provide an email, phone number, or username.");
             }
 
-            const data = await loginUser(loginData);
+            const loginData = detectLoginType(loginInput);
+            console.log("Sending to login: ", loginData) // Debug
+
+            const csrfToken = await getCsrfToken();
+            if (!csrfToken) throw new Error("CSRF Token is missing");
+            
+            const data = await login(loginData, csrfToken);
             console.log("✅ Backend response: ", data);
 
-            if (data && data.success) {
-                console.log("✅ Login request successful, checking session...");
-
-                if (data.token) {
-                    localStorage.setItem("accessToken", data.token);
-                    localStorage.setItem("refreshToken", data.refreshToken);
-                    if (data.user) {
-                        localStorage.setItem("user", JSON.stringify(data.user));
-
-                        localStorage.setItem("userId", data.user._id);
-
-                        console.log("✅ Access Token and User data saved.");
-                    } else {
-                        throw new Error("User data not received.");
-                    }
-
-                } else {
-                    throw new Error("Access Token not received.");
-                }
-
-                const accessToken = localStorage.getItem("accessToken");
-                const user = JSON.parse(localStorage.getItem("user"));
-                const userId = localStorage.getItem("userId");;
-
-                console.log("🔍 userId saved in LocalStorage: ", userId);
-                
-                if (!accessToken || !userId) {
-                    throw new Error("Session storage failed. Please log in again.");
-                }
-
-                console.log("✅ Tokens confirmed. Proceeding.. ");
-
-                const sessionResponse = await fetch("http://localhost:3000/api/auth/session", { 
-                    method: "GET",
-                    credentials: "include",
-                    headers: {
-                        "Authorization": `Bearer ${accessToken}`,
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                if (!sessionResponse.ok) {
-                    throw new Error("Session validation failed.");
-                }
-
-                const sessionData = await sessionResponse.json();
-
-                if (sessionData.user) {
-                    console.log("✅ Session confirmed, user authenticated: ", sessionData.user);
-                    setUser(sessionData.user);
-
-                    // Redirecionar para verificação OTP, passando o propósito
-                    // Redirect to OTP check, passing the purpose
-                    navigate(`/verify-otp?purpose=login`);
-                  
-                } else {
-                    throw new Error("No user data received.");
-                  }
-            } else {
-                console.error("❌ Error: Invalid response from the backend ", data);
-                setError("Login failed. Please try again.");
+            if (!data && !data.success || !data.token || !data.user) {
+                throw new Error("Invalid response from server.");
             }
+
+            localStorage.setItem("accessToken", data.token);
+            localStorage.setItem("refreshToken", data.refreshToken);
+            localStorage.setItem("user", data.user);
+            localStorage.setItem("userId", data.user._id);
+
+            console.log("✅ Tokens and user stored. ");
+
+            setUser(data.user);
+            navigate(`/verify-otp?purpose=login`);
+
         } catch (error) {
-            console.error("Error trying to log in: ", error.message);
+            console.error("❌ Login error: ", error.message);
 
-            if (error.message.includes("CSRF Token")) {
-                setError("Something went wrong. Please refresh the page.");
-            } else if (error.message.includes("Unauthorized")) {
-                setError("Invalid login details. Please check and try again.");
-            } else {
-                setError("Oops! Something went wrong. Please try again.");
-            }
+            setError(
+                error.message.includes("CSRF Token")
+                ? "Something went wrong. Please refresh the page."
+                : "Invalid login details. Please check and try again."
+            );
+        } finally {
+            setIsLoading(false);
         }
-
-        setIsLoading(false);
     }
 
     return (
