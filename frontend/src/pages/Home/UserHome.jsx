@@ -10,7 +10,6 @@ import ScrollToTopButton from "../../components/ScrollToTopButton";
 import { getCsrfToken } from "../../utils/getCsrfToken";
 
 export const UserHome = () => {
-  const { user, logout } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -51,12 +50,7 @@ export const UserHome = () => {
     }
   };
 
-  useEffect(() => {
-    if (!user) {
-      console.warn("⚠️ User not authenticated! Redirecting to login...");
-      navigate("/login")
-    }
-  }, [user, navigate]);
+ 
 
   return (
     <div>

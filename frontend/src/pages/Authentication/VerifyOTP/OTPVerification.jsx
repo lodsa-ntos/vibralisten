@@ -11,6 +11,7 @@ export const OTPVerification = () => {
   const [canResend, setCanResend] = useState(true);
   const [resendTimer, setResendTimer] = useState(30);
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
