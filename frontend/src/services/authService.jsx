@@ -1,9 +1,11 @@
 import { getCsrfToken } from "../utils/getCsrfToken";
+import  { useAuth } from "../provider/authProvider";
 
 export const loginUser = async (loginData) => {
   try {
 
     const csrfToken = await getCsrfToken();
+    const { setToken } = useAuth();
 
     if (!csrfToken) {
       console.error("❌ CSRF Token is missing. Possible issue with cookies or session.");
@@ -11,6 +13,7 @@ export const loginUser = async (loginData) => {
     }
 
     console.log("Sending loginInput: ", loginData);
+    setToken("csrfToken");
 
     const response = await fetch("http://localhost:3000/api/auth/login", {
       method: "POST",

@@ -39,26 +39,6 @@ const App = () => {
       path: "/",
       element: <div><PublicHome /></div>
     },
-    {
-      path: "/about",
-      element: <div><PublicHome /></div>
-    },
-    {
-      path: "/faqs",
-      element: <div><PublicHome /></div>
-    },
-    {
-      path: "/terms",
-      element: <div><PublicHome /></div>
-    },
-    {
-      path: "/privacy",
-      element: <div><PublicHome /></div>
-    },
-    {
-      path: "/preferences",
-      element: <div><PublicHome /></div>
-    },
   ];
 
   // Define routes accessible only to authenticated users
@@ -71,10 +51,6 @@ const App = () => {
         {
           path: "/home",
           element: <div><UserHome /></div>
-        },
-        {
-          path: "/profile",
-          element: <div><PublicHome /></div>
         },
         {
           path: "/logout",

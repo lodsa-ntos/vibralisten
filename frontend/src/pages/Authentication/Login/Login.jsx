@@ -49,7 +49,7 @@ export const Login = () => {
             localStorage.setItem("phone", data.user.phone);
 
             console.log("✅ Navigating to /verify-otp... ");
-            navigate(`/verify-otp?purpose=login`);
+            navigate(`/verify-otp?purpose=login`, { replace: true });
 
         } catch (error) {
             console.error("❌ Login error: ", error.message);
@@ -63,6 +63,10 @@ export const Login = () => {
             setIsLoading(false);
         }
     }
+
+    setTimeout(() => {
+        handleLogin();
+    }, 3 * 1000);
 
     return (
         // Div main container
