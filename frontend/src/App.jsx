@@ -4,11 +4,10 @@ import { Login } from "./pages/Authentication/Login/Login";
 import { Signup } from "./pages/Authentication/Signup/Signup";
 import { OTPVerification  } from "./pages/Authentication/VerifyOTP/OTPVerification";
 import { UserHome } from "./pages/Home/UserHome";
+import { Logout } from "./pages/Authentication/Logout/Logout";
 import { useAuth } from "./provider/authProvider";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import {
-  RouterProvider,
-  createBrowserRouter,
   Route,
   Routes,
   useLocation
@@ -34,12 +33,7 @@ const App = () => {
   const { token } = useAuth();
 
   // Define public routes accessible to all users
-  const routesForPublic = [
-    {
-      path: "/",
-      element: <div><PublicHome /></div>
-    },
-  ];
+  const routesForPublic = [ { path: "/", element: <PublicHome /> }, ];
 
   // Define routes accessible only to authenticated users
   const routesForAutheticatedOnly = [
@@ -50,11 +44,11 @@ const App = () => {
       children: [
         {
           path: "/home",
-          element: <div><UserHome /></div>
+          element: <UserHome />
         },
         {
-          path: "/logout",
-          element: <div><PublicHome /></div>
+          path: "logout",
+          element: <Logout />
         },
       ],
     },
@@ -63,33 +57,46 @@ const App = () => {
   // Define routes accessible only to non-authenticated users
   const routesForNotAutheticatedOnly = [
     {
+      path: "/",
+      element: <PublicHome />
+    },
+    {
       path: "/login",
-      element: <div><Login /></div>
+      element: <Login />
     },
     {
       path: "/signup",
-      element: <div><Signup /></div>
+      element: <Signup />
     },
     {
       path: "/verify-otp",
-      element: <div><OTPVerification /></div>
+      element: <OTPVerification />
     },
   ];
 
   // Combine and conditionally include routes based on authentication status
-  const router = createBrowserRouter([
-    ...routesForPublic,
-    ...(!token ? routesForNotAutheticatedOnly : []),
-    ...routesForAutheticatedOnly,
-  ]);
-  
   return (
     <>
       <ScrollToSection />
-      // Provide the router configuration using RouterProvider
-      <RouterProvider router={router} />
+      <Routes>
+        {routesForPublic.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+
+        {!token && routesForNotAutheticatedOnly.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+        ))}
+          
+        {routesForAutheticatedOnly.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element}>
+            {route.children && route.children.map((child, childIndex) => (
+                <Route key={childIndex} path={child.path} element={child.element} />
+            ))}
+          </Route>
+        ))}
+      </Routes>
     </>
   );
-};
+}
 
 export default App;
