@@ -42,21 +42,18 @@ export const Login = () => {
             const csrfToken = await getCsrfToken();
             if (!csrfToken) throw new Error("CSRF Token is missing");
             
-            const data = await login(loginData, csrfToken);
+            const data = await loginUser(loginData);
             console.log("✅ Backend response: ", data);
 
-            if (!data || !data.success || !data.token || !data.user) {
+            if (!data || !data.success || !data.user) {
                 throw new Error("Invalid response from server.");
             }
 
-            localStorage.setItem("accessToken", data.token);
-            localStorage.setItem("refreshToken", data.refreshToken);
-            localStorage.setItem("user", JSON.stringify(data.user));
             localStorage.setItem("userId", data.user._id);
+            localStorage.setItem("email", data.user.email);
+            localStorage.setItem("phone", data.user.phone);
 
-            console.log("✅ Tokens and user stored. ");
-
-            setUser(data.user);
+            console.log("✅ Navigating to /verify-otp... ");
             navigate(`/verify-otp?purpose=login`);
 
         } catch (error) {

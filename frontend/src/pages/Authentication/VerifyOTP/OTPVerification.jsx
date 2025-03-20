@@ -25,8 +25,8 @@ export const OTPVerification = () => {
 
     const userId = localStorage.getItem("userId");
     const email = localStorage.getItem("email");
-    const fullName = localStorage.getItem("fullName");
     const phone = localStorage.getItem("phone");
+    const fullName = localStorage.getItem("fullName");
 
     console.log("📌 Data recovered from LocalStorage:");
     console.log("userId: ", userId);
@@ -34,6 +34,7 @@ export const OTPVerification = () => {
     console.log("fullName: ", fullName);
     console.log("email: ", email);
     console.log("phone: ", phone);
+    console.log("purpose: ", purpose);
 
     console.log("📌 userId before sending the request: ", userId);
     if (!userId || !otp || otp.length !== 6) {
@@ -74,15 +75,15 @@ export const OTPVerification = () => {
         body: JSON.stringify(payload),
       });
 
-      console.log("🔍 Login response status: ", response.status);
+      console.log("🔍 OTP Verification response status: ", response.status);
 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Verify OTP failed");
       }
 
-      const responseData = await response.json();
-      console.log("✅ OTP Verified! Checking session...", responseData);
+      const data = await response.json();
+      console.log("✅ OTP Verified! Checking session...", data);
 
       const sessionResponse = await fetch("http://localhost:3000/api/auth/session", {
         method: "GET",
