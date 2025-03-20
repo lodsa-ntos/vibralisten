@@ -5,7 +5,6 @@ import { RiMusicAiLine } from "react-icons/ri";
 import { loginUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
 import { detectLoginType } from "../../../utils/detectLoginType";
-import { useAuth } from "../../../hook/useAuth";
 import { getCsrfToken } from "../../../utils/getCsrfToken";
 
 export const Login = () => {
@@ -14,7 +13,6 @@ export const Login = () => {
     const [loginInput, setLoginInput] = React.useState("");
     const [error, setError] = React.useState("");
     const navigate = useNavigate();
-    const { login, setUser } = useAuth();
 
     const handleInputChange = (e) => {
         const value = e.target.value;
@@ -38,9 +36,6 @@ export const Login = () => {
 
             const loginData = detectLoginType(loginInput);
             console.log("Sending to login: ", loginData) // Debug
-
-            const csrfToken = await getCsrfToken();
-            if (!csrfToken) throw new Error("CSRF Token is missing");
             
             const data = await loginUser(loginData);
             console.log("✅ Backend response: ", data);

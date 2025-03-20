@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { RiMusicAiLine } from "react-icons/ri";
 import { getCsrfToken } from "../../../utils/getCsrfToken";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hook/useAuth";
 
 export const OTPVerification = () => {
-  const { setUser } = useAuth();
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -103,8 +101,8 @@ export const OTPVerification = () => {
         throw new Error("User data is missing in session response.");
       }
 
-      localStorage.setItem("user", JSON.stringify(sessionData.user));
-      localStorage.removeItem("userId")
+      localStorage.setItem("accessToken", data.token);
+      localStorage.removeItem("refreshToken", data.refreshToken)
       setUser(sessionData.user);
 
       console.log("✅ Navigating to /home... ");

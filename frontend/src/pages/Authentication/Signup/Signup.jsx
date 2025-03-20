@@ -4,7 +4,6 @@ import { FcGoogle } from "react-icons/fc";
 import { TbMusicShare } from "react-icons/tb";
 import { RiMusicAiLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../context/AuthContext";
 
 export const Signup = () => {
   const [signupData, setSignupData] = useState({

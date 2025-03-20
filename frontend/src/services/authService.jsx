@@ -33,14 +33,6 @@ export const loginUser = async (loginData) => {
     const data = await response.json();
     console.log("✅ Data received from backend: ", data);
 
-    if (!data.token) {
-      console.error("🔴 Access Token not received: ", data);
-      throw new Error("Access Token not received");
-    }
-
-    localStorage.setItem("accessToken", data.token);
-    console.log("✅ Access Token stored successfully!");
-
     return data;
 
   } catch (error) {
