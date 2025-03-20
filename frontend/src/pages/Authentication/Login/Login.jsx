@@ -5,7 +5,7 @@ import { RiMusicAiLine } from "react-icons/ri";
 import { loginUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
 import { detectLoginType } from "../../../utils/detectLoginType";
-import { getCsrfToken } from "../../../utils/getCsrfToken";
+import  { useAuth } from "../../../provider/authProvider";
 
 export const Login = () => {
 
@@ -13,13 +13,14 @@ export const Login = () => {
     const [loginInput, setLoginInput] = React.useState("");
     const [error, setError] = React.useState("");
     const navigate = useNavigate();
+    const { setToken } = useAuth();
 
     const handleInputChange = (e) => {
         const value = e.target.value;
         setLoginInput(value);
 
         setError(value.length > 0 && value.length < 6 ? "Enter at least 6 characters." : "");
-    }
+    };
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -44,6 +45,8 @@ export const Login = () => {
                 throw new Error("Invalid response from server.");
             }
 
+            setToken("csrfToken");
+
             localStorage.setItem("userId", data.user._id);
             localStorage.setItem("email", data.user.email);
             localStorage.setItem("phone", data.user.phone);
@@ -62,11 +65,7 @@ export const Login = () => {
         } finally {
             setIsLoading(false);
         }
-    }
-
-    setTimeout(() => {
-        handleLogin();
-    }, 3 * 1000);
+    };
 
     return (
         // Div main container
