@@ -33,32 +33,9 @@ const App = () => {
   const { token } = useAuth();
 
   // Define public routes accessible to all users
-  const routesForPublic = [ { path: "/", element: <PublicHome /> }, ];
-
-  // Define routes accessible only to authenticated users
-  const routesForAutheticatedOnly = [
-    {
-      path: "/home",
-      // Wrap the component in ProtectedRoute
-      element: <ProtectedRoute />, 
-      children: [
-        {
-          path: "/home",
-          element: <UserHome />
-        },
-        {
-          path: "logout",
-          element: <Logout />
-        },
-      ],
-    },
-  ];
-
-  // Define routes accessible only to non-authenticated users
-  const routesForNotAutheticatedOnly = [
-    {
-      path: "/",
-      element: <PublicHome />
+  const routesForPublic = [ 
+    { path: "/", 
+      element: <PublicHome /> 
     },
     {
       path: "/login",
@@ -74,6 +51,21 @@ const App = () => {
     },
   ];
 
+  // Define routes accessible only to authenticated users
+  const routesForAutheticatedOnly = [
+    {
+      path: "/home",
+      // Wrap the component in ProtectedRoute
+      element: <ProtectedRoute />, 
+      children: [
+        {
+          path: "/home",
+          element: <UserHome />
+        },
+      ],
+    },
+  ];
+
   // Combine and conditionally include routes based on authentication status
   return (
     <>
@@ -81,10 +73,6 @@ const App = () => {
       <Routes>
         {routesForPublic.map((route, index) => (
           <Route key={index} path={route.path} element={route.element} />
-        ))}
-
-        {!token && routesForNotAutheticatedOnly.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
         ))}
           
         {routesForAutheticatedOnly.map((route, index) => (

@@ -9,7 +9,7 @@ export const getCsrfToken = async () => {
     }
   
     const data = await response.json();
-    console.log(data.csrfToken);
+    console.log("✅ CSRF Token: ", data.csrfToken);
     return data.csrfToken;
 
   } catch (error) {

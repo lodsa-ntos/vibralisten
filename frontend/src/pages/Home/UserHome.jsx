@@ -8,9 +8,11 @@ import Contact from "../Contact/Contact";
 import Footer from "../../components/Footer";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 import { getCsrfToken } from "../../utils/getCsrfToken";
+import  { useAuth } from "../../provider/authProvider";
 
 export const UserHome = () => {
   const [error, setError] = useState("");
+  const { clearToken  } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -40,9 +42,8 @@ export const UserHome = () => {
       }
 
       console.log("✅ Logout successfully ");
-      
-      logout();
-      navigate("/login");
+      clearToken();
+      navigate("/", { replace: true });
 
     } catch (error) {
       setError("Something went wrong. Please try again.");
