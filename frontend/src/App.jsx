@@ -55,45 +55,63 @@ const App = () => {
       path: "/privacy",
       element: <div><PublicHome /></div>
     },
+    {
+      path: "/preferences",
+      element: <div><PublicHome /></div>
+    },
   ];
 
   // Define routes accessible only to authenticated users
   const routesForAutheticatedOnly = [
     {
       path: "/home",
-      element: <ProtectedRoute />,
+      // Wrap the component in ProtectedRoute
+      element: <ProtectedRoute />, 
       children: [
         {
-          path: "/about",
+          path: "/home",
+          element: <div><UserHome /></div>
+        },
+        {
+          path: "/profile",
           element: <div><PublicHome /></div>
         },
         {
-          path: "/faqs",
-          element: <div><PublicHome /></div>
-        },
-        {
-          path: "/terms",
-          element: <div><PublicHome /></div>
-        },
-        {
-          path: "/privacy",
+          path: "/logout",
           element: <div><PublicHome /></div>
         },
       ],
     },
   ];
 
+  // Define routes accessible only to non-authenticated users
+  const routesForNotAutheticatedOnly = [
+    {
+      path: "/login",
+      element: <div><Login /></div>
+    },
+    {
+      path: "/signup",
+      element: <div><Signup /></div>
+    },
+    {
+      path: "/verify-otp",
+      element: <div><OTPVerification /></div>
+    },
+  ];
+
+  // Combine and conditionally include routes based on authentication status
+  const router = createBrowserRouter([
+    ...routesForPublic,
+    ...(!token ? routesForNotAutheticatedOnly : []),
+    ...routesForAutheticatedOnly,
+  ]);
+  
   return (
     <>
       <ScrollToSection />
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<PublicHome />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/verify-otp" element={<OTPVerification />} />
-          <Route path="/home" element={<UserHome />} />
-      </Routes>
+      // Provide the router configuration using RouterProvider
+      <RouterProvider router={router} />
     </>
   );
 };
