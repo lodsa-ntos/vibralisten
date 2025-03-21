@@ -5,12 +5,14 @@ import { TbMusicShare } from "react-icons/tb";
 import { RiMusicAiLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { signupUser } from "../../../services/authService";
+import { useAuth } from "../../../provider/authProvider";
 
 export const Signup = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { setToken } = useAuth();
+  const fullNamePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ]+ [A-Za-zÀ-ÖØ-öø-ÿ]+$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^\d{9,15}$/;
 
@@ -42,16 +44,16 @@ export const Signup = () => {
       return;
     }
 
-    if (signupData.fullName.trim()) {
-      setError("The full name is required. (First and last only)");
+    if (!fullNamePattern.test(signupData.fullName.trim())) {
+      setError("The full name is required. (First and last name only)");
       setIsLoading(false);
       return;
     }
 
     const formattedData = {
       fullName: signupData.fullName.trim(),
-      email: email || undefined,
-      phone: phone || undefined,
+      email: email ? email.trim().toLowerCase() : undefined,
+      phone: phone ? phone.trim() : undefined,
     };
 
     try {
@@ -66,7 +68,7 @@ export const Signup = () => {
 
       setToken(data.token);
 
-      localStorage.setItem("userId", data.user.userId);
+      localStorage.setItem("userId", data.user._id);
       if (data.user.email) localStorage.setItem("email", data.user.email);
       if (data.user.phone) localStorage.setItem("phone", data.user.phone);
       localStorage.setItem("fullName", data.user.fullName);
