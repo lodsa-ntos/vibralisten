@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RiMusicAiLine } from "react-icons/ri";
 import { getCsrfToken } from "../../../utils/getCsrfToken";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../provider/authProvider";
 
 export const OTPVerification = () => {
   const [otp, setOtp] = useState("");
@@ -12,6 +13,7 @@ export const OTPVerification = () => {
   const [resendTimer, setResendTimer] = useState(30);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const { setToken } = useAuth();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -105,8 +107,9 @@ export const OTPVerification = () => {
         throw new Error("User data is missing in session response.");
       }
 
+      setToken(data.token);
       localStorage.setItem("accessToken", data.token);
-      localStorage.removeItem("refreshToken", data.refreshToken)
+      localStorage.setItem("refreshToken", data.refreshToken);
       setUser(sessionData.user);
 
       console.log("✅ Navigating to /home... ");
@@ -140,6 +143,13 @@ export const OTPVerification = () => {
       });
     }, 1000);
   }
+
+  useEffect (() => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      navigate(`/login`, { replace: true });
+    }
+  }, []);
 
   return (
     <div style={{ 
