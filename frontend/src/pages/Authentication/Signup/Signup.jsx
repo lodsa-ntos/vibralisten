@@ -33,7 +33,7 @@ export const Signup = () => {
     if (emailRegex.test(signupData.emailOrPhone)) {
       email = signupData.emailOrPhone;
     } else if (phoneRegex.test(signupData.emailOrPhone)) {
-      phone = signupData.emailOrPhone
+      phone = signupData.emailOrPhone;
     } else {
       setError("Please enter a valid email or phone number.");
       setIsLoading(false);
@@ -41,11 +41,10 @@ export const Signup = () => {
     }
 
     const formattedData = {
-      fullName: signupData.fullName
+      fullName: signupData.fullName,
+      email: email || undefined,
+      phone: phone || undefined,
     };
-
-    if (email) formattedData.email = email;
-    if (phone) formattedData.phone = phone;
 
     try {
       console.log("🚀 Sending signup request with: ", formattedData);
@@ -78,7 +77,6 @@ export const Signup = () => {
     } finally {
       setIsLoading(false);
     }
-    
   }
   
   return (

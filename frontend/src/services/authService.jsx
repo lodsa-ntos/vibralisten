@@ -68,27 +68,14 @@ export const SignupUser = async (signupData) => {
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.error("🔴  Backend returned an error: ", errorData);
+      console.error("🔴  Error received from the backend: ", errorData);
       throw new Error(errorData.message || "Signup failed. Please try again.");
     }
 
     const data = await response.json();
     console.log("✅ Data received from backend: ", data);
 
-    if (!data.token) {
-      console.warn("⚠️ No Access Token received. Possible backend issue.");
-      throw new Error("Signup successful, but access token was not received.");
-    }
-
-    localStorage.setItem("accessToken", data.token);
-    if (data.refreshToken) {
-      localStorage.setItem("accessToken", data.refreshToken);
-      console.log("✅ Refresh Token stored.");
-    }
-
-    console.log("🎉 Signup successful! Access Token stored.");
-
-    return { success: true, user: data };
+    return data;
 
   } catch (error) {
     console.error("❌ Error during signup process: ", error.message);
