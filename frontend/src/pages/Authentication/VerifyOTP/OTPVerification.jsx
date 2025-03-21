@@ -36,6 +36,9 @@ export const OTPVerification = () => {
     console.log("purpose: ", purpose);
 
     console.log("📌 userId before sending the request: ", userId);
+
+    console.log("🛠️ Checking OTP before verification: ", otp, "Length: ", otp.length);
+
     if (!userId || !otp || otp.length !== 6) {
       setError("User not found. Please login again.");
       setIsLoading(false);
@@ -62,7 +65,7 @@ export const OTPVerification = () => {
       ? { userId, otp, fullName, email, phone }
       : { userId, otp };
 
-      console.log("✅ Payload enviado:", payload);
+      console.log("📩 Payload sent to check OTP:", JSON.stringify(payload));
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -107,7 +110,7 @@ export const OTPVerification = () => {
       setUser(sessionData.user);
 
       console.log("✅ Navigating to /home... ");
-      navigate("/home");
+      navigate(`/home`, { replace: true });
 
     } catch (error) {
       setError("Something went wrong. Please try again.");
