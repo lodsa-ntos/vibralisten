@@ -4,18 +4,20 @@ import { FcGoogle } from "react-icons/fc";
 import { TbMusicShare } from "react-icons/tb";
 import { RiMusicAiLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { signupUser } from "../../../services/authService";
 
 export const Signup = () => {
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { setToken } = useAuth();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\d{9,15}$/;
+
   const [signupData, setSignupData] = useState({
     emailOrPhone: "",
     fullName: "",
   });
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const { signup } = useContext(AuthContext);
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\d{9,15}$/;
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -35,13 +37,19 @@ export const Signup = () => {
     } else if (phoneRegex.test(signupData.emailOrPhone)) {
       phone = signupData.emailOrPhone;
     } else {
-      setError("Please enter a valid email or phone number.");
+      setError("Please enter a valid e-mail address or phone number.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (signupData.fullName.trim()) {
+      setError("The full name is required. (First and last only)");
       setIsLoading(false);
       return;
     }
 
     const formattedData = {
-      fullName: signupData.fullName,
+      fullName: signupData.fullName.trim(),
       email: email || undefined,
       phone: phone || undefined,
     };
@@ -49,18 +57,22 @@ export const Signup = () => {
     try {
       console.log("🚀 Sending signup request with: ", formattedData);
 
-      const response = await signup(formattedData);
+      const data = await signupUser(formattedData);
+      console.log("✅ Response from the backend: ", data);
 
-      if (response.success) {
-        console.log("✅ Signup successful! Redirecting... ");
-
-        if (response.userId) {
-          localStorage.setItem("userId", response.userId);
-        }
-        navigate(`/verify-otp?purpose=signup`);
-      } else {
-        setError(response.message);
+      if (!data || !data.success || !data.user) {
+        throw new Error("Invalid response from server.");
       }
+
+      setToken(data.token);
+
+      localStorage.setItem("userId", data.user.userId);
+      if (data.user.email) localStorage.setItem("email", data.user.email);
+      if (data.user.phone) localStorage.setItem("phone", data.user.phone);
+      localStorage.setItem("fullName", data.user.fullName);
+
+      console.log("✅ Redirecting to OTP check... ");
+      navigate(`/verify-otp?purpose=signup`, { replace: true });
 
     } catch (error) {
       console.error("❌ Signup error: ", error);
@@ -72,7 +84,7 @@ export const Signup = () => {
       } else if (error.message.includes("User already registered")) {
         setError("This account already exists. Please log in instead.");
       } else {
-        setError("Oops! Something went wrong. Please try again.");
+        setError("Error creating account. Try again.");
       }
     } finally {
       setIsLoading(false);

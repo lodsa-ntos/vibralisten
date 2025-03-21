@@ -42,7 +42,7 @@ export const loginUser = async (loginData) => {
 };
 
 
-export const SignupUser = async (signupData) => {
+export const signupUser = async (signupData) => {
   try {
 
     const csrfToken = await getCsrfToken();
