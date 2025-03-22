@@ -76,7 +76,7 @@ export const UserHome = () => {
           Logout
         </button>
       </div>
-      
+
       <ScrollToTopButton />
 
     </div>

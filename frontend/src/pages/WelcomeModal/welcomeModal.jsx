@@ -2,15 +2,43 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence  } from "framer-motion";
 
 export const WelcomeModal = ({ user, onclose }) => {
-  const [username, setUsername] = useState(user?.username || "");
+  const [username, setUsername] = useState(localStorage.getItem("username") || "");
 
   useEffect(() => {
-    if (!localStorage.getItem("hasSeenWelcomeModal")) {
-      localStorage.setItem("hasSeenWelcomeModal", "true");
+    async function fetchData() {
+      const sessionResponse = await fetch("http://localhost:3000/api/auth/session", {
+        method: "GET",
+        credentials: "include",
+      });
+    
+      console.log("🔍 Login response status: ", sessionResponse.status);
+    
+      if (!sessionResponse.ok) {
+        throw new Error("Session verification failed.");
+      }
+    
+      const sessionData = await sessionResponse.json();
+      console.log("✅ User authenticated: ", sessionData.user);
+    
+      if (!sessionData.user) {
+        throw new Error("User data is missing in session response.");
+      }
+    
+      setUsername(sessionData.user.username);
+      localStorage.setItem("username", sessionData.user.username);
+      
+      console.log("👋 UserHome: ", username);
+  
+      if (!localStorage.getItem("hasSeenWelcomeModal")) {
+        localStorage.setItem("hasSeenWelcomeModal", "true");
+      }
     }
+    fetchData();
   }, []);
 
   const handleStart = () => {
+    localStorage.setItem("username", username);
+
     console.log("✅ Username confirmado: ", username);
     onclose();
   };
