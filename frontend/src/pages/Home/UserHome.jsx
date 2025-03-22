@@ -55,6 +55,12 @@ export const UserHome = () => {
 
   return (
     <div>
+      <div class="-mt-28 mb-6 px-4">
+        <div class="mx-auto max-w-6xl shadow-lg p-8 relative bg-white rounded">
+          <h2 class="text-xl text-slate-800 font-semibold">Product or Service Inquiry</h2>
+zxczx
+        </div>
+      </div>
       <div className="container-layout">
         <section id="home" className="home-section">
           {/* spacing before the header */}

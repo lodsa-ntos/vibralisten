@@ -117,16 +117,21 @@ export const Signup = () => {
             </div>
 
             {/* Social Logins */}
-            <div className="sm:flex sm:items-start space-x-4 max-sm:space-y-4 mb-8">
+            <div className="sm:flex sm:items-start space-x-4 max-sm:space-y-4 mb-8 items-center justify-center">
+
               <button type="button" className="py-2.5 px-4 flex text-sm font-medium rounded-md bg-blue-100 hover:bg-blue-200 focus:outline-none">
               <FaSpotify className="size-5 text-green-500 mr-2" /> 
-                Sign up with Spotify
+                Spotify
               </button>
-              <button type="button" className="py-2.5 px-4 text-sm font-semibold rounded-md text-blue-500 bg-blue-100 hover:bg-blue-200 focus:outline-none">
-                <FaDeezer  className="size-5" /> 
+
+              <button type="button" className="py-2.5 px-4 flex text-sm font-medium rounded-md bg-blue-100 hover:bg-blue-200 focus:outline-none">
+                <FaDeezer  className="size-5 text-purple-600 mr-2" /> 
+                Deezer
               </button>
-              <button type="button" className="py-2.5 px-4 text-sm font-semibold rounded-md text-blue-500 bg-blue-100 hover:bg-blue-200 focus:outline-none">
-                <FcGoogle className="size-5" />
+
+              <button type="button" className="py-2.5 px-4 flex text-sm font-medium rounded-md bg-blue-100 hover:bg-blue-200 focus:outline-none">
+                <FcGoogle className="size-5 " />
+                oogle
               </button>
             </div>
 

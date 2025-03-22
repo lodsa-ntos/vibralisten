@@ -18,6 +18,7 @@ export const OTPVerification = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setPurpose(params.get("purpose") || "login");
+    startResendTimer();
   }, []);
 
   const handleVerifyOTP = async () => {
@@ -123,15 +124,99 @@ export const OTPVerification = () => {
     setIsLoading(false);
   };
 
-  const handleResendOTP = () => {
+  const handleResendOTP = async () => {
+    // Block if already counted
     if (!canResend) return;
+
+    setCanResend(false);
+
+    const userId = localStorage.getItem("userId");
+    const email = localStorage.getItem("email");
+    const phone = localStorage.getItem("phone");
+    const fullName = localStorage.getItem("fullName");
+
+    if (!userId) {
+      setError("Session expired. Please log in again.");
+      return navigate("/login", { replace: true });
+    }
+
+    try {
+
+      const csrfToken = await getCsrfToken();
+
+      if (!csrfToken) throw new Error("CSRF Token is missing");
+
+      const payload = {
+        userId,
+        otp,
+        purpose,
+        email: email || undefined,
+        phone: phone || undefined,
+        ...(purpose === "signup" && { fullName, email, phone })
+      };
+
+      console.log("📩 Sending OTP Resend Request: ", JSON.stringify(payload));
+
+      // API para reenviar OTP
+      // API to resend OTP
+      const response = await fetch("http://localhost:3000/api/auth/resend-otp", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "XSRF-TOKEN": csrfToken,
+        },
+        credentials: "include",
+        body: JSON.stringify(payload),
+      });
+
+      console.log("🔍 OTP Resend Response Status: ", response.status);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to resend OTP.");
+      }
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.message.includes("Existing OTP is still valid")) {
+          console.log("✅ OTP still valid, no need to resend. ");
+          // Does not start counting because OTP is still valid
+          setCanResend(true);
+          return;
+        }
+
+        // Only starts counting if a new OTP has been generated
+        console.log("✅ New OTP sent, starting countdown.");
+        setResendTimer(30);
+
+        const interval = setInterval(() => {
+          setResendTimer(prev => {
+            if (prev === 1) {
+              clearInterval(interval);
+              setCanResend(true);
+            }
+            return prev - 1;
+          });
+        }, 1000);
+
+      } else {
+        setError("❌ Error resending OTP: Try again later.");
+        // Release to try sending again
+        setCanResend(true);
+      }
+
+    } catch (error) {
+      console.error("❌ OTP Resend Error: ", error);
+      setError("Failed to resend OTP. Try again later.");
+      // Release to try sending again
+      setCanResend(true);
+    }
+  }
+  
+  // Function that starts counting automatically when you enter the page
+  const startResendTimer = () => {
     setCanResend(false);
     setResendTimer(30);
-
-    // API para reenviar OTP
-    // API to resend OTP
-    fetch("http://localhost:3000/api/auth/resend-otp")
-    .then(() => console.log("OTP reenviado"));
 
     const interval = setInterval(() => {
       setResendTimer(prev => {
@@ -142,7 +227,7 @@ export const OTPVerification = () => {
         return prev - 1;
       });
     }, 1000);
-  }
+  };
 
   useEffect (() => {
     const userId = localStorage.getItem("userId");
