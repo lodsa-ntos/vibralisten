@@ -4,42 +4,35 @@ import { motion, AnimatePresence  } from "framer-motion";
 export const WelcomeModal = ({ user, onclose }) => {
   const [username, setUsername] = useState(localStorage.getItem("username") || "");
 
-  useEffect(() => {
-    async function fetchData() {
+  const handleStart = async () => {
+    try {
       const sessionResponse = await fetch("http://localhost:3000/api/auth/session", {
         method: "GET",
         credentials: "include",
       });
-    
-      console.log("🔍 Login response status: ", sessionResponse.status);
-    
-      if (!sessionResponse.ok) {
-        throw new Error("Session verification failed.");
-      }
-    
+
       const sessionData = await sessionResponse.json();
-      console.log("✅ User authenticated: ", sessionData.user);
-    
-      if (!sessionData.user) {
-        throw new Error("User data is missing in session response.");
-      }
-    
-      setUsername(sessionData.user.username);
-      localStorage.setItem("username", sessionData.user.username);
+      const userId = sessionData.user?.id;
+
+      if (!userId) throw new Error("User ID is missing");
+
+      const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       
-      console.log("👋 UserHome: ", username);
-  
-      if (!localStorage.getItem("hasSeenWelcomeModal")) {
-        localStorage.setItem("hasSeenWelcomeModal", "true");
-      }
+      if (!response.ok) throw new Error("Failed to update user status");
+      
+
+      console.log("✅ Updated isNewUser to false.");
+
+    } catch (error) {
+      console.error("❌ Error updating new user: ", error);
     }
-    fetchData();
-  }, []);
 
-  const handleStart = () => {
-    localStorage.setItem("username", username);
-
-    console.log("✅ Username confirmado: ", username);
     onclose();
   };
 
