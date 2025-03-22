@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import About from "../About/About";
-import FAQs from "../FAQs/FAQs";
-import Contact from "../Contact/Contact";
-import Footer from "../../components/Footer";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 import { getCsrfToken } from "../../utils/getCsrfToken";
-import  { useAuth } from "../../provider/authProvider";
+import  { useAuth } from "../../provider/authProvider";import { WelcomeModal } from "../WelcomeModal/welcomeModal";
 
 export const UserHome = () => {
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [user, setUser] = useState({ username: "" });
   const [error, setError] = useState("");
   const { clearToken  } = useAuth();
   const navigate = useNavigate();
@@ -51,68 +47,37 @@ export const UserHome = () => {
     }
   };
 
- 
+  useEffect(() => {
+    const hasSeenWelcomeModal = localStorage.getItem("hasSeenWelcomeModal");
+    if (!hasSeenWelcomeModal) {
+      setShowWelcomeModal(true);
+    }
+  }, []);
 
   return (
-    <div>
-      <div class="-mt-28 mb-6 px-4">
-        <div class="mx-auto max-w-6xl shadow-lg p-8 relative bg-white rounded">
-          <h2 class="text-xl text-slate-800 font-semibold">Product or Service Inquiry</h2>
-zxczx
-        </div>
-      </div>
-      <div className="container-layout">
-        <section id="home" className="home-section">
-          {/* spacing before the header */}
-          <div className="home-above-header-spacing"></div>
-          <Header />
-          {/* spacing below the header */}
-          <div className="home-below-header-spacing"></div>
-          {/* featured-title */}
-          <h1>
-            {error && <p className="text-red-500">{error}</p>}
-            <button onClick={handleLogout}>Logout</button>
-          </h1>
-          {/* Space below the featured title */}
-          <div className="home-below-featured-title"></div>
-          {/* subtitle */}
-          <p className="subtitle">Fast, simple and free. Just paste the link.</p>
-          {/* Space below the subtitle */}
-          <div className="home-below-subtitle"></div>
-          {/* Button */}
+    <div className="relative">
 
-          <div className="spacing-between-link-box-btn"></div>
+      {/* Home content */}
+      <h1 className="text-3xl p-6 font-semibold text-center mt-8">
+        Welcome to VibraListen! 🎵
+      </h1>
 
-          <p className="impact-phrase">
-          🎵 Download your favorite tracks effortlessly. Enjoy music your way!
-          </p>
-        
-        </section>
+      {/* Show Modal if first time */}
+      {showWelcomeModal && (
+        <WelcomeModal user={user} onclose={() => setShowWelcomeModal(false)} />
+      )}
 
-        {/* About Section */}
-          <section id="about" className="about-section">
-            <About />
-          </section>
-
-        {/* FAQs Section */}
-          <section id="faqs" className="faqs-section">
-            <FAQs />
-          </section>
-
-          {/* Contact Section */}
-        <section id="contact" className="contact-section">
-              <Contact />
-          </section>
+      {/* Logout button */}
+      <div className="flex justify-center mt-8">
+        <button
+          onClick={handleLogout}
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-200"
+        >
+          Logout
+        </button>
       </div>
       
-        
-        
-        {/* Footer Section*/}
-        <footer id="footer" className="footer-section">
-            <Footer />
-        </footer>
-
-        <ScrollToTopButton />
+      <ScrollToTopButton />
 
     </div>
   );
