@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence  } from "framer-motion";
 import { getCsrfToken } from "../../utils/getCsrfToken";
-import { useAuth } from "../../provider/authProvider";
 
 export const WelcomeModal = ({ user, onclose }) => {
   const [username, setUsername] = useState(localStorage.getItem("username") || "");
-  const { setToken } = useAuth();
 
   const handleStart = async () => {
     try {
@@ -33,11 +31,6 @@ export const WelcomeModal = ({ user, onclose }) => {
       });
       
       if (!response.ok) throw new Error("Failed to update user status");
-
-      const data = await response.json();
-      console.log("Updated user data: ", data);
-
-      setToken(data.token);
 
       console.log("✅ Updated isNewUser to false.");
 
