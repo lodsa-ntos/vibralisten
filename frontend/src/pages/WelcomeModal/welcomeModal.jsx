@@ -12,7 +12,7 @@ export const WelcomeModal = ({ user, onclose }) => {
       });
 
       const sessionData = await sessionResponse.json();
-      const userId = sessionData.user?.id;
+      const userId = sessionData.user?._id;
 
       if (!userId) throw new Error("User ID is missing");
 
@@ -29,12 +29,31 @@ export const WelcomeModal = ({ user, onclose }) => {
 
       console.log("✅ Updated isNewUser to false.");
 
+      console.log("✅ Username confirmado: ", username);
+
     } catch (error) {
       console.error("❌ Error updating new user: ", error);
     }
 
     onclose();
   };
+
+  useEffect(() => {
+    async function fetchSession() {
+      const sessionResponse = await fetch("http://localhost:3000/api/auth/session", {
+          method: "GET",
+          credentials: "include",
+      });
+
+      const sessionData = await sessionResponse.json();
+      
+      if (!sessionData.user) throw new Error("User data missing.");
+
+      setUsername(sessionData.user.username);
+    }
+
+    fetchSession();
+  });
 
   return (
     <AnimatePresence>

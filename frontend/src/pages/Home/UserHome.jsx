@@ -67,6 +67,8 @@ export const UserHome = () => {
       if (data.user.isNewUser) {
         setShowWelcomeModal(true);
       }
+
+      console.log("✅ Session successfully: ", data.user.isNewUser);
     }
 
     fetchSession();
