@@ -48,10 +48,28 @@ export const UserHome = () => {
   };
 
   useEffect(() => {
-    const hasSeenWelcomeModal = localStorage.getItem("hasSeenWelcomeModal");
-    if (!hasSeenWelcomeModal) {
-      setShowWelcomeModal(true);
+    async function fetchSession() {
+      const response = await fetch("http://localhost:3000/api/auth/session", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+      console.log("Session data: ", data);
+
+      setUser(data.user);
+
+      if (!response.ok) {
+        console.error("🔴 Session Error: ", data);
+        throw new Error(data.message || "Session failed");
+      }
+
+      if (data.user.isNewUser) {
+        setShowWelcomeModal(true);
+      }
     }
+
+    fetchSession();
   }, []);
 
   return (
