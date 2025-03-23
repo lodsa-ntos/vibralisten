@@ -28,11 +28,15 @@ export const WelcomeModal = ({ user, onclose }) => {
           "XSRF-TOKEN": csrfToken,
         },
         credentials: "include",
+        body: JSON.stringify({
+          isNewUser: false,
+          username: username,
+        }),
       });
       
       if (!response.ok) throw new Error("Failed to update user status");
 
-      console.log("✅ Updated isNewUser to false.");
+      console.log("✅ Username and isNewUser updated!");
 
       console.log("✅ Username confirmado: ", username);
 
@@ -58,7 +62,7 @@ export const WelcomeModal = ({ user, onclose }) => {
     }
 
     fetchSession();
-  });
+  }, []);
 
   return (
     <AnimatePresence>
@@ -93,7 +97,7 @@ export const WelcomeModal = ({ user, onclose }) => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-2 rounded-full boder border-b-gray-400 dark:border-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-center text-zinc-800 dark:text-white mb-6"
+            className="w-full px-4 py-2 rounded-full border-2 border-b-gray-400 dark:border-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-center text-zinc-800 dark:text-white mb-6"
             placeholder="Choose your vibe name"
           />
 
