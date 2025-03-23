@@ -65,8 +65,12 @@ export const WelcomeModal = ({ user, onclose }) => {
     }
 
     fetchSession();
+  }, []);
+
+  useEffect(() => {
 
     if (!username) return;
+    console.log("🔍 Checking username: ", username);
 
     const delayDebounceFn = setTimeout(() => {
       checkUsername(username);
@@ -78,7 +82,19 @@ export const WelcomeModal = ({ user, onclose }) => {
   const checkUsername = async (name) => {
     setChecking(true);
 
-    const res = await fetch(`http://localhost:3000/api/users/check-username?username${encodeURIComponent(name)}`);
+    if (!name || !/^[a-zA-Z0-9_]+$/.test(name)) {
+      setIsAvailable(false);
+      setSuggestions([]);
+      setChecking(false);
+      return;
+    }
+
+    const res = await fetch(`http://localhost:3000/api/users/check-username?username=${encodeURIComponent(name)}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const data = await res.json();
 
@@ -120,9 +136,33 @@ export const WelcomeModal = ({ user, onclose }) => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-2 rounded-full border-2 border-b-gray-400 dark:border-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-center text-zinc-800 dark:text-white mb-6"
+            className="w-full px-4 py-2 rounded-full border border-zinc-400 dark:border-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-center text-black dark:text-white mb-6"
             placeholder="Choose your vibe name"
           />
+
+          {/* Text below */}
+          {checking ? (
+            <p className="text-sm text-gray-500 mb-5 text-center">Checking availability...</p>
+          ): isAvailable === true ? (
+            <p className="text-sm text-green-600 mb-5">✅ Username available!</p>
+          ) : isAvailable === false ? (
+            <p className="text-sm text-red-500 mb-5">❌ Username already in use.</p>
+          ) : null}
+
+          {/* Suggestions  */}
+          {!isAvailable && suggestions.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-2">
+              {suggestions.map((s, i) => (
+                <button 
+                  key={i}
+                  onClick={() => setUsername(s)}
+                  className="px-3 py-1 rounded-full border text-sm bg-zinc-200 dark:bg-zinc-800"
+                >
+                  @{s}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Start button */}
           <button 
