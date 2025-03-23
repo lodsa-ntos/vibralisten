@@ -3,7 +3,10 @@ import { motion, AnimatePresence  } from "framer-motion";
 import { getCsrfToken } from "../../utils/getCsrfToken";
 
 export const WelcomeModal = ({ user, onclose }) => {
-  const [username, setUsername] = useState(localStorage.getItem("username") || "");
+  const [username, setUsername] = useState("");
+  const [isAvailable, setIsAvailable] = useState(true);
+  const [suggestions, setSuggestions] = useState([]);
+  const [checking, setChecking] = useState(false);
 
   const handleStart = async () => {
     try {
@@ -62,7 +65,27 @@ export const WelcomeModal = ({ user, onclose }) => {
     }
 
     fetchSession();
-  }, []);
+
+    if (!username) return;
+
+    const delayDebounceFn = setTimeout(() => {
+      checkUsername(username);
+    }, 600);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [username]);
+
+  const checkUsername = async (name) => {
+    setChecking(true);
+
+    const res = await fetch(`http://localhost:3000/api/users/check-username?username${encodeURIComponent(name)}`);
+
+    const data = await res.json();
+
+    setIsAvailable(data.isAvailable);
+    setSuggestions(data.suggestions || []);
+    setChecking(false);
+  };
 
   return (
     <AnimatePresence>
