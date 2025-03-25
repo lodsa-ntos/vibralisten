@@ -1,3 +1,7 @@
+⚠️ Project temporarily paused to focus on an important personal goal.  
+🔄 Resume scheduled for AUGUST 2025.  
+💭 This project will resume with new ideas and improvements.
+
 # 🎵 VibraListen – Personalized Music Discovery Platform
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Node Version](https://img.shields.io/badge/node-%3E%3D%2022.13.1-blue)

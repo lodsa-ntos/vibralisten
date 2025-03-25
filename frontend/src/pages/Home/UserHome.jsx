@@ -8,6 +8,7 @@ import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { TbHome } from "react-icons/tb";
 import { LiaMicrophoneAltSolid } from "react-icons/lia";
 import { RiMusicAiLine } from "react-icons/ri";
+import { NavLink } from "react-router-dom";
 
 export const UserHome = () => {
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
@@ -88,11 +89,11 @@ export const UserHome = () => {
       )}
         {/* Sidebar */}
           {visibleMenu && (
-            <div className={`transition-transform duration-500 ${visibleMenu ? "translate-x-0" : " -translate-x-full"} fixed top-0 left-0 pl-3 z-40 h-full w-[290px] bg-[#ededed] border-white/20 md:relative md:translate-x-0 md:w-[260px] flex flex-col`}>
+            <div className={`transition-transform duration-500 ${visibleMenu ? "translate-x-0" : " -translate-x-full"} fixed top-0 left-0 z-40 h-full w-[290px] bg-[#ededed] border-white/20 md:relative md:translate-x-0 md:w-[260px] flex flex-col`}>
 
             {/* fixed header */}
-              <div className="sticky top-0 bg-[#ededed] z-50 h-[100px] items-center xs:pr-3 xs:pl-3 xs:pb-3 xs:pt-3 pt-4">
-                <div className="flex items-center justify-between px-1.5">
+              <div className="sticky top-0 bg-[#ededed] z-50 h-[100px] items-center xs:pr-3 xs:pl-3 xs:pb-3 xs:pt-3 ">
+                <div className="flex items-center justify-between p-6">
                   <button  onClick={() => setVisibleMenu(false)} >
                     <span className="hidden md:inline">
                       <PiSidebar size={24} className=" left-0 transition-opacity transform duration-300 ease-in-out hover:scale-105 text-gray-500" />
@@ -108,7 +109,7 @@ export const UserHome = () => {
               </div>
                 
               {/* Scroll */}
-              <div className="flex-1 overflow-y-auto px-1.5 py-2 [&::-webkit-scrollbar]:w-2
+              <div className="flex-1 overflow-y-auto py-2 [&::-webkit-scrollbar]:w-2
                 [&::-webkit-scrollbar-track]:rounded-full
                 [&::-webkit-scrollbar-track]:bg-[#ededed]
                 [&::-webkit-scrollbar-thumb]:rounded-full
@@ -118,9 +119,20 @@ export const UserHome = () => {
               >
                 {/* Menu items */}
                 <ul className="space-y-6 py-3 text-sm text-gray-500">
-                    <li className="flex items-center gap-2"><TbHome size={20} /> Home</li>
-                    <li className="flex items-center gap-2"><LiaMicrophoneAltSolid size={20} /> Artists</li>
-                    <li className="flex items-center gap-2"><RiMusicAiLine size={20} /> Songs</li> {/* // será trocado depois*/}
+                    <li className="flex items-center gap-2">
+                      <NavLink to="/home" className={({ isActive}) => `flex items-center gap-2 px-6 py-2  transition-all duration-200 group ${isActive
+                        ? "text-[#3d55cc] font-semibold border-l-4 border-[#3d55cc] bg-gradient-to-l to-[#3d55cc]/40 via-[#3d55cc]/20 from-transparent "
+                        : "text-gray-500 hover:text-[#3d55cc] hover:bg-[#3d55cc]/10"
+                      }`}>
+                        
+                        <TbHome size={20} 
+                        className="transition-colors duration-200 group-houver:text-[#3d55cc]"/> 
+                          Home
+                      </NavLink>
+                    </li>
+
+                    <li className="flex items-center gap-2 px-6"><LiaMicrophoneAltSolid size={20} /> Artists</li>
+                    <li className="flex items-center gap-2 px-6"><RiMusicAiLine size={20} /> Songs</li> {/* // será trocado depois*/}
                 </ul>
               </div>
 
@@ -139,7 +151,7 @@ export const UserHome = () => {
                 {!visibleMenu && (
                   <button
                   onClick={() => setVisibleMenu(!visibleMenu)}
-                  className={`fixed top-0 p-4 z-50 rounded transition-opacity transform duration-300 ease-in-out hover:scale-105`}
+                  className={`fixed top-0 p-6 z-50 rounded transition-opacity transform duration-300 ease-in-out hover:scale-105`}
                 >
                   <span className="hidden md:inline">
                     <PiSidebar size={24} className="text-gray-500" />
@@ -158,7 +170,7 @@ export const UserHome = () => {
                 <div className="flex ">
                   <img
                     src="Logo/vibralisten_logo_w.svg"
-                    className={`${visibleMenu ? "md:ml-2" : "ml-12" } w-24 py-3 dark:hidden inline-block object-contain drop-shadow-[0px_4px_10px_rgba(255,255,255,0.4)]`}
+                    className={`${visibleMenu ? "md:ml-2" : "ml-16" } w-24 py-3 dark:hidden inline-block object-contain drop-shadow-[0px_4px_10px_rgba(255,255,255,0.4)]`}
                     alt="vibralisten_logo"
                   />
                 </div>
